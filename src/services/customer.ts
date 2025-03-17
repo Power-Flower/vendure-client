@@ -1,0 +1,205 @@
+import {
+    type AddressSchema,
+    CreateCustomerAddressSchema,
+    DeleteCustomerAddressSchema,
+    GetActiveCustomerSchema,
+    UpdateCustomerAddressSchema,
+} from '$schemas';
+import { BaseService } from '$services';
+import { type AResult, gql } from '$types';
+import { a } from '@arrirpc/schema';
+
+export class Customer extends BaseService {
+    public async getActiveCustomer(): Promise<
+        AResult<typeof GetActiveCustomerSchema>
+    > {
+        const response = await this.client.query({
+            query: gql`
+                query GetActiveCustomer {
+                    activeCustomer {
+                        id
+                        title
+                        firstName
+                        lastName
+                        phoneNumber
+                        emailAddress
+                        addresses {
+                            id
+                            fullName
+                            company
+                            streetLine1
+                            streetLine2
+                            city
+                            province
+                            postalCode
+                            country {
+                                id
+                                code
+                                name
+                                enabled
+                            }
+                            phoneNumber
+                            defaultShippingAddress
+                            defaultBillingAddress
+                        }
+                        orders {
+                            items {
+                                id
+                                createdAt
+                                orderPlacedAt
+                                code
+                                state
+                                active
+                                lines {
+                                    id
+                                    featuredAsset {
+                                        id
+                                        name
+                                        type
+                                        source
+                                    }
+                                    unitPrice
+                                    unitPriceWithTax
+                                    discountedUnitPrice
+                                    discountedUnitPriceWithTax
+                                    quantity
+                                    linePrice
+                                    linePriceWithTax
+                                    discountedLinePrice
+                                    discountedLinePriceWithTax
+                                    discounts {
+                                        adjustmentSource
+                                        type
+                                        description
+                                        amount
+                                        amountWithTax
+                                    }
+                                }
+                            }
+                            totalItems
+                        }
+                        customFields {
+                            subscribedUntil
+                        }
+                   }
+                }
+            `,
+        });
+
+        return a.parse(GetActiveCustomerSchema, response.data);
+    }
+
+    public async createCustomerAddress(
+        input: a.infer<typeof AddressSchema>,
+    ): Promise<AResult<typeof CreateCustomerAddressSchema>> {
+        const response = await this.client.mutate({
+            mutation: gql`
+                mutation CreateCustomerAddress($input: CreateAddressInput!) {
+                    createCustomerAddress(input: $input) {
+                        id
+                        fullName
+                        company
+                        streetLine1
+                        streetLine2
+                        city
+                        province
+                        postalCode
+                        country {
+                            id
+                            code
+                            name
+                            enabled
+                        }
+                        phoneNumber
+                        defaultShippingAddress
+                        defaultBillingAddress
+                   }
+                }
+            `,
+            variables: {
+                input: {
+                    fullName: input.fullName,
+                    company: input.company,
+                    streetLine1: input.streetLine1,
+                    streetLine2: input.streetLine2,
+                    city: input.city,
+                    province: input.province,
+                    postalCode: input.postalCode,
+                    countryCode: input.country.code,
+                    phoneNumber: input.phoneNumber,
+                    defaultShippingAddress: input.defaultShippingAddress,
+                    defaultBillingAddress: input.defaultBillingAddress,
+                },
+            },
+        });
+
+        return a.parse(CreateCustomerAddressSchema, response.data);
+    }
+
+    public async updateCustomerAddress(
+        input: a.infer<typeof AddressSchema>,
+    ): Promise<AResult<typeof UpdateCustomerAddressSchema>> {
+        const response = await this.client.mutate({
+            mutation: gql`
+                mutation UpdateCustomerAddress($input: UpdateAddressInput!) {
+                    updateCustomerAddress(input: $input) {
+                        id
+                        fullName
+                        company
+                        streetLine1
+                        streetLine2
+                        city
+                        province
+                        postalCode
+                        country {
+                            id
+                            code
+                            name
+                            enabled
+                        }
+                        phoneNumber
+                        defaultShippingAddress
+                        defaultBillingAddress
+                   }
+                }
+            `,
+            variables: {
+                input: {
+                    id: input.id,
+                    fullName: input.fullName,
+                    company: input.company,
+                    streetLine1: input.streetLine1,
+                    streetLine2: input.streetLine2,
+                    city: input.city,
+                    province: input.province,
+                    postalCode: input.postalCode,
+                    countryCode: input.country.code,
+                    phoneNumber: input.phoneNumber,
+                    defaultShippingAddress: input.defaultShippingAddress,
+                    defaultBillingAddress: input.defaultBillingAddress,
+                },
+            },
+        });
+
+        return a.parse(UpdateCustomerAddressSchema, response.data);
+    }
+
+    public async deleteCustomerAddress(
+        id: string,
+    ): Promise<AResult<typeof DeleteCustomerAddressSchema>> {
+        const response = await this.client.mutate({
+            mutation: gql`
+                mutation DeleteCustomerAddress($id: ID!) {
+                    deleteCustomerAddress(id: $id) {
+                        success
+                   }
+                }
+            `,
+            variables: {
+                id,
+            },
+        });
+
+        return a.parse(DeleteCustomerAddressSchema, response.data);
+    }
+}
