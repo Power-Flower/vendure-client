@@ -111,6 +111,20 @@ var __webpack_modules__ = {
             amount: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             amountWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number()
         });
+        const ProductVariantSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            productId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            sku: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            featuredAsset: AssetSchema,
+            assets: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(AssetSchema),
+            price: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            currencyCode: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            priceWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            stockLevel: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            options: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(ProductOptionSchema),
+            facetValues: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(FacetValueSchema)
+        });
         const OrderLineSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
             id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             productVariant: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.optional(ProductVariantSchema),
@@ -252,20 +266,6 @@ var __webpack_modules__ = {
                 location: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
                 date: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp()
             })
-        });
-        const ProductVariantSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
-            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            productId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            sku: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            featuredAsset: AssetSchema,
-            assets: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(AssetSchema),
-            price: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
-            currencyCode: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            priceWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
-            stockLevel: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
-            options: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(ProductOptionSchema),
-            facetValues: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(FacetValueSchema)
         });
         var types = __webpack_require__("./src/types/index.ts");
         class Auth extends BaseService {
