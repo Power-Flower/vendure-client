@@ -2,14 +2,23 @@
     "name": "vendure-client",
     "version": "1.0.0",
     "type": "module",
+    "license": "MIT",
+    "description": "Vendure client library",
+    "contributors": [
+        {
+            "name": "kalucky0",
+            "url": "https://kalucky0.dev"
+        },
+        {
+            "name": "Prezes2137"
+        }
+    ],
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "require": "./dist/index.cjs"
+            "import": "./dist/index.js"
         }
     },
-    "main": "./dist/index.cjs",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "files": ["dist"],
@@ -25,7 +34,6 @@
         "@types/node": "^22.13.10",
         "typescript": "^5.8.2"
     },
-    "private": true,
     "dependencies": {
         "@apollo/client": "3.13.4",
         "@arrirpc/schema": "0.76.4"
