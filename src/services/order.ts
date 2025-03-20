@@ -1,13 +1,13 @@
+import { a } from '@arrirpc/schema';
 import {
     ActiveOrderSchema,
     AddToActiveOrderSchema,
     AdjustOrderLineSchema,
     OrderByCodeSchema,
     RemoveOrderLineSchema,
-} from '$schemas';
-import { BaseService } from '$services';
-import { type AResult, gql } from '$types';
-import { a } from '@arrirpc/schema';
+} from '../schemas/order.schemas';
+import { type AResult, gql } from '../types';
+import { BaseService } from './base-service';
 
 export class Order extends BaseService {
     public async getByCode(

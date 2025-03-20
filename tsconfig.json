@@ -10,12 +10,7 @@
         "moduleResolution": "bundler",
         "useDefineForClassFields": true,
         "allowImportingTsExtensions": true,
-        "downlevelIteration": true,
-        "paths": {
-            "$schemas": ["./src/schemas/index.ts"],
-            "$services": ["./src/services/index.ts"],
-            "$types": ["./src/types/index.ts"]
-        }
+        "downlevelIteration": true
     },
     "include": ["src"]
 }

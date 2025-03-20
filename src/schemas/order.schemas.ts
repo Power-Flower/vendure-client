@@ -1,5 +1,7 @@
-import { AssetSchema, CustomerSchema, ProductVariantSchema } from '$schemas';
 import { a } from '@arrirpc/schema';
+import { AssetSchema } from './asset.schemas';
+import { CustomerSchema } from './customer.schemas';
+import { ProductVariantSchema } from './product.schemas';
 
 export const DiscountSchema = a.object({
     adjustmentSource: a.string(),

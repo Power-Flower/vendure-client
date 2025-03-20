@@ -1,7 +1,7 @@
-import { AuthLoginSchema, AuthRegisterSchema } from '$schemas';
-import { BaseService } from '$services';
-import { type AResult, gql } from '$types';
 import { a } from '@arrirpc/schema';
+import { AuthLoginSchema, AuthRegisterSchema } from '../schemas/auth.schemas';
+import { type AResult, gql } from '../types';
+import { BaseService } from './base-service';
 
 export class Auth extends BaseService {
     public async login(

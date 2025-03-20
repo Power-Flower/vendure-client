@@ -1,7 +1,7 @@
-import { type AddressSchema, CreateCustomerAddressSchema, DeleteCustomerAddressSchema, GetActiveCustomerSchema, UpdateCustomerAddressSchema } from '../schemas/index.ts';
-import { BaseService } from './index.ts';
-import { type AResult } from '../types/index.ts';
 import { a } from '@arrirpc/schema';
+import { type AddressSchema, CreateCustomerAddressSchema, DeleteCustomerAddressSchema, GetActiveCustomerSchema, UpdateCustomerAddressSchema } from '../schemas/customer.schemas';
+import { type AResult } from '../types';
+import { BaseService } from './base-service';
 export declare class Customer extends BaseService {
     getActiveCustomer(): Promise<AResult<typeof GetActiveCustomerSchema>>;
     createCustomerAddress(input: a.infer<typeof AddressSchema>): Promise<AResult<typeof CreateCustomerAddressSchema>>;

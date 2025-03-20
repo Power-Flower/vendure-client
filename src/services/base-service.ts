@@ -1,4 +1,4 @@
-import type { ApolloClient, NormalizedCacheObject } from '$types';
+import type { ApolloClient, NormalizedCacheObject } from '../types';
 
 export class BaseService {
     protected readonly client: ApolloClient<NormalizedCacheObject>;

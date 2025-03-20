@@ -1,5 +1,5 @@
-import { AssetSchema } from '$schemas';
 import { a } from '@arrirpc/schema';
+import { AssetSchema } from './asset.schemas';
 
 export const FacetValueSchema = a.object({
     id: a.string(),

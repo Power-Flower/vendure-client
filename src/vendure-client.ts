@@ -1,4 +1,4 @@
-import { Auth, Customer, Order } from '$services';
+import { Auth, Customer, Order } from './services';
 import {
     ApolloClient,
     ApolloLink,
@@ -11,7 +11,7 @@ import {
     type Operation,
     type VendureClientConfig,
     concat,
-} from '$types';
+} from './types';
 
 export class VendureClient {
     public readonly auth: Auth;

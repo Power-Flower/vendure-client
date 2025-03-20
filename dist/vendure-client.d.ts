@@ -1,5 +1,5 @@
-import { Auth, Customer, Order } from './services/index.ts';
-import { type VendureClientConfig } from './types/index.ts';
+import { Auth, Customer, Order } from './services';
+import { type VendureClientConfig } from './types';
 export declare class VendureClient {
     readonly auth: Auth;
     readonly customer: Customer;
