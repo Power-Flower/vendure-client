@@ -538,6 +538,45 @@ var __webpack_modules__ = {
                 return __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.parse(DeleteCustomerAddressSchema, response.data);
             }
         }
+        const CollectionBreadcrumbSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            slug: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string()
+        });
+        const CollectionSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            createdAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            languageCode: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            slug: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            breadcrumbs: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(CollectionBreadcrumbSchema),
+            position: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            description: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            featuredAsset: AssetSchema,
+            assets: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(AssetSchema),
+            parentId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            productVariants: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(ProductVariantSchema)
+        });
+        const CollectionQuerySchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            collection: CollectionSchema
+        });
+        class Collection extends BaseService {
+            async getCollectionById(id) {
+                const response = await this.client.query({
+                    query: (0, types.gql)`
+                query Collection($id: ID!) {
+                    collection(id: $id) {
+                        ${convertToGql(CollectionSchema)}
+                    }
+                }
+            `,
+                    variables: {
+                        id
+                    }
+                });
+                return __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.parse(CollectionQuerySchema, response.data);
+            }
+        }
         class Order extends BaseService {
             async getByCode(code) {
                 const response = await this.client.query({
@@ -659,11 +698,13 @@ var __webpack_modules__ = {
             constructor(vendureClientConfig){
                 vendure_client_define_property(this, "auth", void 0);
                 vendure_client_define_property(this, "customer", void 0);
+                vendure_client_define_property(this, "collection", void 0);
                 vendure_client_define_property(this, "order", void 0);
                 vendure_client_define_property(this, "apolloClient", void 0);
                 this.apolloClient = this.createApolloClient(vendureClientConfig.apiUri);
                 this.order = new Order(this.apolloClient);
                 this.customer = new Customer(this.apolloClient);
+                this.collection = new Collection(this.apolloClient);
                 this.auth = new Auth(this.apolloClient);
             }
         }
