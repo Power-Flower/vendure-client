@@ -335,77 +335,33 @@ var __webpack_modules__ = {
                 this.client = client;
             }
         }
+        const convertToGql = (schema)=>{
+            let object = schema.properties;
+            if ('optionalProperties' in schema) object = {
+                ...object,
+                ...schema.optionalProperties
+            };
+            if ('elements' in schema) object = {
+                ...object,
+                ...schema.elements.properties
+            };
+            const props = Object.entries(object).map((param)=>{
+                let [key, value] = param;
+                if ('object' != typeof value) return key;
+                if ('properties' in value || 'elements' in value || 'optionalProperties' in value) {
+                    if (value.elements && !(value.elements.properties || value.elements.optionalProperties)) return key;
+                    return `${key} {\n${convertToGql(value)}\n}`;
+                }
+                return key;
+            }).join('\n');
+            return props;
+        };
         class Customer extends BaseService {
             async getActiveCustomer() {
                 const response = await this.client.query({
                     query: (0, types.gql)`
                 query GetActiveCustomer {
-                    activeCustomer {
-                        id
-                        title
-                        firstName
-                        lastName
-                        phoneNumber
-                        emailAddress
-                        addresses {
-                            id
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country {
-                                id
-                                code
-                                name
-                                enabled
-                            }
-                            phoneNumber
-                            defaultShippingAddress
-                            defaultBillingAddress
-                        }
-                        orders {
-                            items {
-                                id
-                                createdAt
-                                orderPlacedAt
-                                code
-                                state
-                                active
-                                lines {
-                                    id
-                                    featuredAsset {
-                                        id
-                                        name
-                                        type
-                                        source
-                                    }
-                                    unitPrice
-                                    unitPriceWithTax
-                                    discountedUnitPrice
-                                    discountedUnitPriceWithTax
-                                    quantity
-                                    linePrice
-                                    linePriceWithTax
-                                    discountedLinePrice
-                                    discountedLinePriceWithTax
-                                    discounts {
-                                        adjustmentSource
-                                        type
-                                        description
-                                        amount
-                                        amountWithTax
-                                    }
-                                }
-                            }
-                            totalItems
-                        }
-                        customFields {
-                            subscribedUntil
-                        }
-                   }
+                    ${convertToGql(GetActiveCustomerSchema)}
                 }
             `
                 });
