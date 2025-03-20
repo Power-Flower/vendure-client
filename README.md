@@ -1,11 +1,13 @@
-# Rslib project
+# Vendure Client
+
+This is a client library for the [Vendure](https://vendure.io/) GraphQL API.
 
 ## Setup
 
 Install the dependencies:
 
 ```bash
-pnpm install
+npm install
 ```
 
 ## Get started
@@ -13,11 +15,5 @@ pnpm install
 Build the library:
 
 ```bash
-pnpm build
-```
-
-Build the library in watch mode:
-
-```bash
-pnpm dev
+npm run build
 ```
