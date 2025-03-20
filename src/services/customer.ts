@@ -8,6 +8,7 @@ import {
 import { BaseService } from '$services';
 import { type AResult, gql } from '$types';
 import { a } from '@arrirpc/schema';
+import { convertToGql } from '../utils';
 
 export class Customer extends BaseService {
     public async getActiveCustomer(): Promise<
@@ -16,72 +17,7 @@ export class Customer extends BaseService {
         const response = await this.client.query({
             query: gql`
                 query GetActiveCustomer {
-                    activeCustomer {
-                        id
-                        title
-                        firstName
-                        lastName
-                        phoneNumber
-                        emailAddress
-                        addresses {
-                            id
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country {
-                                id
-                                code
-                                name
-                                enabled
-                            }
-                            phoneNumber
-                            defaultShippingAddress
-                            defaultBillingAddress
-                        }
-                        orders {
-                            items {
-                                id
-                                createdAt
-                                orderPlacedAt
-                                code
-                                state
-                                active
-                                lines {
-                                    id
-                                    featuredAsset {
-                                        id
-                                        name
-                                        type
-                                        source
-                                    }
-                                    unitPrice
-                                    unitPriceWithTax
-                                    discountedUnitPrice
-                                    discountedUnitPriceWithTax
-                                    quantity
-                                    linePrice
-                                    linePriceWithTax
-                                    discountedLinePrice
-                                    discountedLinePriceWithTax
-                                    discounts {
-                                        adjustmentSource
-                                        type
-                                        description
-                                        amount
-                                        amountWithTax
-                                    }
-                                }
-                            }
-                            totalItems
-                        }
-                        customFields {
-                            subscribedUntil
-                        }
-                   }
+                    ${convertToGql(GetActiveCustomerSchema)}
                 }
             `,
         });
