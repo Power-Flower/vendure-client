@@ -43,9 +43,15 @@ var __webpack_modules__ = {
         });
         const AssetSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
             id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            createdAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             type: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            source: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string()
+            fileSize: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            mimeType: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            width: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            height: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            source: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            preview: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string()
         });
         const AuthLoginSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
             login: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
@@ -104,26 +110,89 @@ var __webpack_modules__ = {
                 success: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.boolean()
             })
         });
+        const ZoneSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string()
+        });
+        const TaxLineSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            description: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            taxRate: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number()
+        });
+        const TaxCategorySchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            isDefault: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.boolean()
+        });
+        const TaxRateSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            enabled: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.boolean(),
+            value: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            category: TaxCategorySchema,
+            zone: ZoneSchema
+        });
+        const OrderTaxSummarySchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            description: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            taxRate: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            taxBase: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            taxTotal: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number()
+        });
+        const RefundLineSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            orderLineId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            quantity: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            refundId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string()
+        });
+        const RefundSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            createdAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            items: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            shiping: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            adjustment: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            total: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            method: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            state: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            transactionId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            reason: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            lines: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(RefundLineSchema),
+            paymentId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string()
+        });
+        const PaymentSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            createdAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            method: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            amount: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            state: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            transactionId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            errorMessage: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            refund: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(RefundSchema)
+        });
+        const PromotionSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            createdAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            startsAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            endsAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            couponCode: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            perCustomerUsageLimit: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            description: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            enabled: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.boolean()
+        });
+        const SurchargeSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            createdAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            description: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            sku: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            taxLines: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(TaxLineSchema),
+            price: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            priceWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            taxRate: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number()
+        });
         const DiscountSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
             adjustmentSource: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             type: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             description: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             amount: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             amountWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number()
-        });
-        const ProductVariantSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
-            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            productId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            sku: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            featuredAsset: AssetSchema,
-            assets: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(AssetSchema),
-            price: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
-            currencyCode: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
-            priceWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
-            stockLevel: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
-            options: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(ProductOptionSchema),
-            facetValues: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(FacetValueSchema)
         });
         const OrderLineSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
             id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
@@ -134,11 +203,17 @@ var __webpack_modules__ = {
             discountedUnitPrice: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             discountedUnitPriceWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             quantity: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            orderPlacedQuantity: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            taxRate: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             linePrice: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             linePriceWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             discountedLinePrice: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             discountedLinePriceWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
-            discounts: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(DiscountSchema)
+            proratedLinePrice: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            proratedLinePriceWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            lineTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            discounts: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(DiscountSchema),
+            taxLines: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(TaxLineSchema)
         });
         const ShippingMethod = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
             id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
@@ -169,6 +244,7 @@ var __webpack_modules__ = {
         const OrderSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
             id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             createdAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            type: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             orderPlacedAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
             code: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             state: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
@@ -177,8 +253,11 @@ var __webpack_modules__ = {
             shippingAddress: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.optional(OrderAddressSchema),
             billingAddress: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.optional(OrderAddressSchema),
             lines: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(OrderLineSchema),
+            surcharges: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(SurchargeSchema),
             discounts: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(DiscountSchema),
             couponCodes: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(__WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string()),
+            promotions: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(PromotionSchema),
+            payments: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(PaymentSchema),
             totalQuantity: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             subTotal: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             subTotalWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
@@ -187,7 +266,8 @@ var __webpack_modules__ = {
             shipping: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             shippingWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
             total: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
-            totalWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number()
+            totalWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            taxSummary: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(OrderTaxSummarySchema)
         });
         __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
             items: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(OrderSchema),
@@ -256,6 +336,8 @@ var __webpack_modules__ = {
         });
         __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
             id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            createdAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            languageCode: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             slug: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
             description: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
@@ -266,6 +348,24 @@ var __webpack_modules__ = {
                 location: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
                 date: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp()
             })
+        });
+        const ProductVariantSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            productId: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            createdAt: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp(),
+            languageCode: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            sku: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            featuredAsset: AssetSchema,
+            assets: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(AssetSchema),
+            price: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            currencyCode: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            priceWithTax: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            stockLevel: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.number(),
+            taxRateApplied: TaxRateSchema,
+            taxCategory: TaxCategorySchema,
+            options: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(ProductOptionSchema),
+            facetValues: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(FacetValueSchema)
         });
         var types = __webpack_require__("./src/types/index.ts");
         class Auth extends BaseService {
@@ -372,23 +472,7 @@ var __webpack_modules__ = {
                     mutation: (0, types.gql)`
                 mutation CreateCustomerAddress($input: CreateAddressInput!) {
                     createCustomerAddress(input: $input) {
-                        id
-                        fullName
-                        company
-                        streetLine1
-                        streetLine2
-                        city
-                        province
-                        postalCode
-                        country {
-                            id
-                            code
-                            name
-                            enabled
-                        }
-                        phoneNumber
-                        defaultShippingAddress
-                        defaultBillingAddress
+                        ${convertToGql(AddressSchema)}
                    }
                 }
             `,
@@ -415,23 +499,7 @@ var __webpack_modules__ = {
                     mutation: (0, types.gql)`
                 mutation UpdateCustomerAddress($input: UpdateAddressInput!) {
                     updateCustomerAddress(input: $input) {
-                        id
-                        fullName
-                        company
-                        streetLine1
-                        streetLine2
-                        city
-                        province
-                        postalCode
-                        country {
-                            id
-                            code
-                            name
-                            enabled
-                        }
-                        phoneNumber
-                        defaultShippingAddress
-                        defaultBillingAddress
+                        ${convertToGql(AddressSchema)}
                    }
                 }
             `,
@@ -490,136 +558,7 @@ var __webpack_modules__ = {
                 const response = await this.client.query({
                     query: (0, types.gql)`
                 query GetActiveOrder {
-                    activeOrder {
-                        id
-                        createdAt
-                        orderPlacedAt
-                        code
-                        state
-                        active
-                        shippingAddress {
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country
-                            countryCode
-                            phoneNumber
-                        }
-                        billingAddress {
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country
-                            countryCode
-                            phoneNumber
-                        }
-                        lines {
-                            id
-                            productVariant {
-                                id
-                                productId
-                                sku
-                                name
-                                featuredAsset {
-                                    id
-                                    name
-                                    type
-                                    source
-                                }
-                                assets {
-                                    id
-                                    name
-                                    type
-                                    source
-                                }
-                                price
-                                currencyCode
-                                priceWithTax
-                                stockLevel
-                                options {
-                                    id
-                                    code
-                                    name
-                                    groupId
-                                    group {
-                                        id
-                                        code
-                                        name
-                                    }
-                                }
-                                facetValues {
-                                    id
-                                    facet {
-                                        id
-                                        name
-                                        code
-                                    }
-                                    facetId
-                                    name
-                                    code
-                                }
-                            }
-                            featuredAsset {
-                                id
-                                name
-                                type
-                                source
-                            }
-                            unitPrice
-                            unitPriceWithTax
-                            discountedUnitPrice
-                            discountedUnitPriceWithTax
-                            quantity
-                            linePrice
-                            linePriceWithTax
-                            discountedLinePrice
-                            discountedLinePriceWithTax
-                            discounts {
-                                adjustmentSource
-                                type
-                                description
-                                amount
-                                amountWithTax
-                            }
-                        }
-                        discounts {
-                            adjustmentSource
-                            type
-                            description
-                            amount
-                            amountWithTax
-                        }
-                        couponCodes
-                        totalQuantity
-                        subTotal
-                        subTotalWithTax
-                        currencyCode
-                        shippingLines {
-                            id
-                            shippingMethod {
-                                id
-                                code
-                                name
-                                description
-                            }
-                            price
-                            priceWithTax
-                            discountedPrice
-                            discountedPriceWithTax
-                        }
-                        shipping
-                        shippingWithTax
-                        total
-                        totalWithTax
-                    }
+                    ${convertToGql(ActiveOrderSchema)}
                 }
             `
                 });
@@ -630,134 +569,7 @@ var __webpack_modules__ = {
                     mutation: (0, types.gql)`
                 mutation AddItemToOrder($productVariantId: ID!, $quantity: Int!) {
                     addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
-                        id
-                        createdAt
-                        orderPlacedAt
-                        code
-                        state
-                        active
-                        shippingAddress {
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country
-                            countryCode
-                            phoneNumber
-                        }
-                        billingAddress {
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country
-                            countryCode
-                            phoneNumber
-                        }
-                        lines {
-                            id
-                            productVariant {
-                                id
-                                productId
-                                sku
-                                name
-                                featuredAsset {
-                                    id
-                                    name
-                                    type
-                                    source
-                                }
-                                assets {
-                                    id
-                                    name
-                                    type
-                                    source
-                                }
-                                price
-                                currencyCode
-                                priceWithTax
-                                stockLevel
-                                options {
-                                    id
-                                    code
-                                    name
-                                    groupId
-                                    group {
-                                        id
-                                        code
-                                        name
-                                    }
-                                }
-                                facetValues {
-                                    id
-                                    facet {
-                                        id
-                                        name
-                                        code
-                                    }
-                                    facetId
-                                    name
-                                    code
-                                }
-                            }
-                            featuredAsset {
-                                id
-                                name
-                                type
-                                source
-                            }
-                            unitPrice
-                            unitPriceWithTax
-                            discountedUnitPrice
-                            discountedUnitPriceWithTax
-                            quantity
-                            linePrice
-                            linePriceWithTax
-                            discountedLinePrice
-                            discountedLinePriceWithTax
-                            discounts {
-                                adjustmentSource
-                                type
-                                description
-                                amount
-                                amountWithTax
-                            }
-                        }
-                        discounts {
-                            adjustmentSource
-                            type
-                            description
-                            amount
-                            amountWithTax
-                        }
-                        couponCodes
-                        totalQuantity
-                        subTotal
-                        subTotalWithTax
-                        currencyCode
-                        shippingLines {
-                            id
-                            shippingMethod {
-                                id
-                                code
-                                name
-                                description
-                            }
-                            price
-                            priceWithTax
-                            discountedPrice
-                            discountedPriceWithTax
-                        }
-                        shipping
-                        shippingWithTax
-                        total
-                        totalWithTax
+                        ${convertToGql(OrderSchema)}
                     }
                 }
             `,
@@ -773,134 +585,7 @@ var __webpack_modules__ = {
                     mutation: (0, types.gql)`
                 mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!) {
                     adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
-                        id
-                        createdAt
-                        orderPlacedAt
-                        code
-                        state
-                        active
-                        shippingAddress {
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country
-                            countryCode
-                            phoneNumber
-                        }
-                        billingAddress {
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country
-                            countryCode
-                            phoneNumber
-                        }
-                        lines {
-                            id
-                            productVariant {
-                                id
-                                productId
-                                sku
-                                name
-                                featuredAsset {
-                                    id
-                                    name
-                                    type
-                                    source
-                                }
-                                assets {
-                                    id
-                                    name
-                                    type
-                                    source
-                                }
-                                price
-                                currencyCode
-                                priceWithTax
-                                stockLevel
-                                options {
-                                    id
-                                    code
-                                    name
-                                    groupId
-                                    group {
-                                        id
-                                        code
-                                        name
-                                    }
-                                }
-                                facetValues {
-                                    id
-                                    facet {
-                                        id
-                                        name
-                                        code
-                                    }
-                                    facetId
-                                    name
-                                    code
-                                }
-                            }
-                            featuredAsset {
-                                id
-                                name
-                                type
-                                source
-                            }
-                            unitPrice
-                            unitPriceWithTax
-                            discountedUnitPrice
-                            discountedUnitPriceWithTax
-                            quantity
-                            linePrice
-                            linePriceWithTax
-                            discountedLinePrice
-                            discountedLinePriceWithTax
-                            discounts {
-                                adjustmentSource
-                                type
-                                description
-                                amount
-                                amountWithTax
-                            }
-                        }
-                        discounts {
-                            adjustmentSource
-                            type
-                            description
-                            amount
-                            amountWithTax
-                        }
-                        couponCodes
-                        totalQuantity
-                        subTotal
-                        subTotalWithTax
-                        currencyCode
-                        shippingLines {
-                            id
-                            shippingMethod {
-                                id
-                                code
-                                name
-                                description
-                            }
-                            price
-                            priceWithTax
-                            discountedPrice
-                            discountedPriceWithTax
-                        }
-                        shipping
-                        shippingWithTax
-                        total
-                        totalWithTax
+                        ${convertToGql(OrderSchema)}
                     }
                 }
             `,
@@ -916,134 +601,7 @@ var __webpack_modules__ = {
                     mutation: (0, types.gql)`
                 mutation RemoveOrderLine($orderLineId: ID!) {
                     removeOrderLine(orderLineId: $orderLineId) {
-                        id
-                        createdAt
-                        orderPlacedAt
-                        code
-                        state
-                        active
-                        shippingAddress {
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country
-                            countryCode
-                            phoneNumber
-                        }
-                        billingAddress {
-                            fullName
-                            company
-                            streetLine1
-                            streetLine2
-                            city
-                            province
-                            postalCode
-                            country
-                            countryCode
-                            phoneNumber
-                        }
-                        lines {
-                            id
-                            productVariant {
-                                id
-                                productId
-                                sku
-                                name
-                                featuredAsset {
-                                    id
-                                    name
-                                    type
-                                    source
-                                }
-                                assets {
-                                    id
-                                    name
-                                    type
-                                    source
-                                }
-                                price
-                                currencyCode
-                                priceWithTax
-                                stockLevel
-                                options {
-                                    id
-                                    code
-                                    name
-                                    groupId
-                                    group {
-                                        id
-                                        code
-                                        name
-                                    }
-                                }
-                                facetValues {
-                                    id
-                                    facet {
-                                        id
-                                        name
-                                        code
-                                    }
-                                    facetId
-                                    name
-                                    code
-                                }
-                            }
-                            featuredAsset {
-                                id
-                                name
-                                type
-                                source
-                            }
-                            unitPrice
-                            unitPriceWithTax
-                            discountedUnitPrice
-                            discountedUnitPriceWithTax
-                            quantity
-                            linePrice
-                            linePriceWithTax
-                            discountedLinePrice
-                            discountedLinePriceWithTax
-                            discounts {
-                                adjustmentSource
-                                type
-                                description
-                                amount
-                                amountWithTax
-                            }
-                        }
-                        discounts {
-                            adjustmentSource
-                            type
-                            description
-                            amount
-                            amountWithTax
-                        }
-                        couponCodes
-                        totalQuantity
-                        subTotal
-                        subTotalWithTax
-                        currencyCode
-                        shippingLines {
-                            id
-                            shippingMethod {
-                                id
-                                code
-                                name
-                                description
-                            }
-                            price
-                            priceWithTax
-                            discountedPrice
-                            discountedPriceWithTax
-                        }
-                        shipping
-                        shippingWithTax
-                        total
-                        totalWithTax
+                        ${convertToGql(OrderSchema)}
                     }
                 }
             `,
