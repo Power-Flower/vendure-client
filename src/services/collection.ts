@@ -16,8 +16,8 @@ export class Collection extends BaseService {
     public async getCollectionById(
         id: string,
     ): Promise<AResult<typeof CollectionQuerySchema>> {
-        const response = await this.client.mutate({
-            mutation: gql`
+        const response = await this.client.query({
+            query: gql`
                 query Collection($id: ID!) {
                     collection(id: $id) {
                         ${convertToGql(CollectionSchema)}
