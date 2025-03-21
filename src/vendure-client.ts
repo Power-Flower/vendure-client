@@ -1,4 +1,4 @@
-import { Auth, Customer, Collection, Order } from '$services';
+import { Auth, Collection, Customer, Order } from '$services';
 import {
     ApolloClient,
     ApolloLink,

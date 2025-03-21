@@ -1,4 +1,4 @@
-import { a } from "@arrirpc/schema";
+import { a } from '@arrirpc/schema';
 
 export const RefundLineSchema = a.object({
     orderLineId: a.string(),

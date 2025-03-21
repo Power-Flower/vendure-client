@@ -1,16 +1,12 @@
 import {
-    ActiveOrderSchema,
-    AddToActiveOrderSchema,
-    AdjustOrderLineSchema,
-    OrderByCodeSchema,
-    OrderSchema,
-    RemoveOrderLineSchema,
-} from '$schemas';
-import { BaseService } from '$services';
-import { type AResult, gql } from '$types';
+    CollectionQuerySchema,
+    CollectionSchema,
+} from '$schemas/collection.schemas';
+import { gql } from '$types/astro.types';
+import type { AResult } from '$types/result.types';
+import { convertToGql } from '$utils/index';
 import { a } from '@arrirpc/schema';
-import { convertToGql } from '../utils';
-import { CollectionQuerySchema, CollectionSchema } from '../schemas/collection.schemas';
+import { BaseService } from './base-service';
 
 export class Collection extends BaseService {
     public async getCollectionById(
@@ -25,7 +21,7 @@ export class Collection extends BaseService {
                 }
             `,
             variables: {
-                id
+                id,
             },
         });
 

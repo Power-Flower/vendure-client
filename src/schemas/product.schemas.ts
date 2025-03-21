@@ -1,4 +1,5 @@
 import { a } from '@arrirpc/schema';
+import { AssetSchema } from './asset.schemas';
 import { TaxCategorySchema, TaxRateSchema } from './tax.schemas';
 
 export const FacetValueSchema = a.object({

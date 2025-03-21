@@ -1,6 +1,7 @@
+import { AuthLoginSchema, AuthRegisterSchema } from '$schemas/auth.schemas';
+import { gql } from '$types/astro.types';
+import type { AResult } from '$types/result.types';
 import { a } from '@arrirpc/schema';
-import { AuthLoginSchema, AuthRegisterSchema } from '../schemas/auth.schemas';
-import { type AResult, gql } from '../types';
 import { BaseService } from './base-service';
 
 export class Auth extends BaseService {

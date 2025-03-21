@@ -1,13 +1,14 @@
-import { a } from '@arrirpc/schema';
 import {
     AddressSchema,
     CreateCustomerAddressSchema,
     DeleteCustomerAddressSchema,
     GetActiveCustomerSchema,
     UpdateCustomerAddressSchema,
-} from '../schemas/customer.schemas';
-import { type AResult, gql } from '../types';
-import { convertToGql } from '../utils';
+} from '$schemas/customer.schemas';
+import { gql } from '$types/astro.types';
+import type { AResult } from '$types/result.types';
+import { convertToGql } from '$utils/index';
+import { a } from '@arrirpc/schema';
 import { BaseService } from './base-service';
 
 export class Customer extends BaseService {

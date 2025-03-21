@@ -1,4 +1,4 @@
-import { a } from "@arrirpc/schema";
+import { a } from '@arrirpc/schema';
 
 export const ZoneSchema = a.object({
     id: a.string(),
