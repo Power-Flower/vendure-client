@@ -1,3 +1,27 @@
+export declare const PromotionSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
+    id: string;
+    createdAt: Date;
+    startsAt: Date;
+    endsAt: Date;
+    couponCode: string;
+    perCustomerUsageLimit: number;
+    name: string;
+    description: string;
+    enabled: boolean;
+}, false>;
+export declare const SurchargeSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
+    id: string;
+    createdAt: Date;
+    description: string;
+    sku: string;
+    taxLines: {
+        description: string;
+        taxRate: number;
+    }[];
+    price: number;
+    priceWithTax: number;
+    taxRate: number;
+}, false>;
 export declare const DiscountSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     adjustmentSource: string;
     type: string;
@@ -10,24 +34,58 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
     productVariant: {
         id: string;
         productId: string;
+        createdAt: Date;
+        languageCode: string;
         sku: string;
         name: string;
         featuredAsset: {
             id: string;
+            createdAt: string;
             name: string;
             type: string;
+            fileSize: number;
+            mimeType: string;
+            width: number;
+            height: number;
             source: string;
+            preview: string;
         };
         assets: {
             id: string;
+            createdAt: string;
             name: string;
             type: string;
+            fileSize: number;
+            mimeType: string;
+            width: number;
+            height: number;
             source: string;
+            preview: string;
         }[];
         price: number;
         currencyCode: string;
         priceWithTax: number;
         stockLevel: number;
+        taxRateApplied: {
+            id: string;
+            name: string;
+            enabled: boolean;
+            value: number;
+            category: {
+                id: string;
+                name: string;
+                isDefault: boolean;
+            };
+            zone: {
+                id: string;
+                name: string;
+            };
+        };
+        taxCategory: {
+            id: string;
+            name: string;
+            isDefault: boolean;
+        };
         options: {
             id: string;
             code: string;
@@ -53,25 +111,40 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
     } | undefined;
     featuredAsset: {
         id: string;
+        createdAt: string;
         name: string;
         type: string;
+        fileSize: number;
+        mimeType: string;
+        width: number;
+        height: number;
         source: string;
+        preview: string;
     };
     unitPrice: number;
     unitPriceWithTax: number;
     discountedUnitPrice: number;
     discountedUnitPriceWithTax: number;
     quantity: number;
+    orderPlacedQuantity: number;
+    taxRate: number;
     linePrice: number;
     linePriceWithTax: number;
     discountedLinePrice: number;
     discountedLinePriceWithTax: number;
+    proratedLinePrice: number;
+    proratedLinePriceWithTax: number;
+    lineTax: number;
     discounts: {
         adjustmentSource: string;
         type: string;
         description: string;
         amount: number;
         amountWithTax: number;
+    }[];
+    taxLines: {
+        description: string;
+        taxRate: number;
     }[];
 }, false>;
 export declare const ShippingMethod: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -108,6 +181,7 @@ export declare const OrderAddressSchema: import("@arrirpc/schema").AObjectSchema
 export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
     createdAt: Date;
+    type: string;
     orderPlacedAt: Date;
     code: string;
     state: string;
@@ -171,24 +245,58 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
         productVariant: {
             id: string;
             productId: string;
+            createdAt: Date;
+            languageCode: string;
             sku: string;
             name: string;
             featuredAsset: {
                 id: string;
+                createdAt: string;
                 name: string;
                 type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
                 source: string;
+                preview: string;
             };
             assets: {
                 id: string;
+                createdAt: string;
                 name: string;
                 type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
                 source: string;
+                preview: string;
             }[];
             price: number;
             currencyCode: string;
             priceWithTax: number;
             stockLevel: number;
+            taxRateApplied: {
+                id: string;
+                name: string;
+                enabled: boolean;
+                value: number;
+                category: {
+                    id: string;
+                    name: string;
+                    isDefault: boolean;
+                };
+                zone: {
+                    id: string;
+                    name: string;
+                };
+            };
+            taxCategory: {
+                id: string;
+                name: string;
+                isDefault: boolean;
+            };
             options: {
                 id: string;
                 code: string;
@@ -214,19 +322,30 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
         } | undefined;
         featuredAsset: {
             id: string;
+            createdAt: string;
             name: string;
             type: string;
+            fileSize: number;
+            mimeType: string;
+            width: number;
+            height: number;
             source: string;
+            preview: string;
         };
         unitPrice: number;
         unitPriceWithTax: number;
         discountedUnitPrice: number;
         discountedUnitPriceWithTax: number;
         quantity: number;
+        orderPlacedQuantity: number;
+        taxRate: number;
         linePrice: number;
         linePriceWithTax: number;
         discountedLinePrice: number;
         discountedLinePriceWithTax: number;
+        proratedLinePrice: number;
+        proratedLinePriceWithTax: number;
+        lineTax: number;
         discounts: {
             adjustmentSource: string;
             type: string;
@@ -234,6 +353,23 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
             amount: number;
             amountWithTax: number;
         }[];
+        taxLines: {
+            description: string;
+            taxRate: number;
+        }[];
+    }[];
+    surcharges: {
+        id: string;
+        createdAt: Date;
+        description: string;
+        sku: string;
+        taxLines: {
+            description: string;
+            taxRate: number;
+        }[];
+        price: number;
+        priceWithTax: number;
+        taxRate: number;
     }[];
     discounts: {
         adjustmentSource: string;
@@ -243,6 +379,44 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
         amountWithTax: number;
     }[];
     couponCodes: string[];
+    promotions: {
+        id: string;
+        createdAt: Date;
+        startsAt: Date;
+        endsAt: Date;
+        couponCode: string;
+        perCustomerUsageLimit: number;
+        name: string;
+        description: string;
+        enabled: boolean;
+    }[];
+    payments: {
+        id: string;
+        createdAt: Date;
+        method: string;
+        amount: number;
+        state: string;
+        transactionId: string;
+        errorMessage: string;
+        refund: {
+            id: string;
+            createdAt: Date;
+            items: number;
+            shiping: number;
+            adjustment: number;
+            total: number;
+            method: string;
+            state: string;
+            transactionId: string;
+            reason: string;
+            lines: {
+                orderLineId: string;
+                quantity: number;
+                refundId: string;
+            }[];
+            paymentId: string;
+        }[];
+    }[];
     totalQuantity: number;
     subTotal: number;
     subTotalWithTax: number;
@@ -264,11 +438,18 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
     shippingWithTax: number;
     total: number;
     totalWithTax: number;
+    taxSummary: {
+        description: string;
+        taxRate: number;
+        taxBase: number;
+        taxTotal: number;
+    }[];
 }, false>;
 export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     items: {
         id: string;
         createdAt: Date;
+        type: string;
         orderPlacedAt: Date;
         code: string;
         state: string;
@@ -332,24 +513,58 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
             productVariant: {
                 id: string;
                 productId: string;
+                createdAt: Date;
+                languageCode: string;
                 sku: string;
                 name: string;
                 featuredAsset: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 };
                 assets: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 }[];
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
                 stockLevel: number;
+                taxRateApplied: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    value: number;
+                    category: {
+                        id: string;
+                        name: string;
+                        isDefault: boolean;
+                    };
+                    zone: {
+                        id: string;
+                        name: string;
+                    };
+                };
+                taxCategory: {
+                    id: string;
+                    name: string;
+                    isDefault: boolean;
+                };
                 options: {
                     id: string;
                     code: string;
@@ -375,19 +590,30 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
             } | undefined;
             featuredAsset: {
                 id: string;
+                createdAt: string;
                 name: string;
                 type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
                 source: string;
+                preview: string;
             };
             unitPrice: number;
             unitPriceWithTax: number;
             discountedUnitPrice: number;
             discountedUnitPriceWithTax: number;
             quantity: number;
+            orderPlacedQuantity: number;
+            taxRate: number;
             linePrice: number;
             linePriceWithTax: number;
             discountedLinePrice: number;
             discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
             discounts: {
                 adjustmentSource: string;
                 type: string;
@@ -395,6 +621,23 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                 amount: number;
                 amountWithTax: number;
             }[];
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+        }[];
+        surcharges: {
+            id: string;
+            createdAt: Date;
+            description: string;
+            sku: string;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            price: number;
+            priceWithTax: number;
+            taxRate: number;
         }[];
         discounts: {
             adjustmentSource: string;
@@ -404,6 +647,44 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
             amountWithTax: number;
         }[];
         couponCodes: string[];
+        promotions: {
+            id: string;
+            createdAt: Date;
+            startsAt: Date;
+            endsAt: Date;
+            couponCode: string;
+            perCustomerUsageLimit: number;
+            name: string;
+            description: string;
+            enabled: boolean;
+        }[];
+        payments: {
+            id: string;
+            createdAt: Date;
+            method: string;
+            amount: number;
+            state: string;
+            transactionId: string;
+            errorMessage: string;
+            refund: {
+                id: string;
+                createdAt: Date;
+                items: number;
+                shiping: number;
+                adjustment: number;
+                total: number;
+                method: string;
+                state: string;
+                transactionId: string;
+                reason: string;
+                lines: {
+                    orderLineId: string;
+                    quantity: number;
+                    refundId: string;
+                }[];
+                paymentId: string;
+            }[];
+        }[];
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
@@ -425,6 +706,12 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
         shippingWithTax: number;
         total: number;
         totalWithTax: number;
+        taxSummary: {
+            description: string;
+            taxRate: number;
+            taxBase: number;
+            taxTotal: number;
+        }[];
     }[];
     totalItems: number;
 }, false>;
@@ -437,6 +724,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
     activeOrder: {
         id: string;
         createdAt: Date;
+        type: string;
         orderPlacedAt: Date;
         code: string;
         state: string;
@@ -500,24 +788,58 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
             productVariant: {
                 id: string;
                 productId: string;
+                createdAt: Date;
+                languageCode: string;
                 sku: string;
                 name: string;
                 featuredAsset: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 };
                 assets: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 }[];
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
                 stockLevel: number;
+                taxRateApplied: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    value: number;
+                    category: {
+                        id: string;
+                        name: string;
+                        isDefault: boolean;
+                    };
+                    zone: {
+                        id: string;
+                        name: string;
+                    };
+                };
+                taxCategory: {
+                    id: string;
+                    name: string;
+                    isDefault: boolean;
+                };
                 options: {
                     id: string;
                     code: string;
@@ -543,19 +865,30 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
             } | undefined;
             featuredAsset: {
                 id: string;
+                createdAt: string;
                 name: string;
                 type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
                 source: string;
+                preview: string;
             };
             unitPrice: number;
             unitPriceWithTax: number;
             discountedUnitPrice: number;
             discountedUnitPriceWithTax: number;
             quantity: number;
+            orderPlacedQuantity: number;
+            taxRate: number;
             linePrice: number;
             linePriceWithTax: number;
             discountedLinePrice: number;
             discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
             discounts: {
                 adjustmentSource: string;
                 type: string;
@@ -563,6 +896,23 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                 amount: number;
                 amountWithTax: number;
             }[];
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+        }[];
+        surcharges: {
+            id: string;
+            createdAt: Date;
+            description: string;
+            sku: string;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            price: number;
+            priceWithTax: number;
+            taxRate: number;
         }[];
         discounts: {
             adjustmentSource: string;
@@ -572,6 +922,44 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
             amountWithTax: number;
         }[];
         couponCodes: string[];
+        promotions: {
+            id: string;
+            createdAt: Date;
+            startsAt: Date;
+            endsAt: Date;
+            couponCode: string;
+            perCustomerUsageLimit: number;
+            name: string;
+            description: string;
+            enabled: boolean;
+        }[];
+        payments: {
+            id: string;
+            createdAt: Date;
+            method: string;
+            amount: number;
+            state: string;
+            transactionId: string;
+            errorMessage: string;
+            refund: {
+                id: string;
+                createdAt: Date;
+                items: number;
+                shiping: number;
+                adjustment: number;
+                total: number;
+                method: string;
+                state: string;
+                transactionId: string;
+                reason: string;
+                lines: {
+                    orderLineId: string;
+                    quantity: number;
+                    refundId: string;
+                }[];
+                paymentId: string;
+            }[];
+        }[];
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
@@ -593,12 +981,19 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
         shippingWithTax: number;
         total: number;
         totalWithTax: number;
+        taxSummary: {
+            description: string;
+            taxRate: number;
+            taxBase: number;
+            taxTotal: number;
+        }[];
     } | undefined;
 }, false>;
 export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     addToActiveOrder: {
         id: string;
         createdAt: Date;
+        type: string;
         orderPlacedAt: Date;
         code: string;
         state: string;
@@ -662,24 +1057,58 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
             productVariant: {
                 id: string;
                 productId: string;
+                createdAt: Date;
+                languageCode: string;
                 sku: string;
                 name: string;
                 featuredAsset: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 };
                 assets: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 }[];
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
                 stockLevel: number;
+                taxRateApplied: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    value: number;
+                    category: {
+                        id: string;
+                        name: string;
+                        isDefault: boolean;
+                    };
+                    zone: {
+                        id: string;
+                        name: string;
+                    };
+                };
+                taxCategory: {
+                    id: string;
+                    name: string;
+                    isDefault: boolean;
+                };
                 options: {
                     id: string;
                     code: string;
@@ -705,19 +1134,30 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
             } | undefined;
             featuredAsset: {
                 id: string;
+                createdAt: string;
                 name: string;
                 type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
                 source: string;
+                preview: string;
             };
             unitPrice: number;
             unitPriceWithTax: number;
             discountedUnitPrice: number;
             discountedUnitPriceWithTax: number;
             quantity: number;
+            orderPlacedQuantity: number;
+            taxRate: number;
             linePrice: number;
             linePriceWithTax: number;
             discountedLinePrice: number;
             discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
             discounts: {
                 adjustmentSource: string;
                 type: string;
@@ -725,6 +1165,23 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
                 amount: number;
                 amountWithTax: number;
             }[];
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+        }[];
+        surcharges: {
+            id: string;
+            createdAt: Date;
+            description: string;
+            sku: string;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            price: number;
+            priceWithTax: number;
+            taxRate: number;
         }[];
         discounts: {
             adjustmentSource: string;
@@ -734,6 +1191,44 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
             amountWithTax: number;
         }[];
         couponCodes: string[];
+        promotions: {
+            id: string;
+            createdAt: Date;
+            startsAt: Date;
+            endsAt: Date;
+            couponCode: string;
+            perCustomerUsageLimit: number;
+            name: string;
+            description: string;
+            enabled: boolean;
+        }[];
+        payments: {
+            id: string;
+            createdAt: Date;
+            method: string;
+            amount: number;
+            state: string;
+            transactionId: string;
+            errorMessage: string;
+            refund: {
+                id: string;
+                createdAt: Date;
+                items: number;
+                shiping: number;
+                adjustment: number;
+                total: number;
+                method: string;
+                state: string;
+                transactionId: string;
+                reason: string;
+                lines: {
+                    orderLineId: string;
+                    quantity: number;
+                    refundId: string;
+                }[];
+                paymentId: string;
+            }[];
+        }[];
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
@@ -755,12 +1250,19 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
         shippingWithTax: number;
         total: number;
         totalWithTax: number;
+        taxSummary: {
+            description: string;
+            taxRate: number;
+            taxBase: number;
+            taxTotal: number;
+        }[];
     } | undefined;
 }, false>;
 export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     adjustOrderLine: {
         id: string;
         createdAt: Date;
+        type: string;
         orderPlacedAt: Date;
         code: string;
         state: string;
@@ -824,24 +1326,58 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
             productVariant: {
                 id: string;
                 productId: string;
+                createdAt: Date;
+                languageCode: string;
                 sku: string;
                 name: string;
                 featuredAsset: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 };
                 assets: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 }[];
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
                 stockLevel: number;
+                taxRateApplied: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    value: number;
+                    category: {
+                        id: string;
+                        name: string;
+                        isDefault: boolean;
+                    };
+                    zone: {
+                        id: string;
+                        name: string;
+                    };
+                };
+                taxCategory: {
+                    id: string;
+                    name: string;
+                    isDefault: boolean;
+                };
                 options: {
                     id: string;
                     code: string;
@@ -867,19 +1403,30 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
             } | undefined;
             featuredAsset: {
                 id: string;
+                createdAt: string;
                 name: string;
                 type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
                 source: string;
+                preview: string;
             };
             unitPrice: number;
             unitPriceWithTax: number;
             discountedUnitPrice: number;
             discountedUnitPriceWithTax: number;
             quantity: number;
+            orderPlacedQuantity: number;
+            taxRate: number;
             linePrice: number;
             linePriceWithTax: number;
             discountedLinePrice: number;
             discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
             discounts: {
                 adjustmentSource: string;
                 type: string;
@@ -887,6 +1434,23 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                 amount: number;
                 amountWithTax: number;
             }[];
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+        }[];
+        surcharges: {
+            id: string;
+            createdAt: Date;
+            description: string;
+            sku: string;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            price: number;
+            priceWithTax: number;
+            taxRate: number;
         }[];
         discounts: {
             adjustmentSource: string;
@@ -896,6 +1460,44 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
             amountWithTax: number;
         }[];
         couponCodes: string[];
+        promotions: {
+            id: string;
+            createdAt: Date;
+            startsAt: Date;
+            endsAt: Date;
+            couponCode: string;
+            perCustomerUsageLimit: number;
+            name: string;
+            description: string;
+            enabled: boolean;
+        }[];
+        payments: {
+            id: string;
+            createdAt: Date;
+            method: string;
+            amount: number;
+            state: string;
+            transactionId: string;
+            errorMessage: string;
+            refund: {
+                id: string;
+                createdAt: Date;
+                items: number;
+                shiping: number;
+                adjustment: number;
+                total: number;
+                method: string;
+                state: string;
+                transactionId: string;
+                reason: string;
+                lines: {
+                    orderLineId: string;
+                    quantity: number;
+                    refundId: string;
+                }[];
+                paymentId: string;
+            }[];
+        }[];
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
@@ -917,12 +1519,19 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
         shippingWithTax: number;
         total: number;
         totalWithTax: number;
+        taxSummary: {
+            description: string;
+            taxRate: number;
+            taxBase: number;
+            taxTotal: number;
+        }[];
     } | undefined;
 }, false>;
 export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     removeOrderLine: {
         id: string;
         createdAt: Date;
+        type: string;
         orderPlacedAt: Date;
         code: string;
         state: string;
@@ -986,24 +1595,58 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
             productVariant: {
                 id: string;
                 productId: string;
+                createdAt: Date;
+                languageCode: string;
                 sku: string;
                 name: string;
                 featuredAsset: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 };
                 assets: {
                     id: string;
+                    createdAt: string;
                     name: string;
                     type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
                     source: string;
+                    preview: string;
                 }[];
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
                 stockLevel: number;
+                taxRateApplied: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    value: number;
+                    category: {
+                        id: string;
+                        name: string;
+                        isDefault: boolean;
+                    };
+                    zone: {
+                        id: string;
+                        name: string;
+                    };
+                };
+                taxCategory: {
+                    id: string;
+                    name: string;
+                    isDefault: boolean;
+                };
                 options: {
                     id: string;
                     code: string;
@@ -1029,19 +1672,30 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
             } | undefined;
             featuredAsset: {
                 id: string;
+                createdAt: string;
                 name: string;
                 type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
                 source: string;
+                preview: string;
             };
             unitPrice: number;
             unitPriceWithTax: number;
             discountedUnitPrice: number;
             discountedUnitPriceWithTax: number;
             quantity: number;
+            orderPlacedQuantity: number;
+            taxRate: number;
             linePrice: number;
             linePriceWithTax: number;
             discountedLinePrice: number;
             discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
             discounts: {
                 adjustmentSource: string;
                 type: string;
@@ -1049,6 +1703,23 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                 amount: number;
                 amountWithTax: number;
             }[];
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+        }[];
+        surcharges: {
+            id: string;
+            createdAt: Date;
+            description: string;
+            sku: string;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            price: number;
+            priceWithTax: number;
+            taxRate: number;
         }[];
         discounts: {
             adjustmentSource: string;
@@ -1058,6 +1729,44 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
             amountWithTax: number;
         }[];
         couponCodes: string[];
+        promotions: {
+            id: string;
+            createdAt: Date;
+            startsAt: Date;
+            endsAt: Date;
+            couponCode: string;
+            perCustomerUsageLimit: number;
+            name: string;
+            description: string;
+            enabled: boolean;
+        }[];
+        payments: {
+            id: string;
+            createdAt: Date;
+            method: string;
+            amount: number;
+            state: string;
+            transactionId: string;
+            errorMessage: string;
+            refund: {
+                id: string;
+                createdAt: Date;
+                items: number;
+                shiping: number;
+                adjustment: number;
+                total: number;
+                method: string;
+                state: string;
+                transactionId: string;
+                reason: string;
+                lines: {
+                    orderLineId: string;
+                    quantity: number;
+                    refundId: string;
+                }[];
+                paymentId: string;
+            }[];
+        }[];
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
@@ -1079,5 +1788,11 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
         shippingWithTax: number;
         total: number;
         totalWithTax: number;
+        taxSummary: {
+            description: string;
+            taxRate: number;
+            taxBase: number;
+            taxTotal: number;
+        }[];
     } | undefined;
 }, false>;

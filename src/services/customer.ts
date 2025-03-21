@@ -1,6 +1,6 @@
 import { a } from '@arrirpc/schema';
 import {
-    type AddressSchema,
+    AddressSchema,
     CreateCustomerAddressSchema,
     DeleteCustomerAddressSchema,
     GetActiveCustomerSchema,
@@ -32,23 +32,7 @@ export class Customer extends BaseService {
             mutation: gql`
                 mutation CreateCustomerAddress($input: CreateAddressInput!) {
                     createCustomerAddress(input: $input) {
-                        id
-                        fullName
-                        company
-                        streetLine1
-                        streetLine2
-                        city
-                        province
-                        postalCode
-                        country {
-                            id
-                            code
-                            name
-                            enabled
-                        }
-                        phoneNumber
-                        defaultShippingAddress
-                        defaultBillingAddress
+                        ${convertToGql(AddressSchema)}
                    }
                 }
             `,
@@ -79,23 +63,7 @@ export class Customer extends BaseService {
             mutation: gql`
                 mutation UpdateCustomerAddress($input: UpdateAddressInput!) {
                     updateCustomerAddress(input: $input) {
-                        id
-                        fullName
-                        company
-                        streetLine1
-                        streetLine2
-                        city
-                        province
-                        postalCode
-                        country {
-                            id
-                            code
-                            name
-                            enabled
-                        }
-                        phoneNumber
-                        defaultShippingAddress
-                        defaultBillingAddress
+                        ${convertToGql(AddressSchema)}
                    }
                 }
             `,

@@ -44,20 +44,34 @@ export declare const ProductOptionGroupSchema: import("@arrirpc/schema").AObject
 }, false>;
 export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
+    createdAt: Date;
+    languageCode: string;
     name: string;
     slug: string;
     description: string;
     featuredAsset: {
         id: string;
+        createdAt: string;
         name: string;
         type: string;
+        fileSize: number;
+        mimeType: string;
+        width: number;
+        height: number;
         source: string;
+        preview: string;
     };
     assets: {
         id: string;
+        createdAt: string;
         name: string;
         type: string;
+        fileSize: number;
+        mimeType: string;
+        width: number;
+        height: number;
         source: string;
+        preview: string;
     }[];
     facetValues: {
         id: string;
@@ -78,24 +92,58 @@ export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithA
 export declare const ProductVariantSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
     productId: string;
+    createdAt: Date;
+    languageCode: string;
     sku: string;
     name: string;
     featuredAsset: {
         id: string;
+        createdAt: string;
         name: string;
         type: string;
+        fileSize: number;
+        mimeType: string;
+        width: number;
+        height: number;
         source: string;
+        preview: string;
     };
     assets: {
         id: string;
+        createdAt: string;
         name: string;
         type: string;
+        fileSize: number;
+        mimeType: string;
+        width: number;
+        height: number;
         source: string;
+        preview: string;
     }[];
     price: number;
     currencyCode: string;
     priceWithTax: number;
     stockLevel: number;
+    taxRateApplied: {
+        id: string;
+        name: string;
+        enabled: boolean;
+        value: number;
+        category: {
+            id: string;
+            name: string;
+            isDefault: boolean;
+        };
+        zone: {
+            id: string;
+            name: string;
+        };
+    };
+    taxCategory: {
+        id: string;
+        name: string;
+        isDefault: boolean;
+    };
     options: {
         id: string;
         code: string;

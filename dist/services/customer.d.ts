@@ -1,3 +1,6 @@
+import { AddressSchema, CreateCustomerAddressSchema, DeleteCustomerAddressSchema, GetActiveCustomerSchema, UpdateCustomerAddressSchema } from '../schemas/index.ts';
+import { BaseService } from './index.ts';
+import { type AResult } from '../types/index.ts';
 import { a } from '@arrirpc/schema';
 import { type AddressSchema, CreateCustomerAddressSchema, DeleteCustomerAddressSchema, GetActiveCustomerSchema, UpdateCustomerAddressSchema } from '../schemas/customer.schemas';
 import { type AResult } from '../types';

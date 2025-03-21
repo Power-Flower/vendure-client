@@ -1,5 +1,5 @@
 import { a } from '@arrirpc/schema';
-import { AssetSchema } from './asset.schemas';
+import { TaxCategorySchema, TaxRateSchema } from './tax.schemas';
 
 export const FacetValueSchema = a.object({
     id: a.string(),
@@ -57,6 +57,8 @@ export const ProductOptionGroupSchema = a.object({
 
 export const ProductSchema = a.object({
     id: a.string(),
+    createdAt: a.timestamp(),
+    languageCode: a.string(),
     name: a.string(),
     slug: a.string(),
     description: a.string(),
@@ -74,6 +76,8 @@ export const ProductVariantSchema = a.object({
     id: a.string(),
     // product:
     productId: a.string(),
+    createdAt: a.timestamp(),
+    languageCode: a.string(),
     sku: a.string(),
     name: a.string(),
     featuredAsset: AssetSchema,
@@ -82,6 +86,8 @@ export const ProductVariantSchema = a.object({
     currencyCode: a.string(),
     priceWithTax: a.number(),
     stockLevel: a.number(),
+    taxRateApplied: TaxRateSchema,
+    taxCategory: TaxCategorySchema,
     options: a.array(ProductOptionSchema),
     facetValues: a.array(FacetValueSchema),
 });

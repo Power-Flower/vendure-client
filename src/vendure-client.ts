@@ -1,4 +1,4 @@
-import { Auth, Customer, Order } from './services';
+import { Auth, Customer, Collection, Order } from '$services';
 import {
     ApolloClient,
     ApolloLink,
@@ -16,6 +16,7 @@ import {
 export class VendureClient {
     public readonly auth: Auth;
     public readonly customer: Customer;
+    public readonly collection: Collection;
     public readonly order: Order;
 
     private readonly apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -24,6 +25,7 @@ export class VendureClient {
         this.apolloClient = this.createApolloClient(vendureClientConfig.apiUri);
         this.order = new Order(this.apolloClient);
         this.customer = new Customer(this.apolloClient);
+        this.collection = new Collection(this.apolloClient);
         this.auth = new Auth(this.apolloClient);
     }
 
