@@ -59,7 +59,7 @@ export const OrderLineSchema = a.object({
     // order:
 });
 
-export const ShippingMethod = a.object({
+export const ShippingMethodSchema = a.object({
     id: a.string(),
     code: a.string(),
     name: a.string(),
@@ -68,7 +68,7 @@ export const ShippingMethod = a.object({
 
 export const ShippingLineSchema = a.object({
     id: a.string(),
-    shippingMethod: ShippingMethod,
+    shippingMethod: ShippingMethodSchema,
     price: a.number(),
     priceWithTax: a.number(),
     discountedPrice: a.number(),
