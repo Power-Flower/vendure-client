@@ -4,7 +4,7 @@ import type { AuthLogin, AuthRegister } from '$types/auth.types';
 import { type Result, a } from '@arrirpc/schema';
 import { BaseService } from './base-service';
 
-export class Auth extends BaseService {
+export class AuthService extends BaseService {
     public async login(
         email: string,
         password: string,

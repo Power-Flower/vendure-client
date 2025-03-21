@@ -18,7 +18,7 @@ import { convertToGql } from '$utils/index';
 import { type Result, a } from '@arrirpc/schema';
 import { BaseService } from './base-service';
 
-export class Order extends BaseService {
+export class OrderService extends BaseService {
     public async getByCode(code: string): Promise<Result<OrderByCode>> {
         const response = await this.client.query({
             query: gql`

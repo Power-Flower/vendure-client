@@ -16,7 +16,7 @@ import { convertToGql } from '$utils/index';
 import { type Result, a } from '@arrirpc/schema';
 import { BaseService } from './base-service';
 
-export class Customer extends BaseService {
+export class CustomerService extends BaseService {
     public async getActiveCustomer(): Promise<Result<GetActiveCustomer>> {
         const response = await this.client.query({
             query: gql`

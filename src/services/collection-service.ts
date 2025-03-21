@@ -8,7 +8,7 @@ import { convertToGql } from '$utils/index';
 import { type Result, a } from '@arrirpc/schema';
 import { BaseService } from './base-service';
 
-export class Collection extends BaseService {
+export class CollectionService extends BaseService {
     public async getCollectionById(
         id: string,
     ): Promise<Result<CollectionQuery>> {
