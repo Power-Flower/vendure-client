@@ -8,4 +8,14 @@ export default defineConfig({
             dts: true,
         },
     ],
+    output: {
+        minify: {
+            jsOptions: {
+                minimizerOptions: {
+                    mangle: true,
+                    minify: true,
+                },
+            },
+        },
+    }
 });
