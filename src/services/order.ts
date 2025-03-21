@@ -1,3 +1,4 @@
+import { a } from '@arrirpc/schema';
 import {
     ActiveOrderSchema,
     AddToActiveOrderSchema,

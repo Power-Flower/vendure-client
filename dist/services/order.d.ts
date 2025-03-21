@@ -1,6 +1,6 @@
-import { ActiveOrderSchema, AddToActiveOrderSchema, AdjustOrderLineSchema, OrderByCodeSchema, RemoveOrderLineSchema } from '../schemas/index.ts';
-import { BaseService } from './index.ts';
-import { type AResult } from '../types/index.ts';
+import { ActiveOrderSchema, AddToActiveOrderSchema, AdjustOrderLineSchema, OrderByCodeSchema, RemoveOrderLineSchema } from '../schemas/order.schemas';
+import { type AResult } from '../types';
+import { BaseService } from './base-service';
 export declare class Order extends BaseService {
     getByCode(code: string): Promise<AResult<typeof OrderByCodeSchema>>;
     getActiveOrder(): Promise<AResult<typeof ActiveOrderSchema>>;

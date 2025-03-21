@@ -1,4 +1,3 @@
-import { AssetSchema } from '$schemas';
 import { a } from '@arrirpc/schema';
 import { TaxCategorySchema, TaxRateSchema } from './tax.schemas';
 

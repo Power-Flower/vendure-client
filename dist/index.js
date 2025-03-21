@@ -368,6 +368,22 @@ var __webpack_modules__ = {
             facetValues: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(FacetValueSchema)
         });
         var types = __webpack_require__("./src/types/index.ts");
+        function _define_property(obj, key, value) {
+            if (key in obj) Object.defineProperty(obj, key, {
+                value: value,
+                enumerable: true,
+                configurable: true,
+                writable: true
+            });
+            else obj[key] = value;
+            return obj;
+        }
+        class BaseService {
+            constructor(client){
+                _define_property(this, "client", void 0);
+                this.client = client;
+            }
+        }
         class Auth extends BaseService {
             async login(email, password) {
                 const response = await this.client.mutate({
@@ -419,22 +435,52 @@ var __webpack_modules__ = {
                 return __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.parse(AuthRegisterSchema, response.data);
             }
         }
-        function _define_property(obj, key, value) {
-            if (key in obj) Object.defineProperty(obj, key, {
-                value: value,
-                enumerable: true,
-                configurable: true,
-                writable: true
-            });
-            else obj[key] = value;
-            return obj;
-        }
-        class BaseService {
-            constructor(client){
-                _define_property(this, "client", void 0);
-                this.client = client;
-            }
-        }
+        const CountrySchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            code: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            name: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            enabled: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.boolean()
+        });
+        const AddressSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            fullName: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            company: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            streetLine1: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            streetLine2: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            city: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            province: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            postalCode: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            country: CountrySchema,
+            phoneNumber: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            defaultShippingAddress: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.boolean(),
+            defaultBillingAddress: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.boolean()
+        });
+        const CustomerSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            id: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            title: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            firstName: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            lastName: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            phoneNumber: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            emailAddress: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.string(),
+            addresses: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.array(AddressSchema),
+            customFields: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+                subscribedUntil: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.nullable(__WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.timestamp())
+            })
+        });
+        const GetActiveCustomerSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            activeCustomer: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.nullable(CustomerSchema)
+        });
+        const CreateCustomerAddressSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            createCustomerAddress: AddressSchema
+        });
+        const UpdateCustomerAddressSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            updateCustomerAddress: AddressSchema
+        });
+        const DeleteCustomerAddressSchema = __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+            deleteCustomerAddress: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.object({
+                success: __WEBPACK_EXTERNAL_MODULE__arrirpc_schema_3870d9f8__.a.boolean()
+            })
+        });
         const convertToGql = (schema)=>{
             let object = schema.properties;
             if ('optionalProperties' in schema) object = {

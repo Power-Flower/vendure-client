@@ -1,14 +1,14 @@
+import { a } from '@arrirpc/schema';
 import {
     AddressSchema,
     CreateCustomerAddressSchema,
     DeleteCustomerAddressSchema,
     GetActiveCustomerSchema,
     UpdateCustomerAddressSchema,
-} from '$schemas';
-import { BaseService } from '$services';
-import { type AResult, gql } from '$types';
-import { a } from '@arrirpc/schema';
+} from '../schemas/customer.schemas';
+import { type AResult, gql } from '../types';
 import { convertToGql } from '../utils';
+import { BaseService } from './base-service';
 
 export class Customer extends BaseService {
     public async getActiveCustomer(): Promise<

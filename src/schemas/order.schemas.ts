@@ -1,4 +1,3 @@
-import { AssetSchema, CustomerSchema, ProductVariantSchema } from '$schemas';
 import { a } from '@arrirpc/schema';
 import { OrderTaxSummarySchema, TaxLineSchema } from './tax.schemas';
 import { PaymentSchema } from './payment.schemas';
