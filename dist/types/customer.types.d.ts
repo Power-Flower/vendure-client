@@ -1,4 +1,4 @@
-import type { AddressSchema, CountrySchema, CreateCustomerAddressSchema, CustomerSchema, DeleteCustomerAddressSchema, GetActiveCustomerSchema, UpdateCustomerAddressSchema } from '../schemas/customer.schemas';
+import type { AddressSchema, CreateCustomerAddressSchema, CountrySchema, CustomerSchema, DeleteCustomerAddressSchema, GetActiveCustomerSchema, UpdateCustomerAddressSchema } from '../schemas/customer.schemas';
 import type { a } from '@arrirpc/schema';
 export type Country = a.infer<typeof CountrySchema>;
 export type Address = a.infer<typeof AddressSchema>;
