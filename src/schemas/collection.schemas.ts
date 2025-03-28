@@ -1,6 +1,6 @@
-import { a } from "@arrirpc/schema";
-import { AssetSchema } from "./asset.schemas";
-import { ProductVariantSchema } from "./product.schemas";
+import { a } from '@arrirpc/schema';
+import { AssetSchema } from './asset.schemas';
+import { ProductVariantSchema } from './product.schemas';
 
 export const CollectionBreadcrumbSchema = a.object({
     id: a.string(),

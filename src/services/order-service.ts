@@ -1,4 +1,3 @@
-import { a } from '@arrirpc/schema';
 import {
     ActiveOrderSchema,
     AddToActiveOrderSchema,
@@ -6,16 +5,21 @@ import {
     OrderByCodeSchema,
     OrderSchema,
     RemoveOrderLineSchema,
-} from '$schemas';
-import { BaseService } from '$services';
-import { type AResult, gql } from '$types';
-import { a } from '@arrirpc/schema';
-import { convertToGql } from '../utils';
+} from '$schemas/order.schemas';
+import { gql } from '$types/astro.types';
+import type {
+    ActiveOrder,
+    AddToActiveOrder,
+    AdjustOrderLine,
+    OrderByCode,
+    RemoveOrderLine,
+} from '$types/order.types';
+import { convertToGql } from '$utils/index';
+import { type Result, a } from '@arrirpc/schema';
+import { BaseService } from './base-service';
 
-export class Order extends BaseService {
-    public async getByCode(
-        code: string,
-    ): Promise<AResult<typeof OrderByCodeSchema>> {
+export class OrderService extends BaseService {
+    public async getByCode(code: string): Promise<Result<OrderByCode>> {
         const response = await this.client.query({
             query: gql`
                 query Order($code: String!) {
@@ -32,7 +36,7 @@ export class Order extends BaseService {
         return a.parse(OrderByCodeSchema, response.data);
     }
 
-    public async getActiveOrder(): Promise<AResult<typeof ActiveOrderSchema>> {
+    public async getActiveOrder(): Promise<Result<ActiveOrder>> {
         const response = await this.client.query({
             query: gql`
                 query GetActiveOrder {
@@ -47,7 +51,7 @@ export class Order extends BaseService {
     public async addToActiveOrder(
         productVariantId: string,
         quantity: number,
-    ): Promise<AResult<typeof AddToActiveOrderSchema>> {
+    ): Promise<Result<AddToActiveOrder>> {
         const response = await this.client.mutate({
             mutation: gql`
                 mutation AddItemToOrder($productVariantId: ID!, $quantity: Int!) {
@@ -68,7 +72,7 @@ export class Order extends BaseService {
     public async adjustOrderLine(
         orderLineId: string,
         quantity: number,
-    ): Promise<AResult<typeof AdjustOrderLineSchema>> {
+    ): Promise<Result<AdjustOrderLine>> {
         const response = await this.client.mutate({
             mutation: gql`
                 mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!) {
@@ -88,7 +92,7 @@ export class Order extends BaseService {
 
     public async removeOrderLine(
         orderLineId: string,
-    ): Promise<AResult<typeof RemoveOrderLineSchema>> {
+    ): Promise<Result<RemoveOrderLine>> {
         const response = await this.client.mutate({
             mutation: gql`
                 mutation RemoveOrderLine($orderLineId: ID!) {

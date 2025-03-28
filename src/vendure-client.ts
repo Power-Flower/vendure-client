@@ -1,4 +1,7 @@
-import { Auth, Customer, Collection, Order } from '$services';
+import { AuthService } from '$services/auth-service';
+import { CollectionService } from '$services/collection-service';
+import { CustomerService } from '$services/customer-service';
+import { OrderService } from '$services/order-service';
 import {
     ApolloClient,
     ApolloLink,
@@ -9,24 +12,24 @@ import {
     type NormalizedCacheObject,
     type Observable,
     type Operation,
-    type VendureClientConfig,
     concat,
-} from './types';
+} from '$types/astro.types';
+import type { VendureClientConfig } from '$types/vendure-client.types';
 
 export class VendureClient {
-    public readonly auth: Auth;
-    public readonly customer: Customer;
-    public readonly collection: Collection;
-    public readonly order: Order;
+    public readonly auth: AuthService;
+    public readonly customer: CustomerService;
+    public readonly collection: CollectionService;
+    public readonly order: OrderService;
 
     private readonly apolloClient: ApolloClient<NormalizedCacheObject>;
 
     public constructor(vendureClientConfig: VendureClientConfig) {
         this.apolloClient = this.createApolloClient(vendureClientConfig.apiUri);
-        this.order = new Order(this.apolloClient);
-        this.customer = new Customer(this.apolloClient);
-        this.collection = new Collection(this.apolloClient);
-        this.auth = new Auth(this.apolloClient);
+        this.order = new OrderService(this.apolloClient);
+        this.customer = new CustomerService(this.apolloClient);
+        this.collection = new CollectionService(this.apolloClient);
+        this.auth = new AuthService(this.apolloClient);
     }
 
     private authHandler(

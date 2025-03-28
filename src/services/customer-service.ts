@@ -1,19 +1,23 @@
-import { a } from '@arrirpc/schema';
 import {
     AddressSchema,
     CreateCustomerAddressSchema,
     DeleteCustomerAddressSchema,
     GetActiveCustomerSchema,
     UpdateCustomerAddressSchema,
-} from '../schemas/customer.schemas';
-import { type AResult, gql } from '../types';
-import { convertToGql } from '../utils';
+} from '$schemas/customer.schemas';
+import { gql } from '$types/astro.types';
+import type {
+    CreateCustomerAddress,
+    DeleteCustomerAddress,
+    GetActiveCustomer,
+    UpdateCustomerAddress,
+} from '$types/customer.types';
+import { convertToGql } from '$utils/index';
+import { type Result, a } from '@arrirpc/schema';
 import { BaseService } from './base-service';
 
-export class Customer extends BaseService {
-    public async getActiveCustomer(): Promise<
-        AResult<typeof GetActiveCustomerSchema>
-    > {
+export class CustomerService extends BaseService {
+    public async getActiveCustomer(): Promise<Result<GetActiveCustomer>> {
         const response = await this.client.query({
             query: gql`
                 query GetActiveCustomer {
@@ -27,7 +31,7 @@ export class Customer extends BaseService {
 
     public async createCustomerAddress(
         input: a.infer<typeof AddressSchema>,
-    ): Promise<AResult<typeof CreateCustomerAddressSchema>> {
+    ): Promise<Result<CreateCustomerAddress>> {
         const response = await this.client.mutate({
             mutation: gql`
                 mutation CreateCustomerAddress($input: CreateAddressInput!) {
@@ -58,7 +62,7 @@ export class Customer extends BaseService {
 
     public async updateCustomerAddress(
         input: a.infer<typeof AddressSchema>,
-    ): Promise<AResult<typeof UpdateCustomerAddressSchema>> {
+    ): Promise<Result<UpdateCustomerAddress>> {
         const response = await this.client.mutate({
             mutation: gql`
                 mutation UpdateCustomerAddress($input: UpdateAddressInput!) {
@@ -90,7 +94,7 @@ export class Customer extends BaseService {
 
     public async deleteCustomerAddress(
         id: string,
-    ): Promise<AResult<typeof DeleteCustomerAddressSchema>> {
+    ): Promise<Result<DeleteCustomerAddress>> {
         const response = await this.client.mutate({
             mutation: gql`
                 mutation DeleteCustomerAddress($id: ID!) {

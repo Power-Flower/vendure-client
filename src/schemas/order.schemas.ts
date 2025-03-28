@@ -1,6 +1,9 @@
 import { a } from '@arrirpc/schema';
-import { OrderTaxSummarySchema, TaxLineSchema } from './tax.schemas';
+import { AssetSchema } from './asset.schemas';
+import { CustomerSchema } from './customer.schemas';
 import { PaymentSchema } from './payment.schemas';
+import { ProductVariantSchema } from './product.schemas';
+import { OrderTaxSummarySchema, TaxLineSchema } from './tax.schemas';
 
 export const PromotionSchema = a.object({
     id: a.string(),
@@ -56,7 +59,7 @@ export const OrderLineSchema = a.object({
     // order:
 });
 
-export const ShippingMethod = a.object({
+export const ShippingMethodSchema = a.object({
     id: a.string(),
     code: a.string(),
     name: a.string(),
@@ -65,7 +68,7 @@ export const ShippingMethod = a.object({
 
 export const ShippingLineSchema = a.object({
     id: a.string(),
-    shippingMethod: ShippingMethod,
+    shippingMethod: ShippingMethodSchema,
     price: a.number(),
     priceWithTax: a.number(),
     discountedPrice: a.number(),
