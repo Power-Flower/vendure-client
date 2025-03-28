@@ -66,7 +66,9 @@ ${I(a)}
             `});return r.a.parse(G,e.data)}async addToActiveOrder(e,t){let a=await this.client.mutate({mutation:(0,l.gql)`
                 mutation AddItemToOrder($productVariantId: ID!, $quantity: Int!) {
                     addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
-                        ${I(E)}
+                        ... on Order {
+                            ${I(E)}
+                        }
                     }
                 }
             `,variables:{productVariantId:e,quantity:t}});return r.a.parse(Q,a.data)}async adjustOrderLine(e,t){let a=await this.client.mutate({mutation:(0,l.gql)`

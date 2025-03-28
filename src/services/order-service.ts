@@ -56,7 +56,9 @@ export class OrderService extends BaseService {
             mutation: gql`
                 mutation AddItemToOrder($productVariantId: ID!, $quantity: Int!) {
                     addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
-                        ${convertToGql(OrderSchema)}
+                        ... on Order {
+                            ${convertToGql(OrderSchema)}
+                        }
                     }
                 }
             `,
