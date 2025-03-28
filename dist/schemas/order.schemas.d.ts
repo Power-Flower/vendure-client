@@ -147,7 +147,7 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
         taxRate: number;
     }[];
 }, false>;
-export declare const ShippingMethod: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
+export declare const ShippingMethodSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
     code: string;
     name: string;
