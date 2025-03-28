@@ -398,7 +398,7 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
         state: string;
         transactionId: string;
         errorMessage: string;
-        refund: {
+        refunds: {
             id: string;
             createdAt: Date;
             items: number;
@@ -666,7 +666,7 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
             state: string;
             transactionId: string;
             errorMessage: string;
-            refund: {
+            refunds: {
                 id: string;
                 createdAt: Date;
                 items: number;
@@ -941,7 +941,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
             state: string;
             transactionId: string;
             errorMessage: string;
-            refund: {
+            refunds: {
                 id: string;
                 createdAt: Date;
                 items: number;
@@ -1210,7 +1210,7 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
             state: string;
             transactionId: string;
             errorMessage: string;
-            refund: {
+            refunds: {
                 id: string;
                 createdAt: Date;
                 items: number;
@@ -1479,7 +1479,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
             state: string;
             transactionId: string;
             errorMessage: string;
-            refund: {
+            refunds: {
                 id: string;
                 createdAt: Date;
                 items: number;
@@ -1748,7 +1748,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
             state: string;
             transactionId: string;
             errorMessage: string;
-            refund: {
+            refunds: {
                 id: string;
                 createdAt: Date;
                 items: number;
