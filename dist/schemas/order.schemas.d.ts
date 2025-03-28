@@ -402,7 +402,7 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
             id: string;
             createdAt: Date;
             items: number;
-            shiping: number;
+            shipping: number;
             adjustment: number;
             total: number;
             method: string;
@@ -670,7 +670,7 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                 id: string;
                 createdAt: Date;
                 items: number;
-                shiping: number;
+                shipping: number;
                 adjustment: number;
                 total: number;
                 method: string;
@@ -945,7 +945,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                 id: string;
                 createdAt: Date;
                 items: number;
-                shiping: number;
+                shipping: number;
                 adjustment: number;
                 total: number;
                 method: string;
@@ -1214,7 +1214,7 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
                 id: string;
                 createdAt: Date;
                 items: number;
-                shiping: number;
+                shipping: number;
                 adjustment: number;
                 total: number;
                 method: string;
@@ -1483,7 +1483,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                 id: string;
                 createdAt: Date;
                 items: number;
-                shiping: number;
+                shipping: number;
                 adjustment: number;
                 total: number;
                 method: string;
@@ -1752,7 +1752,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                 id: string;
                 createdAt: Date;
                 items: number;
-                shiping: number;
+                shipping: number;
                 adjustment: number;
                 total: number;
                 method: string;

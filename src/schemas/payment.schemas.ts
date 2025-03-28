@@ -10,7 +10,7 @@ export const RefundSchema = a.object({
     id: a.string(),
     createdAt: a.timestamp(),
     items: a.number(),
-    shiping: a.number(),
+    shipping: a.number(),
     adjustment: a.number(),
     total: a.number(),
     method: a.string(),

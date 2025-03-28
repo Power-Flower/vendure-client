@@ -7,7 +7,7 @@ export declare const RefundSchema: import("@arrirpc/schema").AObjectSchemaWithAd
     id: string;
     createdAt: Date;
     items: number;
-    shiping: number;
+    shipping: number;
     adjustment: number;
     total: number;
     method: string;
@@ -33,7 +33,7 @@ export declare const PaymentSchema: import("@arrirpc/schema").AObjectSchemaWithA
         id: string;
         createdAt: Date;
         items: number;
-        shiping: number;
+        shipping: number;
         adjustment: number;
         total: number;
         method: string;
