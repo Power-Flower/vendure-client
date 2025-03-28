@@ -29,5 +29,5 @@ export const PaymentSchema = a.object({
     state: a.string(),
     transactionId: a.string(),
     errorMessage: a.string(),
-    refund: a.array(RefundSchema),
+    refunds: a.array(RefundSchema),
 });
