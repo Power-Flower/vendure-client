@@ -1,7 +1,7 @@
 import type {
     AddressSchema,
-    CountrySchema,
     CreateCustomerAddressSchema,
+    CountrySchema,
     CustomerSchema,
     DeleteCustomerAddressSchema,
     GetActiveCustomerSchema,
