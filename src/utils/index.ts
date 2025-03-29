@@ -1,20 +1,14 @@
 //@ts-nocheck
 import type { AObjectSchemaWithAdapters } from '@arrirpc/schema';
+import fs from 'fs';
 
 export const convertToGql = (schema: AObjectSchemaWithAdapters): string => {
-    let object = schema.properties;
-
-    if ('optionalProperties' in schema)
-        object = {
-            ...object,
-            ...schema.optionalProperties,
-        };
-
-    if ('elements' in schema)
-        object = {
-            ...object,
-            ...schema.elements.properties,
-        };
+    let object = {
+        ...schema.properties,
+        ...schema.optionalProperties,
+        ...schema.elements?.properties,
+        ...schema.elements?.optionalProperties,
+    };
 
     const props = Object.entries(object)
         .map(([key, value]) => {

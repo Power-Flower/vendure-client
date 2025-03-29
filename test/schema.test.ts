@@ -1,5 +1,5 @@
 import { test } from 'vitest';
-import { ActiveOrderSchema, GetActiveCustomerSchema } from '../dist';
+import { ActiveOrderSchema, convertToGql } from '../dist';
 
 test('Return schema', () => {
     const schema = ActiveOrderSchema;
