@@ -49,7 +49,7 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
             height: number;
             source: string;
             preview: string;
-        };
+        } | null;
         assets: {
             id: string;
             createdAt: string;
@@ -65,7 +65,7 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
         price: number;
         currencyCode: string;
         priceWithTax: number;
-        stockLevel: number;
+        stockLevel: string;
         taxRateApplied: {
             id: string;
             name: string;
@@ -260,7 +260,7 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
                 height: number;
                 source: string;
                 preview: string;
-            };
+            } | null;
             assets: {
                 id: string;
                 createdAt: string;
@@ -276,7 +276,7 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
             price: number;
             currencyCode: string;
             priceWithTax: number;
-            stockLevel: number;
+            stockLevel: string;
             taxRateApplied: {
                 id: string;
                 name: string;
@@ -528,7 +528,7 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                     height: number;
                     source: string;
                     preview: string;
-                };
+                } | null;
                 assets: {
                     id: string;
                     createdAt: string;
@@ -544,7 +544,7 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
-                stockLevel: number;
+                stockLevel: string;
                 taxRateApplied: {
                     id: string;
                     name: string;
@@ -803,7 +803,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                     height: number;
                     source: string;
                     preview: string;
-                };
+                } | null;
                 assets: {
                     id: string;
                     createdAt: string;
@@ -819,7 +819,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
-                stockLevel: number;
+                stockLevel: string;
                 taxRateApplied: {
                     id: string;
                     name: string;
@@ -1072,7 +1072,7 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
                     height: number;
                     source: string;
                     preview: string;
-                };
+                } | null;
                 assets: {
                     id: string;
                     createdAt: string;
@@ -1088,7 +1088,7 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
-                stockLevel: number;
+                stockLevel: string;
                 taxRateApplied: {
                     id: string;
                     name: string;
@@ -1341,7 +1341,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     height: number;
                     source: string;
                     preview: string;
-                };
+                } | null;
                 assets: {
                     id: string;
                     createdAt: string;
@@ -1357,7 +1357,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
-                stockLevel: number;
+                stockLevel: string;
                 taxRateApplied: {
                     id: string;
                     name: string;
@@ -1610,7 +1610,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     height: number;
                     source: string;
                     preview: string;
-                };
+                } | null;
                 assets: {
                     id: string;
                     createdAt: string;
@@ -1626,7 +1626,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
-                stockLevel: number;
+                stockLevel: string;
                 taxRateApplied: {
                     id: string;
                     name: string;

@@ -59,7 +59,7 @@ export declare const CollectionSchema: import("@arrirpc/schema").AObjectSchemaWi
             height: number;
             source: string;
             preview: string;
-        };
+        } | null;
         assets: {
             id: string;
             createdAt: string;
@@ -75,7 +75,7 @@ export declare const CollectionSchema: import("@arrirpc/schema").AObjectSchemaWi
         price: number;
         currencyCode: string;
         priceWithTax: number;
-        stockLevel: number;
+        stockLevel: string;
         taxRateApplied: {
             id: string;
             name: string;
@@ -177,7 +177,7 @@ export declare const CollectionQuerySchema: import("@arrirpc/schema").AObjectSch
                 height: number;
                 source: string;
                 preview: string;
-            };
+            } | null;
             assets: {
                 id: string;
                 createdAt: string;
@@ -193,7 +193,7 @@ export declare const CollectionQuerySchema: import("@arrirpc/schema").AObjectSch
             price: number;
             currencyCode: string;
             priceWithTax: number;
-            stockLevel: number;
+            stockLevel: string;
             taxRateApplied: {
                 id: string;
                 name: string;
