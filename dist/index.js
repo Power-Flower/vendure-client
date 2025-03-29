@@ -80,13 +80,17 @@ ${L(a)}
             `,variables:{orderLineId:e,quantity:t}})}async removeOrderLine(e){return this.mutate(J,{mutation:(0,u.gql)`
                 mutation RemoveOrderLine($orderLineId: ID!) {
                     removeOrderLine(orderLineId: $orderLineId) {
-                        ${L(E)}
+                        ... on Order {
+                            ${L(E)}
+                        }
                     }
                 }
             `,variables:{orderLineId:e}})}async applyCouponCode(e){return this.mutate(K,{mutation:(0,u.gql)`
                 mutation applyCouponCode($couponCode: String!) {
                     applyCouponCode(couponCode: $couponCode) {
-                        ${L(E)}
+                        ... on Order {
+                            ${L(E)}
+                        }
                     }
                 }
             `,variables:{couponCode:e}})}}function Y(e,t,a){return t in e?Object.defineProperty(e,t,{value:a,enumerable:!0,configurable:!0,writable:!0}):e[t]=a,e}class Z{authHandler(e,t){let a=this.getAuthToken(),r=a?`Bearer ${a}`:null;return e.setContext({headers:{authorization:r}}),t(e).map(t=>{let{response:{headers:a}}=e.getContext(),r=a.get("vendure-auth-token");return this.saveAuthToken(r),t})}getAuthToken(){return"undefined"!=typeof localStorage?localStorage.getItem("vendure-auth-token"):null}saveAuthToken(e){e&&"undefined"!=typeof localStorage&&localStorage.setItem("vendure-auth-token",e)}createApolloClient(e){let t=new u.HttpLink({uri:e}),a=new u.ApolloLink((e,t)=>this.authHandler(e,t));return new u.ApolloClient({cache:new u.InMemoryCache,link:(0,u.concat)(a,t)})}constructor(e){Y(this,"auth",void 0),Y(this,"customer",void 0),Y(this,"collection",void 0),Y(this,"order",void 0),Y(this,"apolloClient",void 0),this.apolloClient=this.createApolloClient(e.apiUri),this.order=new X(this.apolloClient),this.customer=new w(this.apolloClient),this.collection=new I(this.apolloClient),this.auth=new d(this.apolloClient)}}export{Z as VendureClient};
