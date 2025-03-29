@@ -93,7 +93,9 @@ export class OrderService extends BaseService {
             mutation: gql`
                 mutation RemoveOrderLine($orderLineId: ID!) {
                     removeOrderLine(orderLineId: $orderLineId) {
-                        ${convertToGql(OrderSchema)}
+                        ... on Order {
+                            ${convertToGql(OrderSchema)}
+                        }
                     }
                 }
             `,
@@ -110,7 +112,9 @@ export class OrderService extends BaseService {
             mutation: gql`
                 mutation applyCouponCode($couponCode: String!) {
                     applyCouponCode(couponCode: $couponCode) {
-                        ${convertToGql(OrderSchema)}
+                        ... on Order {
+                            ${convertToGql(OrderSchema)}
+                        }
                     }
                 }
             `,
