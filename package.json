@@ -30,13 +30,13 @@
         "test": "vitest"
     },
     "dependencies": {
-        "@apollo/client": "3.13.4",
-        "@arrirpc/schema": "0.76.4"
+        "@apollo/client": "3.13.5",
+        "@arrirpc/schema": "0.77.0"
     },
     "devDependencies": {
         "@biomejs/biome": "^1.9.4",
-        "@rslib/core": "^0.5.4",
-        "@types/node": "^22.13.10",
+        "@rslib/core": "^0.6.0",
+        "@types/node": "^22.13.14",
         "typescript": "^5.8.2",
         "vitest": "3.0.9"
     }
