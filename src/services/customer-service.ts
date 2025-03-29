@@ -7,32 +7,31 @@ import {
 } from '$schemas/customer.schemas';
 import { gql } from '$types/astro.types';
 import type {
+    Address,
     CreateCustomerAddress,
     DeleteCustomerAddress,
     GetActiveCustomer,
     UpdateCustomerAddress,
 } from '$types/customer.types';
+import type { Result } from '$types/result.types';
 import { convertToGql } from '$utils/index';
-import { type Result, a } from '@arrirpc/schema';
 import { BaseService } from './base-service';
 
 export class CustomerService extends BaseService {
     public async getActiveCustomer(): Promise<Result<GetActiveCustomer>> {
-        const response = await this.client.query({
+        return this.query(GetActiveCustomerSchema, {
             query: gql`
                 query GetActiveCustomer {
                     ${convertToGql(GetActiveCustomerSchema)}
                 }
             `,
         });
-
-        return a.parse(GetActiveCustomerSchema, response.data);
     }
 
     public async createCustomerAddress(
-        input: a.infer<typeof AddressSchema>,
+        input: Address,
     ): Promise<Result<CreateCustomerAddress>> {
-        const response = await this.client.mutate({
+        return this.mutate(CreateCustomerAddressSchema, {
             mutation: gql`
                 mutation CreateCustomerAddress($input: CreateAddressInput!) {
                     createCustomerAddress(input: $input) {
@@ -56,14 +55,12 @@ export class CustomerService extends BaseService {
                 },
             },
         });
-
-        return a.parse(CreateCustomerAddressSchema, response.data);
     }
 
     public async updateCustomerAddress(
-        input: a.infer<typeof AddressSchema>,
+        input: Address,
     ): Promise<Result<UpdateCustomerAddress>> {
-        const response = await this.client.mutate({
+        return this.mutate(UpdateCustomerAddressSchema, {
             mutation: gql`
                 mutation UpdateCustomerAddress($input: UpdateAddressInput!) {
                     updateCustomerAddress(input: $input) {
@@ -88,14 +85,12 @@ export class CustomerService extends BaseService {
                 },
             },
         });
-
-        return a.parse(UpdateCustomerAddressSchema, response.data);
     }
 
     public async deleteCustomerAddress(
         id: string,
     ): Promise<Result<DeleteCustomerAddress>> {
-        const response = await this.client.mutate({
+        return this.mutate(DeleteCustomerAddressSchema, {
             mutation: gql`
                 mutation DeleteCustomerAddress($id: ID!) {
                     deleteCustomerAddress(id: $id) {
@@ -107,7 +102,5 @@ export class CustomerService extends BaseService {
                 id,
             },
         });
-
-        return a.parse(DeleteCustomerAddressSchema, response.data);
     }
 }

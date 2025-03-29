@@ -14,13 +14,13 @@ import type {
     OrderByCode,
     RemoveOrderLine,
 } from '$types/order.types';
+import type { Result } from '$types/result.types';
 import { convertToGql } from '$utils/index';
-import { type Result, a } from '@arrirpc/schema';
 import { BaseService } from './base-service';
 
 export class OrderService extends BaseService {
     public async getByCode(code: string): Promise<Result<OrderByCode>> {
-        const response = await this.client.query({
+        return this.query(OrderByCodeSchema, {
             query: gql`
                 query Order($code: String!) {
                     orderByCode(code: $code) {
@@ -32,27 +32,23 @@ export class OrderService extends BaseService {
                 code,
             },
         });
-
-        return a.parse(OrderByCodeSchema, response.data);
     }
 
     public async getActiveOrder(): Promise<Result<ActiveOrder>> {
-        const response = await this.client.query({
+        return this.query(ActiveOrderSchema, {
             query: gql`
                 query GetActiveOrder {
                     ${convertToGql(ActiveOrderSchema)}
                 }
             `,
         });
-
-        return a.parse(ActiveOrderSchema, response.data);
     }
 
     public async addToActiveOrder(
         productVariantId: string,
         quantity: number,
     ): Promise<Result<AddToActiveOrder>> {
-        const response = await this.client.mutate({
+        return this.mutate(AddToActiveOrderSchema, {
             mutation: gql`
                 mutation AddItemToOrder($productVariantId: ID!, $quantity: Int!) {
                     addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
@@ -67,15 +63,13 @@ export class OrderService extends BaseService {
                 quantity,
             },
         });
-
-        return a.parse(AddToActiveOrderSchema, response.data);
     }
 
     public async adjustOrderLine(
         orderLineId: string,
         quantity: number,
     ): Promise<Result<AdjustOrderLine>> {
-        const response = await this.client.mutate({
+        return this.mutate(AdjustOrderLineSchema, {
             mutation: gql`
                 mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!) {
                     adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
@@ -88,14 +82,12 @@ export class OrderService extends BaseService {
                 quantity,
             },
         });
-
-        return a.parse(AdjustOrderLineSchema, response.data);
     }
 
     public async removeOrderLine(
         orderLineId: string,
     ): Promise<Result<RemoveOrderLine>> {
-        const response = await this.client.mutate({
+        return this.mutate(RemoveOrderLineSchema, {
             mutation: gql`
                 mutation RemoveOrderLine($orderLineId: ID!) {
                     removeOrderLine(orderLineId: $orderLineId) {
@@ -107,7 +99,5 @@ export class OrderService extends BaseService {
                 orderLineId,
             },
         });
-
-        return a.parse(RemoveOrderLineSchema, response.data);
     }
 }
