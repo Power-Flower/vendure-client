@@ -2,6 +2,7 @@ import {
     ActiveOrderSchema,
     AddToActiveOrderSchema,
     AdjustOrderLineSchema,
+    ApplyCouponCodeSchema,
     OrderByCodeSchema,
     OrderSchema,
     RemoveOrderLineSchema,
@@ -11,6 +12,7 @@ import type {
     ActiveOrder,
     AddToActiveOrder,
     AdjustOrderLine,
+    ApplyCouponCode,
     OrderByCode,
     RemoveOrderLine,
 } from '$types/order.types';
@@ -97,6 +99,23 @@ export class OrderService extends BaseService {
             `,
             variables: {
                 orderLineId,
+            },
+        });
+    }
+
+    public async applyCouponCode(
+        couponCode: string,
+    ): Promise<Result<ApplyCouponCode>> {
+        return this.mutate(ApplyCouponCodeSchema, {
+            mutation: gql`
+                mutation applyCouponCode($couponCode: String!) {
+                    applyCouponCode(couponCode: $couponCode) {
+                        ${convertToGql(OrderSchema)}
+                    }
+                }
+            `,
+            variables: {
+                couponCode,
             },
         });
     }

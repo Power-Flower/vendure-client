@@ -129,17 +129,21 @@ export const OrderByCodeSchema = a.object({
 });
 
 export const ActiveOrderSchema = a.object({
-    activeOrder: a.optional(OrderSchema),
+    activeOrder: a.nullable(OrderSchema),
 });
 
 export const AddToActiveOrderSchema = a.object({
-    addToActiveOrder: a.optional(OrderSchema),
+    addToActiveOrder: a.nullable(OrderSchema),
 });
 
 export const AdjustOrderLineSchema = a.object({
-    adjustOrderLine: a.optional(OrderSchema),
+    adjustOrderLine: a.nullable(OrderSchema),
 });
 
 export const RemoveOrderLineSchema = a.object({
-    removeOrderLine: a.optional(OrderSchema),
+    removeOrderLine: a.nullable(OrderSchema),
+});
+
+export const ApplyCouponCodeSchema = a.object({
+    applyCouponCode: a.nullable(OrderSchema),
 });
