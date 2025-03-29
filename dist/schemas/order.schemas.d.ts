@@ -182,7 +182,7 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
     id: string;
     createdAt: Date;
     type: string;
-    orderPlacedAt: Date;
+    orderPlacedAt: Date | undefined;
     code: string;
     state: string;
     active: boolean;
@@ -450,7 +450,7 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date;
+        orderPlacedAt: Date | undefined;
         code: string;
         state: string;
         active: boolean;
@@ -725,7 +725,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date;
+        orderPlacedAt: Date | undefined;
         code: string;
         state: string;
         active: boolean;
@@ -994,7 +994,7 @@ export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSc
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date;
+        orderPlacedAt: Date | undefined;
         code: string;
         state: string;
         active: boolean;
@@ -1263,7 +1263,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date;
+        orderPlacedAt: Date | undefined;
         code: string;
         state: string;
         active: boolean;
@@ -1532,7 +1532,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date;
+        orderPlacedAt: Date | undefined;
         code: string;
         state: string;
         active: boolean;

@@ -1,5 +1,5 @@
 import type { ActiveOrder, AddToActiveOrder, AdjustOrderLine, OrderByCode, RemoveOrderLine } from '../types/order.types';
-import { type Result } from '@arrirpc/schema';
+import type { Result } from '../types/result.types';
 import { BaseService } from './base-service';
 export declare class OrderService extends BaseService {
     getByCode(code: string): Promise<Result<OrderByCode>>;
