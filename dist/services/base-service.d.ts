@@ -1,5 +1,9 @@
-import type { ApolloClient, NormalizedCacheObject } from '../types/astro.types';
+import type { ApolloClient, MutationOptions, NormalizedCacheObject, QueryOptions } from '../types/astro.types';
+import type { Result } from '../types/result.types';
+import { type ASchema } from '@arrirpc/schema';
 export declare class BaseService {
-    protected readonly client: ApolloClient<NormalizedCacheObject>;
+    private readonly client;
     constructor(client: ApolloClient<NormalizedCacheObject>);
+    protected query<T>(schema: ASchema, options: QueryOptions): Promise<Result<T>>;
+    protected mutate<T>(schema: ASchema, options: MutationOptions): Promise<Result<T>>;
 }
