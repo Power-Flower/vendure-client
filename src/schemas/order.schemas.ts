@@ -76,16 +76,16 @@ export const ShippingLineSchema = a.object({
 });
 
 export const OrderAddressSchema = a.object({
-    fullName: a.string(),
-    company: a.string(),
-    streetLine1: a.string(),
-    streetLine2: a.string(),
-    city: a.string(),
-    province: a.string(),
-    postalCode: a.string(),
-    country: a.string(),
-    countryCode: a.string(),
-    phoneNumber: a.string(),
+    fullName: a.nullable(a.string()),
+    company: a.nullable(a.string()),
+    streetLine1: a.nullable(a.string()),
+    streetLine2: a.nullable(a.string()),
+    city: a.nullable(a.string()),
+    province: a.nullable(a.string()),
+    postalCode: a.nullable(a.string()),
+    country: a.nullable(a.string()),
+    countryCode: a.nullable(a.string()),
+    phoneNumber: a.nullable(a.string()),
 });
 
 export const OrderSchema = a.object({
