@@ -1,7 +1,7 @@
 import { AuthLoginSchema, AuthRegisterSchema } from '$schemas/auth.schemas';
 import { gql } from '$types/astro.types';
 import type { AuthLogin, AuthRegister } from '$types/auth.types';
-import { type Result, a } from '@arrirpc/schema';
+import type { Result } from '$types/result.types';
 import { BaseService } from './base-service';
 
 export class AuthService extends BaseService {
@@ -9,7 +9,7 @@ export class AuthService extends BaseService {
         email: string,
         password: string,
     ): Promise<Result<AuthLogin>> {
-        const response = await this.client.mutate({
+        return this.mutate(AuthLoginSchema, {
             mutation: gql`
                 mutation($email: String!, $password: String!) {
                     login(username: $email, password: $password, rememberMe: true) {
@@ -29,8 +29,6 @@ export class AuthService extends BaseService {
                 password,
             },
         });
-
-        return a.parse(AuthLoginSchema, response.data);
     }
 
     public async register(
@@ -39,7 +37,7 @@ export class AuthService extends BaseService {
         email: string,
         password: string,
     ): Promise<Result<AuthRegister>> {
-        const response = await this.client.mutate({
+        return this.mutate(AuthRegisterSchema, {
             mutation: gql`
                 mutation($input: RegisterCustomerInput!) {
                     registerCustomerAccount(input: $input) {
@@ -62,7 +60,5 @@ export class AuthService extends BaseService {
                 },
             },
         });
-
-        return a.parse(AuthRegisterSchema, response.data);
     }
 }

@@ -1,18 +1,15 @@
-import {
-    CollectionQuerySchema,
-    CollectionSchema,
-} from '$schemas/collection.schemas';
+import { CollectionSchema } from '$schemas/collection.schemas';
 import { gql } from '$types/astro.types';
 import type { CollectionQuery } from '$types/collection.types';
+import type { Result } from '$types/result.types';
 import { convertToGql } from '$utils/index';
-import { type Result, a } from '@arrirpc/schema';
 import { BaseService } from './base-service';
 
 export class CollectionService extends BaseService {
     public async getCollectionById(
         id: string,
     ): Promise<Result<CollectionQuery>> {
-        const response = await this.client.query({
+        return this.query(CollectionSchema, {
             query: gql`
                 query Collection($id: ID!) {
                     collection(id: $id) {
@@ -24,7 +21,5 @@ export class CollectionService extends BaseService {
                 id,
             },
         });
-
-        return a.parse(CollectionQuerySchema, response.data);
     }
 }
