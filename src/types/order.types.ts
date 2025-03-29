@@ -1,6 +1,6 @@
 import type {
     ActiveOrderSchema,
-    AddToActiveOrderSchema,
+    AddItemToOrderSchema,
     AdjustOrderLineSchema,
     ApplyCouponCodeSchema,
     DiscountSchema,
@@ -39,7 +39,7 @@ export type OrderByCode = a.infer<typeof OrderByCodeSchema>;
 
 export type ActiveOrder = a.infer<typeof ActiveOrderSchema>;
 
-export type AddToActiveOrder = a.infer<typeof AddToActiveOrderSchema>;
+export type AddItemToOrder = a.infer<typeof AddItemToOrderSchema>;
 
 export type AdjustOrderLine = a.infer<typeof AdjustOrderLineSchema>;
 

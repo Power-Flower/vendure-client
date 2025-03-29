@@ -63,7 +63,7 @@ ${L(a)}
                 query GetActiveOrder {
                     ${L(F)}
                 }
-            `})}async addToActiveOrder(e,t){return this.mutate(G,{mutation:(0,u.gql)`
+            `})}async addItemToOrder(e,t){return this.mutate(G,{mutation:(0,u.gql)`
                 mutation AddItemToOrder($productVariantId: ID!, $quantity: Int!) {
                     addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
                         ... on Order {
