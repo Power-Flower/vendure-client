@@ -133,7 +133,7 @@ export const ActiveOrderSchema = a.object({
 });
 
 export const AddItemToOrderSchema = a.object({
-    addToActiveOrder: a.nullable(OrderSchema),
+    addItemToOrder: a.nullable(OrderSchema),
 });
 
 export const AdjustOrderLineSchema = a.object({
