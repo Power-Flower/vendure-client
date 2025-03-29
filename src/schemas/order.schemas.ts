@@ -92,7 +92,7 @@ export const OrderSchema = a.object({
     id: a.string(),
     createdAt: a.timestamp(),
     type: a.string(),
-    orderPlacedAt: a.optional(a.timestamp()),
+    orderPlacedAt: a.nullable(a.timestamp()),
     code: a.string(),
     state: a.string(),
     active: a.boolean(),
