@@ -1,2 +1,2 @@
-import type { AObjectSchemaWithAdapters } from '@arrirpc/schema';
-export declare const convertToGql: (schema: AObjectSchemaWithAdapters) => string;
+import type { AObjectSchema } from '@arrirpc/schema';
+export declare const convertToGql: (schema: AObjectSchema) => string;
