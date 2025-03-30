@@ -1,6 +1,6 @@
+import { a } from '@arrirpc/schema';
 import { expect, expectTypeOf, test } from 'vitest';
 import { convertToGql } from '../dist';
-import { a } from '@arrirpc/schema';
 
 test('optional field', () => {
     const schema = a.object({
@@ -8,7 +8,7 @@ test('optional field', () => {
         name: a.optional(a.string()),
     });
     const query = convertToGql(schema);
-    
+
     expectTypeOf(query).toEqualTypeOf<string>();
     expect(query).toContain('id');
     expect(query).toContain('name');
@@ -22,7 +22,7 @@ test('nullable field', () => {
         name: a.nullable(a.string()),
     });
     const query = convertToGql(schema);
-    
+
     expectTypeOf(query).toEqualTypeOf<string>();
     expect(query).toContain('id');
     expect(query).toContain('name');
@@ -45,7 +45,7 @@ test('nested object', () => {
         }),
     });
     const query = convertToGql(schema);
-   
+
     expectTypeOf(query).toEqualTypeOf<string>();
     expect(query).toContain('id');
     expect(query).toContain('info');
@@ -64,15 +64,19 @@ test('complex object', () => {
         id: a.string(),
         name: a.string(),
         description: a.optional(a.string()),
-        additional: a.optional(a.object({
-            additional_id: a.string(),
-            additional_name: a.string(),
-        })),
+        additional: a.optional(
+            a.object({
+                additional_id: a.string(),
+                additional_name: a.string(),
+            }),
+        ),
         labels: a.array(a.string()),
-        tags: a.array(a.object({
-            tag_id: a.string(),
-            tag_name: a.optional(a.string()),
-        })),
+        tags: a.array(
+            a.object({
+                tag_id: a.string(),
+                tag_name: a.optional(a.string()),
+            }),
+        ),
         createdAt: a.timestamp(),
     });
     const query = convertToGql(schema);
