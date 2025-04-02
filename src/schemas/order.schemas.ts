@@ -143,3 +143,7 @@ export const AdjustOrderLineSchema = a.object({
 export const RemoveOrderLineSchema = a.object({
     removeOrderLine: a.optional(OrderSchema),
 });
+
+export const TransitionOrderToStateSchema = a.object({
+    transitionOrderToState: a.optional(OrderSchema),
+});

@@ -1,4 +1,5 @@
 import { AuthService } from '$services/auth-service';
+import { CheckoutService } from '$services/checkout-service';
 import { CollectionService } from '$services/collection-service';
 import { CustomerService } from '$services/customer-service';
 import { OrderService } from '$services/order-service';
@@ -20,6 +21,7 @@ export class VendureClient {
     public readonly auth: AuthService;
     public readonly customer: CustomerService;
     public readonly collection: CollectionService;
+    public readonly checkout: CheckoutService;
     public readonly order: OrderService;
 
     private readonly apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -29,6 +31,7 @@ export class VendureClient {
         this.order = new OrderService(this.apolloClient);
         this.customer = new CustomerService(this.apolloClient);
         this.collection = new CollectionService(this.apolloClient);
+        this.checkout = new CheckoutService(this.apolloClient);
         this.auth = new AuthService(this.apolloClient);
     }
 

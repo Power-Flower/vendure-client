@@ -5,6 +5,7 @@ import {
     OrderByCodeSchema,
     OrderSchema,
     RemoveOrderLineSchema,
+    TransitionOrderToStateSchema,
 } from '$schemas/order.schemas';
 import { gql } from '$types/astro.types';
 import type {
@@ -13,6 +14,7 @@ import type {
     AdjustOrderLine,
     OrderByCode,
     RemoveOrderLine,
+    TransitionOrderToState,
 } from '$types/order.types';
 import type { Result } from '$types/result.types';
 import { convertToGql } from '$utils/index';
@@ -41,6 +43,25 @@ export class OrderService extends BaseService {
                     ${convertToGql(ActiveOrderSchema)}
                 }
             `,
+        });
+    }
+
+    public async transitionOrderToState(
+        state: string,
+    ): Promise<Result<TransitionOrderToState>> {
+        return this.mutate(TransitionOrderToStateSchema, {
+            mutation: gql`
+                mutation TransitionOrderToState($state: String!) {
+                    transitionOrderToState(state: $state) {
+                        ... on Order {
+                            ${convertToGql(OrderSchema)}
+                        }
+                    }
+                }
+            `,
+            variables: {
+                state,
+            },
         });
     }
 

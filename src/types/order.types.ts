@@ -13,6 +13,7 @@ import type {
     ShippingLineSchema,
     ShippingMethodSchema,
     SurchargeSchema,
+    TransitionOrderToStateSchema,
 } from '$schemas/order.schemas';
 import type { a } from '@arrirpc/schema';
 
@@ -43,3 +44,5 @@ export type AddToActiveOrder = a.infer<typeof AddToActiveOrderSchema>;
 export type AdjustOrderLine = a.infer<typeof AdjustOrderLineSchema>;
 
 export type RemoveOrderLine = a.infer<typeof RemoveOrderLineSchema>;
+
+export type TransitionOrderToState = a.infer<typeof TransitionOrderToStateSchema>;
