@@ -987,7 +987,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
             taxBase: number;
             taxTotal: number;
         }[];
-    } | undefined;
+    } | null;
 }, false>;
 export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     addItemToOrder: {
@@ -1256,7 +1256,7 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
             taxBase: number;
             taxTotal: number;
         }[];
-    } | undefined;
+    } | null;
 }, false>;
 export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     adjustOrderLine: {
@@ -1525,7 +1525,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
             taxBase: number;
             taxTotal: number;
         }[];
-    } | undefined;
+    } | null;
 }, false>;
 export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     removeOrderLine: {
@@ -1794,7 +1794,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
             taxBase: number;
             taxTotal: number;
         }[];
-    } | undefined;
+    } | null;
 }, false>;
 export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     transitionOrderToState: {
@@ -2063,7 +2063,7 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
             taxBase: number;
             taxTotal: number;
         }[];
-    } | undefined;
+    } | null;
 }, false>;
 export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     applyCouponCode: {
@@ -2332,5 +2332,5 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
             taxBase: number;
             taxTotal: number;
         }[];
-    } | undefined;
+    } | null;
 }, false>;
