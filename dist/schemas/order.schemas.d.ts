@@ -989,8 +989,8 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
         }[];
     } | undefined;
 }, false>;
-export declare const AddToActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
-    addToActiveOrder: {
+export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
+    addItemToOrder: {
         id: string;
         createdAt: Date;
         type: string;
