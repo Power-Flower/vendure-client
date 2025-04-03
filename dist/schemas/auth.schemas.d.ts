@@ -9,3 +9,8 @@ export declare const AuthRegisterSchema: import("@arrirpc/schema").AObjectSchema
         success: boolean;
     };
 }, false>;
+export declare const AuthLogoutSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
+    logout: {
+        success: boolean;
+    };
+}, false>;
