@@ -5,9 +5,9 @@ export type PaymentMethodQuote = a.infer<typeof PaymentMethodQuoteSchema>;
 
 export type ShippingMethodQuote = a.infer<typeof ShippingMethodQuoteSchema>;
 
-export type EligiblePaymentMethods = a.infer<typeof EligiblePaymentMethodsSchema>[];
+export type EligiblePaymentMethods = a.infer<typeof EligiblePaymentMethodsSchema>;
 
-export type EligibleShippingMethods = a.infer<typeof EligibleShippingMethodsSchema>[];
+export type EligibleShippingMethods = a.infer<typeof EligibleShippingMethodsSchema>;
 
 export type SetOrderShippingAddress = a.infer<typeof SetOrderShippingAddressSchema>;
 
