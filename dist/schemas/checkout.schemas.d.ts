@@ -115,7 +115,7 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
                     height: number;
                     source: string;
                     preview: string;
-                };
+                } | null;
                 assets: {
                     id: string;
                     createdAt: string;
@@ -131,7 +131,7 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
-                stockLevel: number;
+                stockLevel: string;
                 taxRateApplied: {
                     id: string;
                     name: string;
@@ -384,7 +384,7 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
                     height: number;
                     source: string;
                     preview: string;
-                };
+                } | null;
                 assets: {
                     id: string;
                     createdAt: string;
@@ -400,7 +400,7 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
-                stockLevel: number;
+                stockLevel: string;
                 taxRateApplied: {
                     id: string;
                     name: string;
