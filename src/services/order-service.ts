@@ -1,6 +1,6 @@
 import {
     ActiveOrderSchema,
-    AddToActiveOrderSchema,
+    AddItemToOrderSchema,
     AdjustOrderLineSchema,
     ApplyCouponCodeSchema,
     OrderByCodeSchema,
@@ -11,7 +11,7 @@ import {
 import { gql } from '$types/astro.types';
 import type {
     ActiveOrder,
-    AddToActiveOrder,
+    AddItemToOrder,
     AdjustOrderLine,
     ApplyCouponCode,
     OrderByCode,
@@ -42,7 +42,9 @@ export class OrderService extends BaseService {
         return this.query(ActiveOrderSchema, {
             query: gql`
                 query GetActiveOrder {
-                    ${convertToGql(ActiveOrderSchema)}
+                    ... on Order {
+                        ${convertToGql(ActiveOrderSchema)}
+                    }
                 }
             `,
         });
@@ -67,11 +69,11 @@ export class OrderService extends BaseService {
         });
     }
 
-    public async addToActiveOrder(
+    public async addItemToOrder(
         productVariantId: string,
         quantity: number,
-    ): Promise<Result<AddToActiveOrder>> {
-        return this.mutate(AddToActiveOrderSchema, {
+    ): Promise<Result<AddItemToOrder>> {
+        return this.mutate(AddItemToOrderSchema, {
             mutation: gql`
                 mutation AddItemToOrder($productVariantId: ID!, $quantity: Int!) {
                     addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
@@ -96,7 +98,9 @@ export class OrderService extends BaseService {
             mutation: gql`
                 mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!) {
                     adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
-                        ${convertToGql(OrderSchema)}
+                        ... on Order {
+                            ${convertToGql(OrderSchema)}
+                        }
                     }
                 }
             `,
@@ -114,7 +118,9 @@ export class OrderService extends BaseService {
             mutation: gql`
                 mutation RemoveOrderLine($orderLineId: ID!) {
                     removeOrderLine(orderLineId: $orderLineId) {
-                        ${convertToGql(OrderSchema)}
+                        ... on Order {
+                            ${convertToGql(OrderSchema)}
+                        }
                     }
                 }
             `,

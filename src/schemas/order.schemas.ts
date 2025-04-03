@@ -132,8 +132,8 @@ export const ActiveOrderSchema = a.object({
     activeOrder: a.optional(OrderSchema),
 });
 
-export const AddToActiveOrderSchema = a.object({
-    addToActiveOrder: a.optional(OrderSchema),
+export const AddItemToOrderSchema = a.object({
+    addItemToOrder: a.optional(OrderSchema),
 });
 
 export const AdjustOrderLineSchema = a.object({
