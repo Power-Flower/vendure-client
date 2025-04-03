@@ -2,6 +2,7 @@ import {
     ActiveOrderSchema,
     AddToActiveOrderSchema,
     AdjustOrderLineSchema,
+    ApplyCouponCodeSchema,
     OrderByCodeSchema,
     OrderSchema,
     RemoveOrderLineSchema,
@@ -12,6 +13,7 @@ import type {
     ActiveOrder,
     AddToActiveOrder,
     AdjustOrderLine,
+    ApplyCouponCode,
     OrderByCode,
     RemoveOrderLine,
     TransitionOrderToState,
@@ -26,7 +28,7 @@ export class OrderService extends BaseService {
             query: gql`
                 query Order($code: String!) {
                     orderByCode(code: $code) {
-                        state
+                        ${convertToGql(OrderSchema)}
                     }
                 }
             `,
@@ -118,6 +120,25 @@ export class OrderService extends BaseService {
             `,
             variables: {
                 orderLineId,
+            },
+        });
+    }
+
+    public async applyCouponCode(
+        couponCode: string,
+    ): Promise<Result<ApplyCouponCode>> {
+        return this.mutate(ApplyCouponCodeSchema, {
+            mutation: gql`
+                mutation ApplyCouponCode($couponCode: String!) {
+                    applyCouponCode(couponCode: $couponCode) {
+                        ... on Order {
+                            ${convertToGql(OrderSchema)}
+                        }
+                    }
+                }
+            `,
+            variables: {
+                couponCode,
             },
         });
     }

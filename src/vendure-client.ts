@@ -3,6 +3,7 @@ import { CheckoutService } from '$services/checkout-service';
 import { CollectionService } from '$services/collection-service';
 import { CustomerService } from '$services/customer-service';
 import { OrderService } from '$services/order-service';
+import { UtilsService } from '$services/utils-service';
 import {
     ApolloClient,
     ApolloLink,
@@ -22,6 +23,7 @@ export class VendureClient {
     public readonly customer: CustomerService;
     public readonly collection: CollectionService;
     public readonly checkout: CheckoutService;
+    public readonly utils: UtilsService;
     public readonly order: OrderService;
 
     private readonly apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -32,6 +34,7 @@ export class VendureClient {
         this.customer = new CustomerService(this.apolloClient);
         this.collection = new CollectionService(this.apolloClient);
         this.checkout = new CheckoutService(this.apolloClient);
+        this.utils = new UtilsService(this.apolloClient);
         this.auth = new AuthService(this.apolloClient);
     }
 

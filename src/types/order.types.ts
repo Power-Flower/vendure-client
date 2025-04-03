@@ -2,6 +2,7 @@ import type {
     ActiveOrderSchema,
     AddToActiveOrderSchema,
     AdjustOrderLineSchema,
+    ApplyCouponCodeSchema,
     DiscountSchema,
     OrderAddressSchema,
     OrderByCodeSchema,
@@ -46,3 +47,5 @@ export type AdjustOrderLine = a.infer<typeof AdjustOrderLineSchema>;
 export type RemoveOrderLine = a.infer<typeof RemoveOrderLineSchema>;
 
 export type TransitionOrderToState = a.infer<typeof TransitionOrderToStateSchema>;
+
+export type ApplyCouponCode = a.infer<typeof ApplyCouponCodeSchema>;

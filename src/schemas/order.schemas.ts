@@ -147,3 +147,7 @@ export const RemoveOrderLineSchema = a.object({
 export const TransitionOrderToStateSchema = a.object({
     transitionOrderToState: a.optional(OrderSchema),
 });
+
+export const ApplyCouponCodeSchema = a.object({
+    applyCouponCode: a.optional(OrderSchema),
+});

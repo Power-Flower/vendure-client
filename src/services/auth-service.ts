@@ -1,6 +1,6 @@
-import { AuthLoginSchema, AuthRegisterSchema } from '$schemas/auth.schemas';
+import { AuthLoginSchema, AuthLogoutSchema, AuthRegisterSchema } from '$schemas/auth.schemas';
 import { gql } from '$types/astro.types';
-import type { AuthLogin, AuthRegister } from '$types/auth.types';
+import type { AuthLogin, AuthLogout, AuthRegister } from '$types/auth.types';
 import type { Result } from '$types/result.types';
 import { BaseService } from './base-service';
 
@@ -59,6 +59,18 @@ export class AuthService extends BaseService {
                     password,
                 },
             },
+        });
+    }
+
+    public async logout(): Promise<Result<AuthLogout>> {
+        return this.mutate(AuthLogoutSchema, {
+            mutation: gql`
+                mutation Logout {
+                    logout {
+                        success
+                    }
+                }
+            `,
         });
     }
 }
