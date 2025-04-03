@@ -42,9 +42,7 @@ export class OrderService extends BaseService {
         return this.query(ActiveOrderSchema, {
             query: gql`
                 query GetActiveOrder {
-                    ... on Order {
                         ${convertToGql(ActiveOrderSchema)}
-                    }
                 }
             `,
         });
