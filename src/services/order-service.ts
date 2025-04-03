@@ -1,20 +1,22 @@
 import {
     ActiveOrderSchema,
-    AddItemToOrderSchema,
+    AddToActiveOrderSchema,
     AdjustOrderLineSchema,
     ApplyCouponCodeSchema,
     OrderByCodeSchema,
     OrderSchema,
     RemoveOrderLineSchema,
+    TransitionOrderToStateSchema,
 } from '$schemas/order.schemas';
 import { gql } from '$types/astro.types';
 import type {
     ActiveOrder,
-    AddItemToOrder,
+    AddToActiveOrder,
     AdjustOrderLine,
     ApplyCouponCode,
     OrderByCode,
     RemoveOrderLine,
+    TransitionOrderToState,
 } from '$types/order.types';
 import type { Result } from '$types/result.types';
 import { convertToGql } from '$utils/index';
@@ -26,7 +28,7 @@ export class OrderService extends BaseService {
             query: gql`
                 query Order($code: String!) {
                     orderByCode(code: $code) {
-                        state
+                        ${convertToGql(OrderSchema)}
                     }
                 }
             `,
@@ -46,11 +48,30 @@ export class OrderService extends BaseService {
         });
     }
 
-    public async addItemToOrder(
+    public async transitionOrderToState(
+        state: string,
+    ): Promise<Result<TransitionOrderToState>> {
+        return this.mutate(TransitionOrderToStateSchema, {
+            mutation: gql`
+                mutation TransitionOrderToState($state: String!) {
+                    transitionOrderToState(state: $state) {
+                        ... on Order {
+                            ${convertToGql(OrderSchema)}
+                        }
+                    }
+                }
+            `,
+            variables: {
+                state,
+            },
+        });
+    }
+
+    public async addToActiveOrder(
         productVariantId: string,
         quantity: number,
-    ): Promise<Result<AddItemToOrder>> {
-        return this.mutate(AddItemToOrderSchema, {
+    ): Promise<Result<AddToActiveOrder>> {
+        return this.mutate(AddToActiveOrderSchema, {
             mutation: gql`
                 mutation AddItemToOrder($productVariantId: ID!, $quantity: Int!) {
                     addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
@@ -93,9 +114,7 @@ export class OrderService extends BaseService {
             mutation: gql`
                 mutation RemoveOrderLine($orderLineId: ID!) {
                     removeOrderLine(orderLineId: $orderLineId) {
-                        ... on Order {
-                            ${convertToGql(OrderSchema)}
-                        }
+                        ${convertToGql(OrderSchema)}
                     }
                 }
             `,
@@ -110,7 +129,7 @@ export class OrderService extends BaseService {
     ): Promise<Result<ApplyCouponCode>> {
         return this.mutate(ApplyCouponCodeSchema, {
             mutation: gql`
-                mutation applyCouponCode($couponCode: String!) {
+                mutation ApplyCouponCode($couponCode: String!) {
                     applyCouponCode(couponCode: $couponCode) {
                         ... on Order {
                             ${convertToGql(OrderSchema)}

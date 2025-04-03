@@ -12,3 +12,9 @@ export const AuthRegisterSchema = a.object({
         success: a.boolean(),
     }),
 });
+
+export const AuthLogoutSchema = a.object({
+    logout: a.object({
+        success: a.boolean(),
+    }),
+});

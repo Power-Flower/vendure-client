@@ -1,6 +1,6 @@
 import type {
     ActiveOrderSchema,
-    AddItemToOrderSchema,
+    AddToActiveOrderSchema,
     AdjustOrderLineSchema,
     ApplyCouponCodeSchema,
     DiscountSchema,
@@ -14,6 +14,7 @@ import type {
     ShippingLineSchema,
     ShippingMethodSchema,
     SurchargeSchema,
+    TransitionOrderToStateSchema,
 } from '$schemas/order.schemas';
 import type { a } from '@arrirpc/schema';
 
@@ -39,10 +40,12 @@ export type OrderByCode = a.infer<typeof OrderByCodeSchema>;
 
 export type ActiveOrder = a.infer<typeof ActiveOrderSchema>;
 
-export type AddItemToOrder = a.infer<typeof AddItemToOrderSchema>;
+export type AddToActiveOrder = a.infer<typeof AddToActiveOrderSchema>;
 
 export type AdjustOrderLine = a.infer<typeof AdjustOrderLineSchema>;
 
 export type RemoveOrderLine = a.infer<typeof RemoveOrderLineSchema>;
+
+export type TransitionOrderToState = a.infer<typeof TransitionOrderToStateSchema>;
 
 export type ApplyCouponCode = a.infer<typeof ApplyCouponCodeSchema>;

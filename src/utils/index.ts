@@ -1,37 +1,23 @@
-//@ts-nocheck
-import type { AObjectSchemaWithAdapters } from '@arrirpc/schema';
-import fs from 'fs';
+import type { AArraySchema, AObjectSchema, ASchema } from '@arrirpc/schema';
 
-export const convertToGql = (schema: AObjectSchemaWithAdapters): string => {
-    let object = {
+export const convertToGql = (schema: AObjectSchema): string => {
+    const object: Record<string, ASchema | AObjectSchema | AArraySchema> = {
         ...schema.properties,
         ...schema.optionalProperties,
-        ...schema.elements?.properties,
-        ...schema.elements?.optionalProperties,
     };
 
-    const props = Object.entries(object)
-        .map(([key, value]) => {
-            if (typeof value !== 'object') return key;
+    const entries = Object.entries(object);
+    if (entries.length === 0) return '';
 
-            if (
-                'properties' in value ||
-                'elements' in value ||
-                'optionalProperties' in value
-            ) {
-                if (
-                    value.elements &&
-                    !(
-                        value.elements.properties ||
-                        value.elements.optionalProperties
-                    )
-                )
-                    return key;
-                return `${key} {\n${convertToGql(value)}\n}`;
-            }
-            return key;
-        })
-        .join('\n');
+    const props = entries.map(([key, value]) => {
+        if ('properties' in value) {
+            return `${key} { ${convertToGql(value)} }`;
+        }
+        if ('elements' in value && !('type' in value.elements)) {
+            return `${key} { ${convertToGql(value.elements)} }`;
+        }
+        return key;
+    });
 
-    return props;
+    return props.join(' ');
 };
