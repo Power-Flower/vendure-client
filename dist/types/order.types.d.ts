@@ -1,4 +1,4 @@
-import type { ActiveOrderSchema, AddItemToOrderSchema, AdjustOrderLineSchema, ApplyCouponCodeSchema, DiscountSchema, OrderAddressSchema, OrderByCodeSchema, OrderLineSchema, OrderListSchema, OrderSchema, PromotionSchema, RemoveOrderLineSchema, ShippingLineSchema, ShippingMethodSchema, SurchargeSchema } from '../schemas/order.schemas';
+import type { ActiveOrderSchema, AddToActiveOrderSchema, AdjustOrderLineSchema, ApplyCouponCodeSchema, DiscountSchema, OrderAddressSchema, OrderByCodeSchema, OrderLineSchema, OrderListSchema, OrderSchema, PromotionSchema, RemoveOrderLineSchema, ShippingLineSchema, ShippingMethodSchema, SurchargeSchema, TransitionOrderToStateSchema } from '../schemas/order.schemas';
 import type { a } from '@arrirpc/schema';
 export type Promotion = a.infer<typeof PromotionSchema>;
 export type Surcharge = a.infer<typeof SurchargeSchema>;
@@ -11,7 +11,8 @@ export type Order = a.infer<typeof OrderSchema>;
 export type OrderList = a.infer<typeof OrderListSchema>;
 export type OrderByCode = a.infer<typeof OrderByCodeSchema>;
 export type ActiveOrder = a.infer<typeof ActiveOrderSchema>;
-export type AddItemToOrder = a.infer<typeof AddItemToOrderSchema>;
+export type AddToActiveOrder = a.infer<typeof AddToActiveOrderSchema>;
 export type AdjustOrderLine = a.infer<typeof AdjustOrderLineSchema>;
 export type RemoveOrderLine = a.infer<typeof RemoveOrderLineSchema>;
+export type TransitionOrderToState = a.infer<typeof TransitionOrderToStateSchema>;
 export type ApplyCouponCode = a.infer<typeof ApplyCouponCodeSchema>;
