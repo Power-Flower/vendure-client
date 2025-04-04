@@ -262,7 +262,7 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
         customFields: {
             subscribedUntil: Date | null;
         };
-    } | undefined;
+    } | null;
     shippingAddress: {
         fullName: string | null;
         company: string | null;
@@ -577,7 +577,7 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
             customFields: {
                 subscribedUntil: Date | null;
             };
-        } | undefined;
+        } | null;
         shippingAddress: {
             fullName: string | null;
             company: string | null;
@@ -899,7 +899,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
             customFields: {
                 subscribedUntil: Date | null;
             };
-        } | undefined;
+        } | null;
         shippingAddress: {
             fullName: string | null;
             company: string | null;
@@ -1215,7 +1215,7 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
             customFields: {
                 subscribedUntil: Date | null;
             };
-        } | undefined;
+        } | null;
         shippingAddress: {
             fullName: string | null;
             company: string | null;
@@ -1531,7 +1531,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
             customFields: {
                 subscribedUntil: Date | null;
             };
-        } | undefined;
+        } | null;
         shippingAddress: {
             fullName: string | null;
             company: string | null;
@@ -1847,7 +1847,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
             customFields: {
                 subscribedUntil: Date | null;
             };
-        } | undefined;
+        } | null;
         shippingAddress: {
             fullName: string | null;
             company: string | null;
@@ -2163,7 +2163,7 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
             customFields: {
                 subscribedUntil: Date | null;
             };
-        } | undefined;
+        } | null;
         shippingAddress: {
             fullName: string | null;
             company: string | null;
@@ -2479,7 +2479,7 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
             customFields: {
                 subscribedUntil: Date | null;
             };
-        } | undefined;
+        } | null;
         shippingAddress: {
             fullName: string | null;
             company: string | null;
