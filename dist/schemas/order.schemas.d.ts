@@ -126,7 +126,7 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
                 height: number;
                 source: string;
                 preview: string;
-            };
+            } | null;
             assets: {
                 id: string;
                 createdAt: string;
@@ -384,7 +384,7 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
                     height: number;
                     source: string;
                     preview: string;
-                };
+                } | null;
                 assets: {
                     id: string;
                     createdAt: string;
@@ -699,7 +699,7 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                         height: number;
                         source: string;
                         preview: string;
-                    };
+                    } | null;
                     assets: {
                         id: string;
                         createdAt: string;
@@ -1021,7 +1021,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                         height: number;
                         source: string;
                         preview: string;
-                    };
+                    } | null;
                     assets: {
                         id: string;
                         createdAt: string;
@@ -1337,7 +1337,7 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
                         height: number;
                         source: string;
                         preview: string;
-                    };
+                    } | null;
                     assets: {
                         id: string;
                         createdAt: string;
@@ -1653,7 +1653,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                         height: number;
                         source: string;
                         preview: string;
-                    };
+                    } | null;
                     assets: {
                         id: string;
                         createdAt: string;
@@ -1969,7 +1969,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                         height: number;
                         source: string;
                         preview: string;
-                    };
+                    } | null;
                     assets: {
                         id: string;
                         createdAt: string;
@@ -2285,7 +2285,7 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
                         height: number;
                         source: string;
                         preview: string;
-                    };
+                    } | null;
                     assets: {
                         id: string;
                         createdAt: string;
@@ -2601,7 +2601,7 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
                         height: number;
                         source: string;
                         preview: string;
-                    };
+                    } | null;
                     assets: {
                         id: string;
                         createdAt: string;

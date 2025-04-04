@@ -192,7 +192,7 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
                         height: number;
                         source: string;
                         preview: string;
-                    };
+                    } | null;
                     assets: {
                         id: string;
                         createdAt: string;
@@ -508,7 +508,7 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
                         height: number;
                         source: string;
                         preview: string;
-                    };
+                    } | null;
                     assets: {
                         id: string;
                         createdAt: string;

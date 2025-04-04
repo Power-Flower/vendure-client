@@ -60,7 +60,7 @@ export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithA
         height: number;
         source: string;
         preview: string;
-    };
+    } | null;
     assets: {
         id: string;
         createdAt: string;
@@ -265,7 +265,7 @@ export declare const ProductVariantSchema: import("@arrirpc/schema").AObjectSche
             height: number;
             source: string;
             preview: string;
-        };
+        } | null;
         assets: {
             id: string;
             createdAt: string;
