@@ -67,7 +67,7 @@ export const ProductSchema = a.object({
     assets: a.array(AssetSchema),
     facetValues: a.array(FacetValueSchema),
     customFields: a.object({
-        location: a.string(),
+        location: a.nullable(a.string()),
         date: a.timestamp(),
     }),
 
@@ -127,7 +127,7 @@ export const ProductVariantSchema = a.object({
         assets: a.array(AssetSchema),
         facetValues: a.array(FacetValueSchema),
         customFields: a.object({
-            location: a.string(),
+            location: a.nullable(a.string()),
             date: a.timestamp(),
         }),
     })
