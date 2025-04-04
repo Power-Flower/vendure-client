@@ -17,7 +17,7 @@ export const CollectionSchema = a.object({
     breadcrumbs: a.array(CollectionBreadcrumbSchema),
     position: a.number(),
     description: a.string(),
-    featuredAsset: AssetSchema,
+    featuredAsset: a.nullable(AssetSchema),
     assets: a.array(AssetSchema),
     parentId: a.string(),
     productVariants: a.object({

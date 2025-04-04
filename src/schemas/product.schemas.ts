@@ -63,7 +63,7 @@ export const ProductSchema = a.object({
     name: a.string(),
     slug: a.string(),
     description: a.string(),
-    featuredAsset: AssetSchema,
+    featuredAsset: a.nullable(AssetSchema),
     assets: a.array(AssetSchema),
     facetValues: a.array(FacetValueSchema),
     customFields: a.object({
@@ -123,7 +123,7 @@ export const ProductVariantSchema = a.object({
         name: a.string(),
         slug: a.string(),
         description: a.string(),
-        featuredAsset: AssetSchema,
+        featuredAsset: a.nullable(AssetSchema),
         assets: a.array(AssetSchema),
         facetValues: a.array(FacetValueSchema),
         customFields: a.object({
