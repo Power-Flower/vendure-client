@@ -57,13 +57,13 @@ import*as e from"@apollo/client/core/core.cjs";import*as t from"@apollo/client/l
                 mutation CreateStripePaymentIntent {
                     createStripePaymentIntent
                 }
-            `})}}let ea=r.a.object({id:r.a.string(),name:r.a.string(),slug:r.a.string()}),er=r.a.object({id:r.a.string(),createdAt:r.a.timestamp(),languageCode:r.a.string(),name:r.a.string(),slug:r.a.string(),breadcrumbs:r.a.array(ea),position:r.a.number(),description:r.a.string(),featuredAsset:g,assets:r.a.array(g),parentId:r.a.string(),productVariants:r.a.object({totalItems:r.a.number(),items:r.a.array(T)})});r.a.object({collection:er});class en extends c{async getCollectionById(e){return this.query(er,{query:(0,d.gql)`
+            `})}}let ea=r.a.object({id:r.a.string(),name:r.a.string(),slug:r.a.string()}),er=r.a.object({id:r.a.string(),createdAt:r.a.timestamp(),languageCode:r.a.string(),name:r.a.string(),slug:r.a.string(),breadcrumbs:r.a.array(ea),position:r.a.number(),description:r.a.string(),featuredAsset:g,assets:r.a.array(g),parentId:r.a.string(),productVariants:r.a.object({totalItems:r.a.number(),items:r.a.array(T)})}),en=r.a.object({collection:er});class ei extends c{async getCollectionById(e){return this.query(en,{query:(0,d.gql)`
                 query Collection($id: ID!) {
                     collection(id: $id) {
                         ${ee(er)}
                     }
                 }
-            `,variables:{id:e}})}}class ei extends c{async getActiveCustomer(){return this.query(h,{query:(0,d.gql)`
+            `,variables:{id:e}})}}class eo extends c{async getActiveCustomer(){return this.query(h,{query:(0,d.gql)`
                 query GetActiveCustomer {
                     ${ee(h)}
                 }
@@ -85,7 +85,7 @@ import*as e from"@apollo/client/core/core.cjs";import*as t from"@apollo/client/l
                         success
                    }
                 }
-            `,variables:{id:e}})}}class eo extends c{async getByCode(e){return this.query(U,{query:(0,d.gql)`
+            `,variables:{id:e}})}}class es extends c{async getByCode(e){return this.query(U,{query:(0,d.gql)`
                 query Order($code: String!) {
                     orderByCode(code: $code) {
                         ${ee(R)}
@@ -135,10 +135,10 @@ import*as e from"@apollo/client/core/core.cjs";import*as t from"@apollo/client/l
                         }
                     }
                 }
-            `,variables:{couponCode:e}})}}let es=r.a.object({availableCountries:r.a.array(m)});class eu extends c{async availableCountries(){return this.query(es,{query:(0,d.gql)`
+            `,variables:{couponCode:e}})}}let eu=r.a.object({availableCountries:r.a.array(m)});class el extends c{async availableCountries(){return this.query(eu,{query:(0,d.gql)`
                 query AvailableCountries {
                     availableCountries {
                         ${ee(m)}
                     }
                 }
-            `})}}function el(e,t,a){return t in e?Object.defineProperty(e,t,{value:a,enumerable:!0,configurable:!0,writable:!0}):e[t]=a,e}class ed{authHandler(e,t){let a=this.getAuthToken(),r=a?`Bearer ${a}`:null;return e.setContext({headers:{authorization:r}}),t(e).map(t=>{let{response:{headers:a}}=e.getContext(),r=a.get("vendure-auth-token");return this.saveAuthToken(r),t})}getAuthToken(){return"undefined"!=typeof localStorage?localStorage.getItem("vendure-auth-token"):null}saveAuthToken(e){e&&"undefined"!=typeof localStorage&&localStorage.setItem("vendure-auth-token",e)}createApolloClient(e){let t=new d.HttpLink({uri:e}),a=new d.ApolloLink((e,t)=>this.authHandler(e,t));return new d.ApolloClient({cache:new d.InMemoryCache,link:(0,d.concat)(a,t)})}constructor(e){el(this,"auth",void 0),el(this,"customer",void 0),el(this,"collection",void 0),el(this,"checkout",void 0),el(this,"utils",void 0),el(this,"order",void 0),el(this,"apolloClient",void 0),this.apolloClient=this.createApolloClient(e.apiUri),this.order=new eo(this.apolloClient),this.customer=new ei(this.apolloClient),this.collection=new en(this.apolloClient),this.checkout=new et(this.apolloClient),this.utils=new eu(this.apolloClient),this.auth=new p(this.apolloClient)}}export{ed as VendureClient};
+            `})}}function ed(e,t,a){return t in e?Object.defineProperty(e,t,{value:a,enumerable:!0,configurable:!0,writable:!0}):e[t]=a,e}class ec{authHandler(e,t){let a=this.getAuthToken(),r=a?`Bearer ${a}`:null;return e.setContext({headers:{authorization:r}}),t(e).map(t=>{let{response:{headers:a}}=e.getContext(),r=a.get("vendure-auth-token");return this.saveAuthToken(r),t})}getAuthToken(){return"undefined"!=typeof localStorage?localStorage.getItem("vendure-auth-token"):null}saveAuthToken(e){e&&"undefined"!=typeof localStorage&&localStorage.setItem("vendure-auth-token",e)}createApolloClient(e){let t=new d.HttpLink({uri:e}),a=new d.ApolloLink((e,t)=>this.authHandler(e,t));return new d.ApolloClient({cache:new d.InMemoryCache,link:(0,d.concat)(a,t)})}constructor(e){ed(this,"auth",void 0),ed(this,"customer",void 0),ed(this,"collection",void 0),ed(this,"checkout",void 0),ed(this,"utils",void 0),ed(this,"order",void 0),ed(this,"apolloClient",void 0),this.apolloClient=this.createApolloClient(e.apiUri),this.order=new es(this.apolloClient),this.customer=new eo(this.apolloClient),this.collection=new ei(this.apolloClient),this.checkout=new et(this.apolloClient),this.utils=new el(this.apolloClient),this.auth=new p(this.apolloClient)}}export{ec as VendureClient};
