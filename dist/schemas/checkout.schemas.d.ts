@@ -217,7 +217,7 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
                         code: string;
                     }[];
                     customFields: {
-                        location: string;
+                        location: string | null;
                         date: Date;
                     };
                 };
@@ -533,7 +533,7 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
                         code: string;
                     }[];
                     customFields: {
-                        location: string;
+                        location: string | null;
                         date: Date;
                     };
                 };

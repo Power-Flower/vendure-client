@@ -163,7 +163,7 @@ export declare const CollectionSchema: import("@arrirpc/schema").AObjectSchemaWi
                     code: string;
                 }[];
                 customFields: {
-                    location: string;
+                    location: string | null;
                     date: Date;
                 };
             };
@@ -331,7 +331,7 @@ export declare const CollectionQuerySchema: import("@arrirpc/schema").AObjectSch
                         code: string;
                     }[];
                     customFields: {
-                        location: string;
+                        location: string | null;
                         date: Date;
                     };
                 };

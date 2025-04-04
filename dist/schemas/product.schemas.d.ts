@@ -85,7 +85,7 @@ export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithA
         code: string;
     }[];
     customFields: {
-        location: string;
+        location: string | null;
         date: Date;
     };
     variants: {
@@ -290,7 +290,7 @@ export declare const ProductVariantSchema: import("@arrirpc/schema").AObjectSche
             code: string;
         }[];
         customFields: {
-            location: string;
+            location: string | null;
             date: Date;
         };
     };
