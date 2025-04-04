@@ -174,6 +174,53 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
                     name: string;
                     code: string;
                 }[];
+                product: {
+                    id: string;
+                    createdAt: Date;
+                    languageCode: string;
+                    name: string;
+                    slug: string;
+                    description: string;
+                    featuredAsset: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    };
+                    assets: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    }[];
+                    facetValues: {
+                        id: string;
+                        facet: {
+                            id: string;
+                            name: string;
+                            code: string;
+                        } | undefined;
+                        facetId: string;
+                        name: string;
+                        code: string;
+                    }[];
+                    customFields: {
+                        location: string;
+                        date: Date;
+                    };
+                };
             } | undefined;
             featuredAsset: {
                 id: string;
@@ -443,6 +490,53 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
                     name: string;
                     code: string;
                 }[];
+                product: {
+                    id: string;
+                    createdAt: Date;
+                    languageCode: string;
+                    name: string;
+                    slug: string;
+                    description: string;
+                    featuredAsset: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    };
+                    assets: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    }[];
+                    facetValues: {
+                        id: string;
+                        facet: {
+                            id: string;
+                            name: string;
+                            code: string;
+                        } | undefined;
+                        facetId: string;
+                        name: string;
+                        code: string;
+                    }[];
+                    customFields: {
+                        location: string;
+                        date: Date;
+                    };
+                };
             } | undefined;
             featuredAsset: {
                 id: string;

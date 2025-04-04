@@ -65,17 +65,40 @@ export const ProductSchema = a.object({
     description: a.string(),
     featuredAsset: AssetSchema,
     assets: a.array(AssetSchema),
-    // variants:
     facetValues: a.array(FacetValueSchema),
     customFields: a.object({
         location: a.string(),
         date: a.timestamp(),
     }),
+
+    // From ProductVariantSchema
+    variants: a.object({
+        totalItems: a.number(),
+        items: a.array(
+            a.object({
+                id: a.string(),
+                productId: a.string(),
+                createdAt: a.timestamp(),
+                languageCode: a.string(),
+                sku: a.string(),
+                name: a.string(),
+                featuredAsset: a.nullable(AssetSchema),
+                assets: a.array(AssetSchema),
+                price: a.number(),
+                currencyCode: a.string(),
+                priceWithTax: a.number(),
+                stockLevel: a.string(),
+                taxRateApplied: TaxRateSchema,
+                taxCategory: TaxCategorySchema,
+                options: a.array(ProductOptionSchema),
+                facetValues: a.array(FacetValueSchema),
+            }),
+        ),
+    }),
 });
 
 export const ProductVariantSchema = a.object({
     id: a.string(),
-    // product:
     productId: a.string(),
     createdAt: a.timestamp(),
     languageCode: a.string(),
@@ -91,4 +114,21 @@ export const ProductVariantSchema = a.object({
     taxCategory: TaxCategorySchema,
     options: a.array(ProductOptionSchema),
     facetValues: a.array(FacetValueSchema),
+
+    // From ProductSchema
+    product: a.object({
+        id: a.string(),
+        createdAt: a.timestamp(),
+        languageCode: a.string(),
+        name: a.string(),
+        slug: a.string(),
+        description: a.string(),
+        featuredAsset: AssetSchema,
+        assets: a.array(AssetSchema),
+        facetValues: a.array(FacetValueSchema),
+        customFields: a.object({
+            location: a.string(),
+            date: a.timestamp(),
+        }),
+    })
 });

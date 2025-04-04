@@ -118,6 +118,53 @@ export declare const CollectionSchema: import("@arrirpc/schema").AObjectSchemaWi
             name: string;
             code: string;
         }[];
+        product: {
+            id: string;
+            createdAt: Date;
+            languageCode: string;
+            name: string;
+            slug: string;
+            description: string;
+            featuredAsset: {
+                id: string;
+                createdAt: string;
+                name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            assets: {
+                id: string;
+                createdAt: string;
+                name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            }[];
+            facetValues: {
+                id: string;
+                facet: {
+                    id: string;
+                    name: string;
+                    code: string;
+                } | undefined;
+                facetId: string;
+                name: string;
+                code: string;
+            }[];
+            customFields: {
+                location: string;
+                date: Date;
+            };
+        };
     }[];
 }, false>;
 export declare const CollectionQuerySchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -236,6 +283,53 @@ export declare const CollectionQuerySchema: import("@arrirpc/schema").AObjectSch
                 name: string;
                 code: string;
             }[];
+            product: {
+                id: string;
+                createdAt: Date;
+                languageCode: string;
+                name: string;
+                slug: string;
+                description: string;
+                featuredAsset: {
+                    id: string;
+                    createdAt: string;
+                    name: string;
+                    type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
+                    source: string;
+                    preview: string;
+                };
+                assets: {
+                    id: string;
+                    createdAt: string;
+                    name: string;
+                    type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
+                    source: string;
+                    preview: string;
+                }[];
+                facetValues: {
+                    id: string;
+                    facet: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                    facetId: string;
+                    name: string;
+                    code: string;
+                }[];
+                customFields: {
+                    location: string;
+                    date: Date;
+                };
+            };
         }[];
     };
 }, false>;
