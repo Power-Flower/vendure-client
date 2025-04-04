@@ -57,7 +57,7 @@ import*as e from"@apollo/client/core/core.cjs";import*as t from"@apollo/client/l
                 mutation CreateStripePaymentIntent {
                     createStripePaymentIntent
                 }
-            `})}}let ea=r.a.object({id:r.a.string(),name:r.a.string(),slug:r.a.string()}),er=r.a.object({id:r.a.string(),createdAt:r.a.timestamp(),languageCode:r.a.string(),name:r.a.string(),slug:r.a.string(),breadcrumbs:r.a.array(ea),position:r.a.number(),description:r.a.string(),featuredAsset:g,assets:r.a.array(g),parentId:r.a.string(),productVariants:r.a.array(T)});r.a.object({collection:er});class en extends c{async getCollectionById(e){return this.query(er,{query:(0,d.gql)`
+            `})}}let ea=r.a.object({id:r.a.string(),name:r.a.string(),slug:r.a.string()}),er=r.a.object({id:r.a.string(),createdAt:r.a.timestamp(),languageCode:r.a.string(),name:r.a.string(),slug:r.a.string(),breadcrumbs:r.a.array(ea),position:r.a.number(),description:r.a.string(),featuredAsset:g,assets:r.a.array(g),parentId:r.a.string(),productVariants:r.a.object({totalItems:r.a.number(),items:r.a.array(T)})});r.a.object({collection:er});class en extends c{async getCollectionById(e){return this.query(er,{query:(0,d.gql)`
                 query Collection($id: ID!) {
                     collection(id: $id) {
                         ${ee(er)}
