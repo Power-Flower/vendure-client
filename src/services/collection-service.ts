@@ -1,4 +1,4 @@
-import { CollectionSchema } from '$schemas/collection.schemas';
+import { CollectionQuerySchema, CollectionSchema } from '$schemas/collection.schemas';
 import { gql } from '$types/astro.types';
 import type { CollectionQuery } from '$types/collection.types';
 import type { Result } from '$types/result.types';
@@ -9,7 +9,7 @@ export class CollectionService extends BaseService {
     public async getCollectionById(
         id: string,
     ): Promise<Result<CollectionQuery>> {
-        return this.query(CollectionSchema, {
+        return this.query(CollectionQuerySchema, {
             query: gql`
                 query Collection($id: ID!) {
                     collection(id: $id) {
