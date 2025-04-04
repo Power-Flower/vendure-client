@@ -69,6 +69,7 @@ export const ProductSchema = a.object({
     customFields: a.object({
         location: a.nullable(a.string()),
         date: a.timestamp(),
+        matchCode: a.nullable(a.string()),
     }),
 
     // From ProductVariantSchema
@@ -129,6 +130,7 @@ export const ProductVariantSchema = a.object({
         customFields: a.object({
             location: a.nullable(a.string()),
             date: a.timestamp(),
+            matchCode: a.nullable(a.string()),
         }),
     })
 });

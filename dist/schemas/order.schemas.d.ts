@@ -153,6 +153,7 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
             customFields: {
                 location: string | null;
                 date: Date;
+                matchCode: string | null;
             };
         };
     } | undefined;
@@ -411,6 +412,7 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
                 customFields: {
                     location: string | null;
                     date: Date;
+                    matchCode: string | null;
                 };
             };
         } | undefined;
@@ -726,6 +728,7 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                     customFields: {
                         location: string | null;
                         date: Date;
+                        matchCode: string | null;
                     };
                 };
             } | undefined;
@@ -1048,6 +1051,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                     customFields: {
                         location: string | null;
                         date: Date;
+                        matchCode: string | null;
                     };
                 };
             } | undefined;
@@ -1364,6 +1368,7 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
                     customFields: {
                         location: string | null;
                         date: Date;
+                        matchCode: string | null;
                     };
                 };
             } | undefined;
@@ -1680,6 +1685,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     customFields: {
                         location: string | null;
                         date: Date;
+                        matchCode: string | null;
                     };
                 };
             } | undefined;
@@ -1996,6 +2002,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     customFields: {
                         location: string | null;
                         date: Date;
+                        matchCode: string | null;
                     };
                 };
             } | undefined;
@@ -2312,6 +2319,7 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
                     customFields: {
                         location: string | null;
                         date: Date;
+                        matchCode: string | null;
                     };
                 };
             } | undefined;
@@ -2628,6 +2636,7 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
                     customFields: {
                         location: string | null;
                         date: Date;
+                        matchCode: string | null;
                     };
                 };
             } | undefined;

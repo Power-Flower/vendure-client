@@ -165,6 +165,7 @@ export declare const CollectionSchema: import("@arrirpc/schema").AObjectSchemaWi
                 customFields: {
                     location: string | null;
                     date: Date;
+                    matchCode: string | null;
                 };
             };
         }[];
@@ -333,6 +334,7 @@ export declare const CollectionQuerySchema: import("@arrirpc/schema").AObjectSch
                     customFields: {
                         location: string | null;
                         date: Date;
+                        matchCode: string | null;
                     };
                 };
             }[];

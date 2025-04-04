@@ -87,6 +87,7 @@ export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithA
     customFields: {
         location: string | null;
         date: Date;
+        matchCode: string | null;
     };
     variants: {
         totalItems: number;
@@ -292,6 +293,7 @@ export declare const ProductVariantSchema: import("@arrirpc/schema").AObjectSche
         customFields: {
             location: string | null;
             date: Date;
+            matchCode: string | null;
         };
     };
 }, false>;
