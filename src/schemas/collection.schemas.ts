@@ -19,9 +19,11 @@ export const CollectionSchema = a.object({
     description: a.string(),
     featuredAsset: AssetSchema,
     assets: a.array(AssetSchema),
-    // parent:
     parentId: a.string(),
-    productVariants: a.array(ProductVariantSchema),
+    productVariants: a.object({
+        totalItems: a.number(),
+        items: a.array(ProductVariantSchema),
+    }),
 });
 
 export const CollectionQuerySchema = a.object({
