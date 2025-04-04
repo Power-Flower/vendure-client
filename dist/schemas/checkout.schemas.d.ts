@@ -70,7 +70,7 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
             customFields: {
                 subscribedUntil: Date | null;
             };
-        } | undefined;
+        } | null;
         shippingAddress: {
             fullName: string | null;
             company: string | null;
@@ -386,7 +386,7 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
             customFields: {
                 subscribedUntil: Date | null;
             };
-        } | undefined;
+        } | null;
         shippingAddress: {
             fullName: string | null;
             company: string | null;

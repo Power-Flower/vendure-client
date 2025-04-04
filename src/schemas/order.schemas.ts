@@ -96,7 +96,7 @@ export const OrderSchema = a.object({
     code: a.string(),
     state: a.string(),
     active: a.boolean(),
-    customer: a.optional(CustomerSchema),
+    customer: a.nullable(CustomerSchema),
     shippingAddress: a.optional(OrderAddressSchema),
     billingAddress: a.optional(OrderAddressSchema),
     lines: a.array(OrderLineSchema),
