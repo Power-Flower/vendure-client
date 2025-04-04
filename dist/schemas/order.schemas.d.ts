@@ -108,6 +108,53 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
             name: string;
             code: string;
         }[];
+        product: {
+            id: string;
+            createdAt: Date;
+            languageCode: string;
+            name: string;
+            slug: string;
+            description: string;
+            featuredAsset: {
+                id: string;
+                createdAt: string;
+                name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            assets: {
+                id: string;
+                createdAt: string;
+                name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            }[];
+            facetValues: {
+                id: string;
+                facet: {
+                    id: string;
+                    name: string;
+                    code: string;
+                } | undefined;
+                facetId: string;
+                name: string;
+                code: string;
+            }[];
+            customFields: {
+                location: string;
+                date: Date;
+            };
+        };
     } | undefined;
     featuredAsset: {
         id: string;
@@ -319,6 +366,53 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
                 name: string;
                 code: string;
             }[];
+            product: {
+                id: string;
+                createdAt: Date;
+                languageCode: string;
+                name: string;
+                slug: string;
+                description: string;
+                featuredAsset: {
+                    id: string;
+                    createdAt: string;
+                    name: string;
+                    type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
+                    source: string;
+                    preview: string;
+                };
+                assets: {
+                    id: string;
+                    createdAt: string;
+                    name: string;
+                    type: string;
+                    fileSize: number;
+                    mimeType: string;
+                    width: number;
+                    height: number;
+                    source: string;
+                    preview: string;
+                }[];
+                facetValues: {
+                    id: string;
+                    facet: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                    facetId: string;
+                    name: string;
+                    code: string;
+                }[];
+                customFields: {
+                    location: string;
+                    date: Date;
+                };
+            };
         } | undefined;
         featuredAsset: {
             id: string;
@@ -587,6 +681,53 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                     name: string;
                     code: string;
                 }[];
+                product: {
+                    id: string;
+                    createdAt: Date;
+                    languageCode: string;
+                    name: string;
+                    slug: string;
+                    description: string;
+                    featuredAsset: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    };
+                    assets: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    }[];
+                    facetValues: {
+                        id: string;
+                        facet: {
+                            id: string;
+                            name: string;
+                            code: string;
+                        } | undefined;
+                        facetId: string;
+                        name: string;
+                        code: string;
+                    }[];
+                    customFields: {
+                        location: string;
+                        date: Date;
+                    };
+                };
             } | undefined;
             featuredAsset: {
                 id: string;
@@ -862,6 +1003,53 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                     name: string;
                     code: string;
                 }[];
+                product: {
+                    id: string;
+                    createdAt: Date;
+                    languageCode: string;
+                    name: string;
+                    slug: string;
+                    description: string;
+                    featuredAsset: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    };
+                    assets: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    }[];
+                    facetValues: {
+                        id: string;
+                        facet: {
+                            id: string;
+                            name: string;
+                            code: string;
+                        } | undefined;
+                        facetId: string;
+                        name: string;
+                        code: string;
+                    }[];
+                    customFields: {
+                        location: string;
+                        date: Date;
+                    };
+                };
             } | undefined;
             featuredAsset: {
                 id: string;
@@ -1131,6 +1319,53 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
                     name: string;
                     code: string;
                 }[];
+                product: {
+                    id: string;
+                    createdAt: Date;
+                    languageCode: string;
+                    name: string;
+                    slug: string;
+                    description: string;
+                    featuredAsset: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    };
+                    assets: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    }[];
+                    facetValues: {
+                        id: string;
+                        facet: {
+                            id: string;
+                            name: string;
+                            code: string;
+                        } | undefined;
+                        facetId: string;
+                        name: string;
+                        code: string;
+                    }[];
+                    customFields: {
+                        location: string;
+                        date: Date;
+                    };
+                };
             } | undefined;
             featuredAsset: {
                 id: string;
@@ -1400,6 +1635,53 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     name: string;
                     code: string;
                 }[];
+                product: {
+                    id: string;
+                    createdAt: Date;
+                    languageCode: string;
+                    name: string;
+                    slug: string;
+                    description: string;
+                    featuredAsset: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    };
+                    assets: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    }[];
+                    facetValues: {
+                        id: string;
+                        facet: {
+                            id: string;
+                            name: string;
+                            code: string;
+                        } | undefined;
+                        facetId: string;
+                        name: string;
+                        code: string;
+                    }[];
+                    customFields: {
+                        location: string;
+                        date: Date;
+                    };
+                };
             } | undefined;
             featuredAsset: {
                 id: string;
@@ -1669,6 +1951,53 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     name: string;
                     code: string;
                 }[];
+                product: {
+                    id: string;
+                    createdAt: Date;
+                    languageCode: string;
+                    name: string;
+                    slug: string;
+                    description: string;
+                    featuredAsset: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    };
+                    assets: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    }[];
+                    facetValues: {
+                        id: string;
+                        facet: {
+                            id: string;
+                            name: string;
+                            code: string;
+                        } | undefined;
+                        facetId: string;
+                        name: string;
+                        code: string;
+                    }[];
+                    customFields: {
+                        location: string;
+                        date: Date;
+                    };
+                };
             } | undefined;
             featuredAsset: {
                 id: string;
@@ -1938,6 +2267,53 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
                     name: string;
                     code: string;
                 }[];
+                product: {
+                    id: string;
+                    createdAt: Date;
+                    languageCode: string;
+                    name: string;
+                    slug: string;
+                    description: string;
+                    featuredAsset: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    };
+                    assets: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    }[];
+                    facetValues: {
+                        id: string;
+                        facet: {
+                            id: string;
+                            name: string;
+                            code: string;
+                        } | undefined;
+                        facetId: string;
+                        name: string;
+                        code: string;
+                    }[];
+                    customFields: {
+                        location: string;
+                        date: Date;
+                    };
+                };
             } | undefined;
             featuredAsset: {
                 id: string;
@@ -2207,6 +2583,53 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
                     name: string;
                     code: string;
                 }[];
+                product: {
+                    id: string;
+                    createdAt: Date;
+                    languageCode: string;
+                    name: string;
+                    slug: string;
+                    description: string;
+                    featuredAsset: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    };
+                    assets: {
+                        id: string;
+                        createdAt: string;
+                        name: string;
+                        type: string;
+                        fileSize: number;
+                        mimeType: string;
+                        width: number;
+                        height: number;
+                        source: string;
+                        preview: string;
+                    }[];
+                    facetValues: {
+                        id: string;
+                        facet: {
+                            id: string;
+                            name: string;
+                            code: string;
+                        } | undefined;
+                        facetId: string;
+                        name: string;
+                        code: string;
+                    }[];
+                    customFields: {
+                        location: string;
+                        date: Date;
+                    };
+                };
             } | undefined;
             featuredAsset: {
                 id: string;
