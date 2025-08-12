@@ -82,6 +82,16 @@ export class VendureClient {
         return new ApolloClient({
             cache: new InMemoryCache(),
             link: concat(afterwareLink, link),
+            defaultOptions: {
+                query: {
+                    fetchPolicy: 'no-cache',
+                    errorPolicy: 'all'
+                },
+                watchQuery: {
+                    fetchPolicy: 'no-cache',
+                    errorPolicy: 'all'
+                }
+            }
         });
     }
 }
