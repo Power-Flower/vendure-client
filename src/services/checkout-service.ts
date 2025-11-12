@@ -104,6 +104,7 @@ export class CheckoutService extends BaseService {
             variables: {
                 input: {
                     method: methodCode,
+                    metadata: {},
                 },
             },
         });
