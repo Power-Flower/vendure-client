@@ -28,6 +28,6 @@ export const PaymentSchema = a.object({
     amount: a.number(),
     state: a.string(),
     transactionId: a.string(),
-    errorMessage: a.string(),
+    errorMessage: a.nullable(a.string()),
     refunds: a.array(RefundSchema),
 });
