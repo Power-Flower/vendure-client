@@ -65,7 +65,7 @@ import*as t from"@apollo/client/core/core.cjs";import*as e from"@apollo/client/l
                         }
                     }
                 }
-            `,variables:{input:{method:t}}})}).call(this)}}let tl=n.object({id:n.string(),name:n.string(),slug:n.string()}),tc=n.object({id:n.string(),createdAt:n.timestamp(),languageCode:n.string(),name:n.string(),slug:n.string(),breadcrumbs:n.array(tl),position:n.number(),description:n.string(),featuredAsset:n.nullable(y),assets:n.array(y),parentId:n.string(),productVariants:n.object({totalItems:n.number(),items:n.array(N)})}),td=n.object({collection:tc});function tp(t,e,r,n,i,o,a){try{var s=t[o](a),u=s.value}catch(t){r(t);return}s.done?e(u):Promise.resolve(u).then(n,i)}class tm extends m{getCollectionById(t){var e;return(e=function*(){return this.query(td,{query:(0,c.gql)`
+            `,variables:{input:{method:t,metadata:{}}}})}).call(this)}}let tl=n.object({id:n.string(),name:n.string(),slug:n.string()}),tc=n.object({id:n.string(),createdAt:n.timestamp(),languageCode:n.string(),name:n.string(),slug:n.string(),breadcrumbs:n.array(tl),position:n.number(),description:n.string(),featuredAsset:n.nullable(y),assets:n.array(y),parentId:n.string(),productVariants:n.object({totalItems:n.number(),items:n.array(N)})}),td=n.object({collection:tc});function tp(t,e,r,n,i,o,a){try{var s=t[o](a),u=s.value}catch(t){r(t);return}s.done?e(u):Promise.resolve(u).then(n,i)}class tm extends m{getCollectionById(t){var e;return(e=function*(){return this.query(td,{query:(0,c.gql)`
                 query Collection($id: ID!) {
                     collection(id: $id) {
                         ${to(tc)}
