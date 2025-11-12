@@ -8,10 +8,10 @@ import { OrderTaxSummarySchema, TaxLineSchema } from './tax.schemas';
 export const PromotionSchema = a.object({
     id: a.string(),
     createdAt: a.timestamp(),
-    startsAt: a.timestamp(),
-    endsAt: a.timestamp(),
+    startsAt: a.nullable(a.timestamp()),
+    endsAt: a.nullable(a.timestamp()),
     couponCode: a.string(),
-    perCustomerUsageLimit: a.number(),
+    perCustomerUsageLimit: a.nullable(a.number()),
     name: a.string(),
     description: a.string(),
     enabled: a.boolean(),
