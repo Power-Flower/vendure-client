@@ -1,4 +1,4 @@
-import { CreateStripePaymentIntent, EligiblePaymentMethods, EligibleShippingMethods, SetOrderShippingAddress, SetOrderShippingMethod } from '../types/checkout.types';
+import { AddPaymentToOrder, CreateStripePaymentIntent, EligiblePaymentMethods, EligibleShippingMethods, SetOrderShippingAddress, SetOrderShippingMethod } from '../types/checkout.types';
 import { Address } from '../types/customer.types';
 import type { Result } from '../types/result.types';
 import { BaseService } from './base-service';
@@ -8,4 +8,5 @@ export declare class CheckoutService extends BaseService {
     setOrderShippingAddress(input: Address): Promise<Result<SetOrderShippingAddress>>;
     setOrderShippingMethod(methodId: string): Promise<Result<SetOrderShippingMethod>>;
     createStripePaymentIntent(): Promise<Result<CreateStripePaymentIntent>>;
+    addPaymentToOrder(methodCode: string): Promise<Result<AddPaymentToOrder>>;
 }
