@@ -10,6 +10,7 @@ import {
     type FetchResult,
     HttpLink,
     InMemoryCache,
+    NextLink,
     type NormalizedCacheObject,
     type Observable,
     type Operation,
@@ -39,7 +40,7 @@ export class VendureClient {
 
     private authHandler(
         operation: Operation,
-        forward: ApolloLink.ForwardFunction,
+        forward: NextLink,
     ): Observable<FetchResult> {
         const token = this.getAuthToken();
         const authorizationHeader = token ? `Bearer ${token}` : null;
@@ -49,7 +50,7 @@ export class VendureClient {
             },
         });
 
-        return forward(operation).pipe((response) => {
+        return forward(operation).map((response) => {
             const context = operation.getContext();
             const {
                 response: { headers },

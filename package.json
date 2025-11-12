@@ -30,7 +30,7 @@
         "test": "vitest"
     },
     "dependencies": {
-        "@apollo/client": "4.0.9",
+        "@apollo/client": "3.14.0",
         "@arrirpc/schema": "0.80.3"
     },
     "devDependencies": {
