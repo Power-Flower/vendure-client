@@ -472,7 +472,7 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
         state: string;
         transactionId: string;
         amount: number;
-        errorMessage: string;
+        errorMessage: string | null;
         refunds: {
             id: string;
             createdAt: Date;
@@ -789,7 +789,7 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;
@@ -1111,7 +1111,7 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;
@@ -1428,7 +1428,7 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;
@@ -1745,7 +1745,7 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;
@@ -2062,7 +2062,7 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;
@@ -2379,7 +2379,7 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;
@@ -2696,7 +2696,7 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;

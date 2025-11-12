@@ -279,7 +279,7 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;
@@ -596,7 +596,7 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;
@@ -913,7 +913,7 @@ export declare const AddPaymentToOrderSchema: import("@arrirpc/schema").AObjectS
             state: string;
             transactionId: string;
             amount: number;
-            errorMessage: string;
+            errorMessage: string | null;
             refunds: {
                 id: string;
                 createdAt: Date;

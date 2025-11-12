@@ -28,7 +28,7 @@ export declare const PaymentSchema: import("@arrirpc/schema").AObjectSchemaWithA
     state: string;
     transactionId: string;
     amount: number;
-    errorMessage: string;
+    errorMessage: string | null;
     refunds: {
         id: string;
         createdAt: Date;
