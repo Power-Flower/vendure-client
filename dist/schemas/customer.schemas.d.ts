@@ -1,8 +1,8 @@
 export declare const CountrySchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    code: string;
     name: string;
     enabled: boolean;
+    code: string;
 }, false>;
 export declare const AddressSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
@@ -15,9 +15,9 @@ export declare const AddressSchema: import("@arrirpc/schema").AObjectSchemaWithA
     postalCode: string;
     country: {
         id: string;
-        code: string;
         name: string;
         enabled: boolean;
+        code: string;
     };
     phoneNumber: string;
     defaultShippingAddress: boolean;
@@ -25,10 +25,13 @@ export declare const AddressSchema: import("@arrirpc/schema").AObjectSchemaWithA
 }, false>;
 export declare const CustomerSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
+    customFields: {
+        subscribedUntil: Date | null;
+    };
+    phoneNumber: string;
     title: string;
     firstName: string;
     lastName: string;
-    phoneNumber: string;
     emailAddress: string;
     addresses: {
         id: string;
@@ -41,25 +44,25 @@ export declare const CustomerSchema: import("@arrirpc/schema").AObjectSchemaWith
         postalCode: string;
         country: {
             id: string;
-            code: string;
             name: string;
             enabled: boolean;
+            code: string;
         };
         phoneNumber: string;
         defaultShippingAddress: boolean;
         defaultBillingAddress: boolean;
     }[];
-    customFields: {
-        subscribedUntil: Date | null;
-    };
 }, false>;
 export declare const GetActiveCustomerSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     activeCustomer: {
         id: string;
+        customFields: {
+            subscribedUntil: Date | null;
+        };
+        phoneNumber: string;
         title: string;
         firstName: string;
         lastName: string;
-        phoneNumber: string;
         emailAddress: string;
         addresses: {
             id: string;
@@ -72,17 +75,14 @@ export declare const GetActiveCustomerSchema: import("@arrirpc/schema").AObjectS
             postalCode: string;
             country: {
                 id: string;
-                code: string;
                 name: string;
                 enabled: boolean;
+                code: string;
             };
             phoneNumber: string;
             defaultShippingAddress: boolean;
             defaultBillingAddress: boolean;
         }[];
-        customFields: {
-            subscribedUntil: Date | null;
-        };
     } | null;
 }, false>;
 export declare const CreateCustomerAddressSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -97,9 +97,9 @@ export declare const CreateCustomerAddressSchema: import("@arrirpc/schema").AObj
         postalCode: string;
         country: {
             id: string;
-            code: string;
             name: string;
             enabled: boolean;
+            code: string;
         };
         phoneNumber: string;
         defaultShippingAddress: boolean;
@@ -118,9 +118,9 @@ export declare const UpdateCustomerAddressSchema: import("@arrirpc/schema").AObj
         postalCode: string;
         country: {
             id: string;
-            code: string;
             name: string;
             enabled: boolean;
+            code: string;
         };
         phoneNumber: string;
         defaultShippingAddress: boolean;

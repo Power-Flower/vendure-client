@@ -10,7 +10,6 @@ import {
     type FetchResult,
     HttpLink,
     InMemoryCache,
-    type NextLink,
     type NormalizedCacheObject,
     type Observable,
     type Operation,
@@ -26,7 +25,7 @@ export class VendureClient {
     public readonly utils: UtilsService;
     public readonly order: OrderService;
 
-    private readonly apolloClient: ApolloClient<NormalizedCacheObject>;
+    private readonly apolloClient: ApolloClient;
 
     public constructor(vendureClientConfig: VendureClientConfig) {
         this.apolloClient = this.createApolloClient(vendureClientConfig.apiUri);
@@ -40,7 +39,7 @@ export class VendureClient {
 
     private authHandler(
         operation: Operation,
-        forward: NextLink,
+        forward: ApolloLink.ForwardFunction,
     ): Observable<FetchResult> {
         const token = this.getAuthToken();
         const authorizationHeader = token ? `Bearer ${token}` : null;
@@ -50,7 +49,7 @@ export class VendureClient {
             },
         });
 
-        return forward(operation).map((response) => {
+        return forward(operation).pipe((response) => {
             const context = operation.getContext();
             const {
                 response: { headers },
@@ -76,7 +75,7 @@ export class VendureClient {
 
     private createApolloClient(
         uri: string,
-    ): ApolloClient<NormalizedCacheObject> {
+    ): ApolloClient {
         const link = new HttpLink({ uri });
         const afterwareLink = new ApolloLink((o, f) => this.authHandler(o, f));
         return new ApolloClient({

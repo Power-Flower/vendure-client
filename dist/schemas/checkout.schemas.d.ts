@@ -1,35 +1,35 @@
 export declare const PaymentMethodQuoteSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    code: string;
     name: string;
     description: string;
+    code: string;
     isEligible: boolean;
 }, false>;
 export declare const ShippingMethodQuoteSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    price: number;
-    priceWithTax: number;
-    code: string;
     name: string;
     description: string;
+    code: string;
+    price: number;
+    priceWithTax: number;
 }, false>;
 export declare const EligiblePaymentMethodsSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     eligiblePaymentMethods: {
         id: string;
-        code: string;
         name: string;
         description: string;
+        code: string;
         isEligible: boolean;
     }[];
 }, false>;
 export declare const EligibleShippingMethodsSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     eligibleShippingMethods: {
         id: string;
-        price: number;
-        priceWithTax: number;
-        code: string;
         name: string;
         description: string;
+        code: string;
+        price: number;
+        priceWithTax: number;
     }[];
 }, false>;
 export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -37,73 +37,66 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date | null;
         code: string;
+        currencyCode: string;
+        shipping: number;
+        total: number;
         state: string;
-        active: boolean;
-        customer: {
-            id: string;
-            title: string;
-            firstName: string;
-            lastName: string;
-            phoneNumber: string;
-            emailAddress: string;
-            addresses: {
-                id: string;
-                fullName: string;
-                company: string;
-                streetLine1: string;
-                streetLine2: string;
-                city: string;
-                province: string;
-                postalCode: string;
-                country: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    enabled: boolean;
-                };
-                phoneNumber: string;
-                defaultShippingAddress: boolean;
-                defaultBillingAddress: boolean;
-            }[];
-            customFields: {
-                subscribedUntil: Date | null;
-            };
-        } | null;
-        shippingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
-        billingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
         lines: {
             id: string;
-            productVariant: {
+            taxRate: number;
+            featuredAsset: {
                 id: string;
-                productId: string;
-                createdAt: Date;
-                languageCode: string;
-                sku: string;
+                createdAt: string;
                 name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            quantity: number;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            unitPrice: number;
+            unitPriceWithTax: number;
+            discountedUnitPrice: number;
+            discountedUnitPriceWithTax: number;
+            orderPlacedQuantity: number;
+            linePrice: number;
+            linePriceWithTax: number;
+            discountedLinePrice: number;
+            discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
+            discounts: {
+                type: string;
+                description: string;
+                amount: number;
+                adjustmentSource: string;
+                amountWithTax: number;
+            }[];
+            productVariant?: {
+                id: string;
+                createdAt: Date;
+                name: string;
+                options: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    groupId: string;
+                    group: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    };
+                }[];
+                languageCode: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -128,6 +121,19 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
                     source: string;
                     preview: string;
                 }[];
+                facetValues: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                }[];
+                productId: string;
+                sku: string;
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
@@ -152,35 +158,13 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
                     name: string;
                     isDefault: boolean;
                 };
-                options: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    groupId: string;
-                    group: {
-                        id: string;
-                        code: string;
-                        name: string;
-                    };
-                }[];
-                facetValues: {
-                    id: string;
-                    facet: {
-                        id: string;
-                        name: string;
-                        code: string;
-                    } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
-                }[];
                 product: {
                     id: string;
                     createdAt: Date;
-                    languageCode: string;
                     name: string;
-                    slug: string;
                     description: string;
+                    languageCode: string;
+                    slug: string;
                     featuredAsset: {
                         id: string;
                         createdAt: string;
@@ -207,14 +191,14 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
                     }[];
                     facetValues: {
                         id: string;
-                        facet: {
+                        name: string;
+                        code: string;
+                        facetId: string;
+                        facet?: {
                             id: string;
                             name: string;
                             code: string;
                         } | undefined;
-                        facetId: string;
-                        name: string;
-                        code: string;
                     }[];
                     customFields: {
                         location: string | null;
@@ -223,83 +207,78 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
                     };
                 };
             } | undefined;
-            featuredAsset: {
-                id: string;
-                createdAt: string;
-                name: string;
-                type: string;
-                fileSize: number;
-                mimeType: string;
-                width: number;
-                height: number;
-                source: string;
-                preview: string;
-            };
-            unitPrice: number;
-            unitPriceWithTax: number;
-            discountedUnitPrice: number;
-            discountedUnitPriceWithTax: number;
-            quantity: number;
-            orderPlacedQuantity: number;
-            taxRate: number;
-            linePrice: number;
-            linePriceWithTax: number;
-            discountedLinePrice: number;
-            discountedLinePriceWithTax: number;
-            proratedLinePrice: number;
-            proratedLinePriceWithTax: number;
-            lineTax: number;
-            discounts: {
-                adjustmentSource: string;
-                type: string;
-                description: string;
-                amount: number;
-                amountWithTax: number;
-            }[];
-            taxLines: {
-                description: string;
-                taxRate: number;
-            }[];
         }[];
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        orderPlacedAt: Date | null;
+        active: boolean;
+        customer: {
+            id: string;
+            customFields: {
+                subscribedUntil: Date | null;
+            };
+            phoneNumber: string;
+            title: string;
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            addresses: {
+                id: string;
+                fullName: string;
+                company: string;
+                streetLine1: string;
+                streetLine2: string;
+                city: string;
+                province: string;
+                postalCode: string;
+                country: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    code: string;
+                };
+                phoneNumber: string;
+                defaultShippingAddress: boolean;
+                defaultBillingAddress: boolean;
+            }[];
+        } | null;
         surcharges: {
             id: string;
             createdAt: Date;
             description: string;
+            taxRate: number;
             sku: string;
+            price: number;
+            priceWithTax: number;
             taxLines: {
                 description: string;
                 taxRate: number;
             }[];
-            price: number;
-            priceWithTax: number;
-            taxRate: number;
-        }[];
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
         }[];
         couponCodes: string[];
         promotions: {
             id: string;
             createdAt: Date;
-            startsAt: Date;
-            endsAt: Date;
-            couponCode: string;
-            perCustomerUsageLimit: number;
             name: string;
             description: string;
             enabled: boolean;
+            startsAt: Date | null;
+            endsAt: Date | null;
+            couponCode: string;
+            perCustomerUsageLimit: number | null;
         }[];
         payments: {
             id: string;
             createdAt: Date;
             method: string;
-            amount: number;
             state: string;
             transactionId: string;
+            amount: number;
             errorMessage: string;
             refunds: {
                 id: string;
@@ -323,23 +302,20 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
-        currencyCode: string;
         shippingLines: {
             id: string;
-            shippingMethod: {
-                id: string;
-                code: string;
-                name: string;
-                description: string;
-            };
             price: number;
             priceWithTax: number;
+            shippingMethod: {
+                id: string;
+                name: string;
+                description: string;
+                code: string;
+            };
             discountedPrice: number;
             discountedPriceWithTax: number;
         }[];
-        shipping: number;
         shippingWithTax: number;
-        total: number;
         totalWithTax: number;
         taxSummary: {
             description: string;
@@ -347,6 +323,30 @@ export declare const SetOrderShippingAddressSchema: import("@arrirpc/schema").AO
             taxBase: number;
             taxTotal: number;
         }[];
+        shippingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
+        billingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
     };
 }, false>;
 export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -354,73 +354,66 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date | null;
         code: string;
+        currencyCode: string;
+        shipping: number;
+        total: number;
         state: string;
-        active: boolean;
-        customer: {
-            id: string;
-            title: string;
-            firstName: string;
-            lastName: string;
-            phoneNumber: string;
-            emailAddress: string;
-            addresses: {
-                id: string;
-                fullName: string;
-                company: string;
-                streetLine1: string;
-                streetLine2: string;
-                city: string;
-                province: string;
-                postalCode: string;
-                country: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    enabled: boolean;
-                };
-                phoneNumber: string;
-                defaultShippingAddress: boolean;
-                defaultBillingAddress: boolean;
-            }[];
-            customFields: {
-                subscribedUntil: Date | null;
-            };
-        } | null;
-        shippingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
-        billingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
         lines: {
             id: string;
-            productVariant: {
+            taxRate: number;
+            featuredAsset: {
                 id: string;
-                productId: string;
-                createdAt: Date;
-                languageCode: string;
-                sku: string;
+                createdAt: string;
                 name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            quantity: number;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            unitPrice: number;
+            unitPriceWithTax: number;
+            discountedUnitPrice: number;
+            discountedUnitPriceWithTax: number;
+            orderPlacedQuantity: number;
+            linePrice: number;
+            linePriceWithTax: number;
+            discountedLinePrice: number;
+            discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
+            discounts: {
+                type: string;
+                description: string;
+                amount: number;
+                adjustmentSource: string;
+                amountWithTax: number;
+            }[];
+            productVariant?: {
+                id: string;
+                createdAt: Date;
+                name: string;
+                options: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    groupId: string;
+                    group: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    };
+                }[];
+                languageCode: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -445,6 +438,19 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
                     source: string;
                     preview: string;
                 }[];
+                facetValues: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                }[];
+                productId: string;
+                sku: string;
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
@@ -469,35 +475,13 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
                     name: string;
                     isDefault: boolean;
                 };
-                options: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    groupId: string;
-                    group: {
-                        id: string;
-                        code: string;
-                        name: string;
-                    };
-                }[];
-                facetValues: {
-                    id: string;
-                    facet: {
-                        id: string;
-                        name: string;
-                        code: string;
-                    } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
-                }[];
                 product: {
                     id: string;
                     createdAt: Date;
-                    languageCode: string;
                     name: string;
-                    slug: string;
                     description: string;
+                    languageCode: string;
+                    slug: string;
                     featuredAsset: {
                         id: string;
                         createdAt: string;
@@ -524,14 +508,14 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
                     }[];
                     facetValues: {
                         id: string;
-                        facet: {
+                        name: string;
+                        code: string;
+                        facetId: string;
+                        facet?: {
                             id: string;
                             name: string;
                             code: string;
                         } | undefined;
-                        facetId: string;
-                        name: string;
-                        code: string;
                     }[];
                     customFields: {
                         location: string | null;
@@ -540,83 +524,78 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
                     };
                 };
             } | undefined;
-            featuredAsset: {
-                id: string;
-                createdAt: string;
-                name: string;
-                type: string;
-                fileSize: number;
-                mimeType: string;
-                width: number;
-                height: number;
-                source: string;
-                preview: string;
-            };
-            unitPrice: number;
-            unitPriceWithTax: number;
-            discountedUnitPrice: number;
-            discountedUnitPriceWithTax: number;
-            quantity: number;
-            orderPlacedQuantity: number;
-            taxRate: number;
-            linePrice: number;
-            linePriceWithTax: number;
-            discountedLinePrice: number;
-            discountedLinePriceWithTax: number;
-            proratedLinePrice: number;
-            proratedLinePriceWithTax: number;
-            lineTax: number;
-            discounts: {
-                adjustmentSource: string;
-                type: string;
-                description: string;
-                amount: number;
-                amountWithTax: number;
-            }[];
-            taxLines: {
-                description: string;
-                taxRate: number;
-            }[];
         }[];
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        orderPlacedAt: Date | null;
+        active: boolean;
+        customer: {
+            id: string;
+            customFields: {
+                subscribedUntil: Date | null;
+            };
+            phoneNumber: string;
+            title: string;
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            addresses: {
+                id: string;
+                fullName: string;
+                company: string;
+                streetLine1: string;
+                streetLine2: string;
+                city: string;
+                province: string;
+                postalCode: string;
+                country: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    code: string;
+                };
+                phoneNumber: string;
+                defaultShippingAddress: boolean;
+                defaultBillingAddress: boolean;
+            }[];
+        } | null;
         surcharges: {
             id: string;
             createdAt: Date;
             description: string;
+            taxRate: number;
             sku: string;
+            price: number;
+            priceWithTax: number;
             taxLines: {
                 description: string;
                 taxRate: number;
             }[];
-            price: number;
-            priceWithTax: number;
-            taxRate: number;
-        }[];
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
         }[];
         couponCodes: string[];
         promotions: {
             id: string;
             createdAt: Date;
-            startsAt: Date;
-            endsAt: Date;
-            couponCode: string;
-            perCustomerUsageLimit: number;
             name: string;
             description: string;
             enabled: boolean;
+            startsAt: Date | null;
+            endsAt: Date | null;
+            couponCode: string;
+            perCustomerUsageLimit: number | null;
         }[];
         payments: {
             id: string;
             createdAt: Date;
             method: string;
-            amount: number;
             state: string;
             transactionId: string;
+            amount: number;
             errorMessage: string;
             refunds: {
                 id: string;
@@ -640,23 +619,20 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
-        currencyCode: string;
         shippingLines: {
             id: string;
-            shippingMethod: {
-                id: string;
-                code: string;
-                name: string;
-                description: string;
-            };
             price: number;
             priceWithTax: number;
+            shippingMethod: {
+                id: string;
+                name: string;
+                description: string;
+                code: string;
+            };
             discountedPrice: number;
             discountedPriceWithTax: number;
         }[];
-        shipping: number;
         shippingWithTax: number;
-        total: number;
         totalWithTax: number;
         taxSummary: {
             description: string;
@@ -664,6 +640,30 @@ export declare const SetOrderShippingMethodSchema: import("@arrirpc/schema").AOb
             taxBase: number;
             taxTotal: number;
         }[];
+        shippingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
+        billingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
     };
 }, false>;
 export declare const CreateStripePaymentIntentSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{

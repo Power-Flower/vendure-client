@@ -1,43 +1,89 @@
 export declare const PromotionSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
     createdAt: Date;
-    startsAt: Date;
-    endsAt: Date;
-    couponCode: string;
-    perCustomerUsageLimit: number;
     name: string;
     description: string;
     enabled: boolean;
+    startsAt: Date | null;
+    endsAt: Date | null;
+    couponCode: string;
+    perCustomerUsageLimit: number | null;
 }, false>;
 export declare const SurchargeSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
     createdAt: Date;
     description: string;
+    taxRate: number;
     sku: string;
+    price: number;
+    priceWithTax: number;
     taxLines: {
         description: string;
         taxRate: number;
     }[];
-    price: number;
-    priceWithTax: number;
-    taxRate: number;
 }, false>;
 export declare const DiscountSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
-    adjustmentSource: string;
     type: string;
     description: string;
     amount: number;
+    adjustmentSource: string;
     amountWithTax: number;
 }, false>;
 export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    productVariant: {
+    taxRate: number;
+    featuredAsset: {
         id: string;
-        productId: string;
-        createdAt: Date;
-        languageCode: string;
-        sku: string;
+        createdAt: string;
         name: string;
+        type: string;
+        fileSize: number;
+        mimeType: string;
+        width: number;
+        height: number;
+        source: string;
+        preview: string;
+    };
+    quantity: number;
+    taxLines: {
+        description: string;
+        taxRate: number;
+    }[];
+    unitPrice: number;
+    unitPriceWithTax: number;
+    discountedUnitPrice: number;
+    discountedUnitPriceWithTax: number;
+    orderPlacedQuantity: number;
+    linePrice: number;
+    linePriceWithTax: number;
+    discountedLinePrice: number;
+    discountedLinePriceWithTax: number;
+    proratedLinePrice: number;
+    proratedLinePriceWithTax: number;
+    lineTax: number;
+    discounts: {
+        type: string;
+        description: string;
+        amount: number;
+        adjustmentSource: string;
+        amountWithTax: number;
+    }[];
+    productVariant?: {
+        id: string;
+        createdAt: Date;
+        name: string;
+        options: {
+            id: string;
+            name: string;
+            code: string;
+            groupId: string;
+            group: {
+                id: string;
+                name: string;
+                code: string;
+            };
+        }[];
+        languageCode: string;
         featuredAsset: {
             id: string;
             createdAt: string;
@@ -62,6 +108,19 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
             source: string;
             preview: string;
         }[];
+        facetValues: {
+            id: string;
+            name: string;
+            code: string;
+            facetId: string;
+            facet?: {
+                id: string;
+                name: string;
+                code: string;
+            } | undefined;
+        }[];
+        productId: string;
+        sku: string;
         price: number;
         currencyCode: string;
         priceWithTax: number;
@@ -86,35 +145,13 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
             name: string;
             isDefault: boolean;
         };
-        options: {
-            id: string;
-            code: string;
-            name: string;
-            groupId: string;
-            group: {
-                id: string;
-                code: string;
-                name: string;
-            };
-        }[];
-        facetValues: {
-            id: string;
-            facet: {
-                id: string;
-                name: string;
-                code: string;
-            } | undefined;
-            facetId: string;
-            name: string;
-            code: string;
-        }[];
         product: {
             id: string;
             createdAt: Date;
-            languageCode: string;
             name: string;
-            slug: string;
             description: string;
+            languageCode: string;
+            slug: string;
             featuredAsset: {
                 id: string;
                 createdAt: string;
@@ -141,14 +178,14 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
             }[];
             facetValues: {
                 id: string;
-                facet: {
+                name: string;
+                code: string;
+                facetId: string;
+                facet?: {
                     id: string;
                     name: string;
                     code: string;
                 } | undefined;
-                facetId: string;
-                name: string;
-                code: string;
             }[];
             customFields: {
                 location: string | null;
@@ -157,60 +194,23 @@ export declare const OrderLineSchema: import("@arrirpc/schema").AObjectSchemaWit
             };
         };
     } | undefined;
-    featuredAsset: {
-        id: string;
-        createdAt: string;
-        name: string;
-        type: string;
-        fileSize: number;
-        mimeType: string;
-        width: number;
-        height: number;
-        source: string;
-        preview: string;
-    };
-    unitPrice: number;
-    unitPriceWithTax: number;
-    discountedUnitPrice: number;
-    discountedUnitPriceWithTax: number;
-    quantity: number;
-    orderPlacedQuantity: number;
-    taxRate: number;
-    linePrice: number;
-    linePriceWithTax: number;
-    discountedLinePrice: number;
-    discountedLinePriceWithTax: number;
-    proratedLinePrice: number;
-    proratedLinePriceWithTax: number;
-    lineTax: number;
-    discounts: {
-        adjustmentSource: string;
-        type: string;
-        description: string;
-        amount: number;
-        amountWithTax: number;
-    }[];
-    taxLines: {
-        description: string;
-        taxRate: number;
-    }[];
 }, false>;
 export declare const ShippingMethodSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    code: string;
     name: string;
     description: string;
+    code: string;
 }, false>;
 export declare const ShippingLineSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    shippingMethod: {
-        id: string;
-        code: string;
-        name: string;
-        description: string;
-    };
     price: number;
     priceWithTax: number;
+    shippingMethod: {
+        id: string;
+        name: string;
+        description: string;
+        code: string;
+    };
     discountedPrice: number;
     discountedPriceWithTax: number;
 }, false>;
@@ -223,80 +223,73 @@ export declare const OrderAddressSchema: import("@arrirpc/schema").AObjectSchema
     province: string | null;
     postalCode: string | null;
     country: string | null;
-    countryCode: string | null;
     phoneNumber: string | null;
+    countryCode: string | null;
 }, false>;
 export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
     createdAt: Date;
     type: string;
-    orderPlacedAt: Date | null;
     code: string;
+    currencyCode: string;
+    shipping: number;
+    total: number;
     state: string;
-    active: boolean;
-    customer: {
-        id: string;
-        title: string;
-        firstName: string;
-        lastName: string;
-        phoneNumber: string;
-        emailAddress: string;
-        addresses: {
-            id: string;
-            fullName: string;
-            company: string;
-            streetLine1: string;
-            streetLine2: string;
-            city: string;
-            province: string;
-            postalCode: string;
-            country: {
-                id: string;
-                code: string;
-                name: string;
-                enabled: boolean;
-            };
-            phoneNumber: string;
-            defaultShippingAddress: boolean;
-            defaultBillingAddress: boolean;
-        }[];
-        customFields: {
-            subscribedUntil: Date | null;
-        };
-    } | null;
-    shippingAddress: {
-        fullName: string | null;
-        company: string | null;
-        streetLine1: string | null;
-        streetLine2: string | null;
-        city: string | null;
-        province: string | null;
-        postalCode: string | null;
-        country: string | null;
-        countryCode: string | null;
-        phoneNumber: string | null;
-    } | undefined;
-    billingAddress: {
-        fullName: string | null;
-        company: string | null;
-        streetLine1: string | null;
-        streetLine2: string | null;
-        city: string | null;
-        province: string | null;
-        postalCode: string | null;
-        country: string | null;
-        countryCode: string | null;
-        phoneNumber: string | null;
-    } | undefined;
     lines: {
         id: string;
-        productVariant: {
+        taxRate: number;
+        featuredAsset: {
             id: string;
-            productId: string;
-            createdAt: Date;
-            languageCode: string;
-            sku: string;
+            createdAt: string;
             name: string;
+            type: string;
+            fileSize: number;
+            mimeType: string;
+            width: number;
+            height: number;
+            source: string;
+            preview: string;
+        };
+        quantity: number;
+        taxLines: {
+            description: string;
+            taxRate: number;
+        }[];
+        unitPrice: number;
+        unitPriceWithTax: number;
+        discountedUnitPrice: number;
+        discountedUnitPriceWithTax: number;
+        orderPlacedQuantity: number;
+        linePrice: number;
+        linePriceWithTax: number;
+        discountedLinePrice: number;
+        discountedLinePriceWithTax: number;
+        proratedLinePrice: number;
+        proratedLinePriceWithTax: number;
+        lineTax: number;
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        productVariant?: {
+            id: string;
+            createdAt: Date;
+            name: string;
+            options: {
+                id: string;
+                name: string;
+                code: string;
+                groupId: string;
+                group: {
+                    id: string;
+                    name: string;
+                    code: string;
+                };
+            }[];
+            languageCode: string;
             featuredAsset: {
                 id: string;
                 createdAt: string;
@@ -321,6 +314,19 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
                 source: string;
                 preview: string;
             }[];
+            facetValues: {
+                id: string;
+                name: string;
+                code: string;
+                facetId: string;
+                facet?: {
+                    id: string;
+                    name: string;
+                    code: string;
+                } | undefined;
+            }[];
+            productId: string;
+            sku: string;
             price: number;
             currencyCode: string;
             priceWithTax: number;
@@ -345,35 +351,13 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
                 name: string;
                 isDefault: boolean;
             };
-            options: {
-                id: string;
-                code: string;
-                name: string;
-                groupId: string;
-                group: {
-                    id: string;
-                    code: string;
-                    name: string;
-                };
-            }[];
-            facetValues: {
-                id: string;
-                facet: {
-                    id: string;
-                    name: string;
-                    code: string;
-                } | undefined;
-                facetId: string;
-                name: string;
-                code: string;
-            }[];
             product: {
                 id: string;
                 createdAt: Date;
-                languageCode: string;
                 name: string;
-                slug: string;
                 description: string;
+                languageCode: string;
+                slug: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -400,14 +384,14 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
                 }[];
                 facetValues: {
                     id: string;
-                    facet: {
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
                         id: string;
                         name: string;
                         code: string;
                     } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
                 }[];
                 customFields: {
                     location: string | null;
@@ -416,83 +400,78 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
                 };
             };
         } | undefined;
-        featuredAsset: {
-            id: string;
-            createdAt: string;
-            name: string;
-            type: string;
-            fileSize: number;
-            mimeType: string;
-            width: number;
-            height: number;
-            source: string;
-            preview: string;
-        };
-        unitPrice: number;
-        unitPriceWithTax: number;
-        discountedUnitPrice: number;
-        discountedUnitPriceWithTax: number;
-        quantity: number;
-        orderPlacedQuantity: number;
-        taxRate: number;
-        linePrice: number;
-        linePriceWithTax: number;
-        discountedLinePrice: number;
-        discountedLinePriceWithTax: number;
-        proratedLinePrice: number;
-        proratedLinePriceWithTax: number;
-        lineTax: number;
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
-        }[];
-        taxLines: {
-            description: string;
-            taxRate: number;
-        }[];
     }[];
+    discounts: {
+        type: string;
+        description: string;
+        amount: number;
+        adjustmentSource: string;
+        amountWithTax: number;
+    }[];
+    orderPlacedAt: Date | null;
+    active: boolean;
+    customer: {
+        id: string;
+        customFields: {
+            subscribedUntil: Date | null;
+        };
+        phoneNumber: string;
+        title: string;
+        firstName: string;
+        lastName: string;
+        emailAddress: string;
+        addresses: {
+            id: string;
+            fullName: string;
+            company: string;
+            streetLine1: string;
+            streetLine2: string;
+            city: string;
+            province: string;
+            postalCode: string;
+            country: {
+                id: string;
+                name: string;
+                enabled: boolean;
+                code: string;
+            };
+            phoneNumber: string;
+            defaultShippingAddress: boolean;
+            defaultBillingAddress: boolean;
+        }[];
+    } | null;
     surcharges: {
         id: string;
         createdAt: Date;
         description: string;
+        taxRate: number;
         sku: string;
+        price: number;
+        priceWithTax: number;
         taxLines: {
             description: string;
             taxRate: number;
         }[];
-        price: number;
-        priceWithTax: number;
-        taxRate: number;
-    }[];
-    discounts: {
-        adjustmentSource: string;
-        type: string;
-        description: string;
-        amount: number;
-        amountWithTax: number;
     }[];
     couponCodes: string[];
     promotions: {
         id: string;
         createdAt: Date;
-        startsAt: Date;
-        endsAt: Date;
-        couponCode: string;
-        perCustomerUsageLimit: number;
         name: string;
         description: string;
         enabled: boolean;
+        startsAt: Date | null;
+        endsAt: Date | null;
+        couponCode: string;
+        perCustomerUsageLimit: number | null;
     }[];
     payments: {
         id: string;
         createdAt: Date;
         method: string;
-        amount: number;
         state: string;
         transactionId: string;
+        amount: number;
         errorMessage: string;
         refunds: {
             id: string;
@@ -516,23 +495,20 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
     totalQuantity: number;
     subTotal: number;
     subTotalWithTax: number;
-    currencyCode: string;
     shippingLines: {
         id: string;
-        shippingMethod: {
-            id: string;
-            code: string;
-            name: string;
-            description: string;
-        };
         price: number;
         priceWithTax: number;
+        shippingMethod: {
+            id: string;
+            name: string;
+            description: string;
+            code: string;
+        };
         discountedPrice: number;
         discountedPriceWithTax: number;
     }[];
-    shipping: number;
     shippingWithTax: number;
-    total: number;
     totalWithTax: number;
     taxSummary: {
         description: string;
@@ -540,79 +516,97 @@ export declare const OrderSchema: import("@arrirpc/schema").AObjectSchemaWithAda
         taxBase: number;
         taxTotal: number;
     }[];
+    shippingAddress?: {
+        fullName: string | null;
+        company: string | null;
+        streetLine1: string | null;
+        streetLine2: string | null;
+        city: string | null;
+        province: string | null;
+        postalCode: string | null;
+        country: string | null;
+        phoneNumber: string | null;
+        countryCode: string | null;
+    } | undefined;
+    billingAddress?: {
+        fullName: string | null;
+        company: string | null;
+        streetLine1: string | null;
+        streetLine2: string | null;
+        city: string | null;
+        province: string | null;
+        postalCode: string | null;
+        country: string | null;
+        phoneNumber: string | null;
+        countryCode: string | null;
+    } | undefined;
 }, false>;
 export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
+    totalItems: number;
     items: {
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date | null;
         code: string;
+        currencyCode: string;
+        shipping: number;
+        total: number;
         state: string;
-        active: boolean;
-        customer: {
-            id: string;
-            title: string;
-            firstName: string;
-            lastName: string;
-            phoneNumber: string;
-            emailAddress: string;
-            addresses: {
-                id: string;
-                fullName: string;
-                company: string;
-                streetLine1: string;
-                streetLine2: string;
-                city: string;
-                province: string;
-                postalCode: string;
-                country: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    enabled: boolean;
-                };
-                phoneNumber: string;
-                defaultShippingAddress: boolean;
-                defaultBillingAddress: boolean;
-            }[];
-            customFields: {
-                subscribedUntil: Date | null;
-            };
-        } | null;
-        shippingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
-        billingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
         lines: {
             id: string;
-            productVariant: {
+            taxRate: number;
+            featuredAsset: {
                 id: string;
-                productId: string;
-                createdAt: Date;
-                languageCode: string;
-                sku: string;
+                createdAt: string;
                 name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            quantity: number;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            unitPrice: number;
+            unitPriceWithTax: number;
+            discountedUnitPrice: number;
+            discountedUnitPriceWithTax: number;
+            orderPlacedQuantity: number;
+            linePrice: number;
+            linePriceWithTax: number;
+            discountedLinePrice: number;
+            discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
+            discounts: {
+                type: string;
+                description: string;
+                amount: number;
+                adjustmentSource: string;
+                amountWithTax: number;
+            }[];
+            productVariant?: {
+                id: string;
+                createdAt: Date;
+                name: string;
+                options: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    groupId: string;
+                    group: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    };
+                }[];
+                languageCode: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -637,6 +631,19 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                     source: string;
                     preview: string;
                 }[];
+                facetValues: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                }[];
+                productId: string;
+                sku: string;
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
@@ -661,35 +668,13 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                     name: string;
                     isDefault: boolean;
                 };
-                options: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    groupId: string;
-                    group: {
-                        id: string;
-                        code: string;
-                        name: string;
-                    };
-                }[];
-                facetValues: {
-                    id: string;
-                    facet: {
-                        id: string;
-                        name: string;
-                        code: string;
-                    } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
-                }[];
                 product: {
                     id: string;
                     createdAt: Date;
-                    languageCode: string;
                     name: string;
-                    slug: string;
                     description: string;
+                    languageCode: string;
+                    slug: string;
                     featuredAsset: {
                         id: string;
                         createdAt: string;
@@ -716,14 +701,14 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                     }[];
                     facetValues: {
                         id: string;
-                        facet: {
+                        name: string;
+                        code: string;
+                        facetId: string;
+                        facet?: {
                             id: string;
                             name: string;
                             code: string;
                         } | undefined;
-                        facetId: string;
-                        name: string;
-                        code: string;
                     }[];
                     customFields: {
                         location: string | null;
@@ -732,83 +717,78 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
                     };
                 };
             } | undefined;
-            featuredAsset: {
-                id: string;
-                createdAt: string;
-                name: string;
-                type: string;
-                fileSize: number;
-                mimeType: string;
-                width: number;
-                height: number;
-                source: string;
-                preview: string;
-            };
-            unitPrice: number;
-            unitPriceWithTax: number;
-            discountedUnitPrice: number;
-            discountedUnitPriceWithTax: number;
-            quantity: number;
-            orderPlacedQuantity: number;
-            taxRate: number;
-            linePrice: number;
-            linePriceWithTax: number;
-            discountedLinePrice: number;
-            discountedLinePriceWithTax: number;
-            proratedLinePrice: number;
-            proratedLinePriceWithTax: number;
-            lineTax: number;
-            discounts: {
-                adjustmentSource: string;
-                type: string;
-                description: string;
-                amount: number;
-                amountWithTax: number;
-            }[];
-            taxLines: {
-                description: string;
-                taxRate: number;
-            }[];
         }[];
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        orderPlacedAt: Date | null;
+        active: boolean;
+        customer: {
+            id: string;
+            customFields: {
+                subscribedUntil: Date | null;
+            };
+            phoneNumber: string;
+            title: string;
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            addresses: {
+                id: string;
+                fullName: string;
+                company: string;
+                streetLine1: string;
+                streetLine2: string;
+                city: string;
+                province: string;
+                postalCode: string;
+                country: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    code: string;
+                };
+                phoneNumber: string;
+                defaultShippingAddress: boolean;
+                defaultBillingAddress: boolean;
+            }[];
+        } | null;
         surcharges: {
             id: string;
             createdAt: Date;
             description: string;
+            taxRate: number;
             sku: string;
+            price: number;
+            priceWithTax: number;
             taxLines: {
                 description: string;
                 taxRate: number;
             }[];
-            price: number;
-            priceWithTax: number;
-            taxRate: number;
-        }[];
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
         }[];
         couponCodes: string[];
         promotions: {
             id: string;
             createdAt: Date;
-            startsAt: Date;
-            endsAt: Date;
-            couponCode: string;
-            perCustomerUsageLimit: number;
             name: string;
             description: string;
             enabled: boolean;
+            startsAt: Date | null;
+            endsAt: Date | null;
+            couponCode: string;
+            perCustomerUsageLimit: number | null;
         }[];
         payments: {
             id: string;
             createdAt: Date;
             method: string;
-            amount: number;
             state: string;
             transactionId: string;
+            amount: number;
             errorMessage: string;
             refunds: {
                 id: string;
@@ -832,23 +812,20 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
-        currencyCode: string;
         shippingLines: {
             id: string;
-            shippingMethod: {
-                id: string;
-                code: string;
-                name: string;
-                description: string;
-            };
             price: number;
             priceWithTax: number;
+            shippingMethod: {
+                id: string;
+                name: string;
+                description: string;
+                code: string;
+            };
             discountedPrice: number;
             discountedPriceWithTax: number;
         }[];
-        shipping: number;
         shippingWithTax: number;
-        total: number;
         totalWithTax: number;
         taxSummary: {
             description: string;
@@ -856,8 +833,31 @@ export declare const OrderListSchema: import("@arrirpc/schema").AObjectSchemaWit
             taxBase: number;
             taxTotal: number;
         }[];
+        shippingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
+        billingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
     }[];
-    totalItems: number;
 }, false>;
 export declare const OrderByCodeSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     orderByCode: {
@@ -869,73 +869,66 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date | null;
         code: string;
+        currencyCode: string;
+        shipping: number;
+        total: number;
         state: string;
-        active: boolean;
-        customer: {
-            id: string;
-            title: string;
-            firstName: string;
-            lastName: string;
-            phoneNumber: string;
-            emailAddress: string;
-            addresses: {
-                id: string;
-                fullName: string;
-                company: string;
-                streetLine1: string;
-                streetLine2: string;
-                city: string;
-                province: string;
-                postalCode: string;
-                country: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    enabled: boolean;
-                };
-                phoneNumber: string;
-                defaultShippingAddress: boolean;
-                defaultBillingAddress: boolean;
-            }[];
-            customFields: {
-                subscribedUntil: Date | null;
-            };
-        } | null;
-        shippingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
-        billingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
         lines: {
             id: string;
-            productVariant: {
+            taxRate: number;
+            featuredAsset: {
                 id: string;
-                productId: string;
-                createdAt: Date;
-                languageCode: string;
-                sku: string;
+                createdAt: string;
                 name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            quantity: number;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            unitPrice: number;
+            unitPriceWithTax: number;
+            discountedUnitPrice: number;
+            discountedUnitPriceWithTax: number;
+            orderPlacedQuantity: number;
+            linePrice: number;
+            linePriceWithTax: number;
+            discountedLinePrice: number;
+            discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
+            discounts: {
+                type: string;
+                description: string;
+                amount: number;
+                adjustmentSource: string;
+                amountWithTax: number;
+            }[];
+            productVariant?: {
+                id: string;
+                createdAt: Date;
+                name: string;
+                options: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    groupId: string;
+                    group: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    };
+                }[];
+                languageCode: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -960,6 +953,19 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                     source: string;
                     preview: string;
                 }[];
+                facetValues: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                }[];
+                productId: string;
+                sku: string;
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
@@ -984,35 +990,13 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                     name: string;
                     isDefault: boolean;
                 };
-                options: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    groupId: string;
-                    group: {
-                        id: string;
-                        code: string;
-                        name: string;
-                    };
-                }[];
-                facetValues: {
-                    id: string;
-                    facet: {
-                        id: string;
-                        name: string;
-                        code: string;
-                    } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
-                }[];
                 product: {
                     id: string;
                     createdAt: Date;
-                    languageCode: string;
                     name: string;
-                    slug: string;
                     description: string;
+                    languageCode: string;
+                    slug: string;
                     featuredAsset: {
                         id: string;
                         createdAt: string;
@@ -1039,14 +1023,14 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                     }[];
                     facetValues: {
                         id: string;
-                        facet: {
+                        name: string;
+                        code: string;
+                        facetId: string;
+                        facet?: {
                             id: string;
                             name: string;
                             code: string;
                         } | undefined;
-                        facetId: string;
-                        name: string;
-                        code: string;
                     }[];
                     customFields: {
                         location: string | null;
@@ -1055,83 +1039,78 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
                     };
                 };
             } | undefined;
-            featuredAsset: {
-                id: string;
-                createdAt: string;
-                name: string;
-                type: string;
-                fileSize: number;
-                mimeType: string;
-                width: number;
-                height: number;
-                source: string;
-                preview: string;
-            };
-            unitPrice: number;
-            unitPriceWithTax: number;
-            discountedUnitPrice: number;
-            discountedUnitPriceWithTax: number;
-            quantity: number;
-            orderPlacedQuantity: number;
-            taxRate: number;
-            linePrice: number;
-            linePriceWithTax: number;
-            discountedLinePrice: number;
-            discountedLinePriceWithTax: number;
-            proratedLinePrice: number;
-            proratedLinePriceWithTax: number;
-            lineTax: number;
-            discounts: {
-                adjustmentSource: string;
-                type: string;
-                description: string;
-                amount: number;
-                amountWithTax: number;
-            }[];
-            taxLines: {
-                description: string;
-                taxRate: number;
-            }[];
         }[];
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        orderPlacedAt: Date | null;
+        active: boolean;
+        customer: {
+            id: string;
+            customFields: {
+                subscribedUntil: Date | null;
+            };
+            phoneNumber: string;
+            title: string;
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            addresses: {
+                id: string;
+                fullName: string;
+                company: string;
+                streetLine1: string;
+                streetLine2: string;
+                city: string;
+                province: string;
+                postalCode: string;
+                country: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    code: string;
+                };
+                phoneNumber: string;
+                defaultShippingAddress: boolean;
+                defaultBillingAddress: boolean;
+            }[];
+        } | null;
         surcharges: {
             id: string;
             createdAt: Date;
             description: string;
+            taxRate: number;
             sku: string;
+            price: number;
+            priceWithTax: number;
             taxLines: {
                 description: string;
                 taxRate: number;
             }[];
-            price: number;
-            priceWithTax: number;
-            taxRate: number;
-        }[];
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
         }[];
         couponCodes: string[];
         promotions: {
             id: string;
             createdAt: Date;
-            startsAt: Date;
-            endsAt: Date;
-            couponCode: string;
-            perCustomerUsageLimit: number;
             name: string;
             description: string;
             enabled: boolean;
+            startsAt: Date | null;
+            endsAt: Date | null;
+            couponCode: string;
+            perCustomerUsageLimit: number | null;
         }[];
         payments: {
             id: string;
             createdAt: Date;
             method: string;
-            amount: number;
             state: string;
             transactionId: string;
+            amount: number;
             errorMessage: string;
             refunds: {
                 id: string;
@@ -1155,23 +1134,20 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
-        currencyCode: string;
         shippingLines: {
             id: string;
-            shippingMethod: {
-                id: string;
-                code: string;
-                name: string;
-                description: string;
-            };
             price: number;
             priceWithTax: number;
+            shippingMethod: {
+                id: string;
+                name: string;
+                description: string;
+                code: string;
+            };
             discountedPrice: number;
             discountedPriceWithTax: number;
         }[];
-        shipping: number;
         shippingWithTax: number;
-        total: number;
         totalWithTax: number;
         taxSummary: {
             description: string;
@@ -1179,6 +1155,30 @@ export declare const ActiveOrderSchema: import("@arrirpc/schema").AObjectSchemaW
             taxBase: number;
             taxTotal: number;
         }[];
+        shippingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
+        billingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
     } | null;
 }, false>;
 export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -1186,73 +1186,66 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date | null;
         code: string;
+        currencyCode: string;
+        shipping: number;
+        total: number;
         state: string;
-        active: boolean;
-        customer: {
-            id: string;
-            title: string;
-            firstName: string;
-            lastName: string;
-            phoneNumber: string;
-            emailAddress: string;
-            addresses: {
-                id: string;
-                fullName: string;
-                company: string;
-                streetLine1: string;
-                streetLine2: string;
-                city: string;
-                province: string;
-                postalCode: string;
-                country: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    enabled: boolean;
-                };
-                phoneNumber: string;
-                defaultShippingAddress: boolean;
-                defaultBillingAddress: boolean;
-            }[];
-            customFields: {
-                subscribedUntil: Date | null;
-            };
-        } | null;
-        shippingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
-        billingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
         lines: {
             id: string;
-            productVariant: {
+            taxRate: number;
+            featuredAsset: {
                 id: string;
-                productId: string;
-                createdAt: Date;
-                languageCode: string;
-                sku: string;
+                createdAt: string;
                 name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            quantity: number;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            unitPrice: number;
+            unitPriceWithTax: number;
+            discountedUnitPrice: number;
+            discountedUnitPriceWithTax: number;
+            orderPlacedQuantity: number;
+            linePrice: number;
+            linePriceWithTax: number;
+            discountedLinePrice: number;
+            discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
+            discounts: {
+                type: string;
+                description: string;
+                amount: number;
+                adjustmentSource: string;
+                amountWithTax: number;
+            }[];
+            productVariant?: {
+                id: string;
+                createdAt: Date;
+                name: string;
+                options: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    groupId: string;
+                    group: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    };
+                }[];
+                languageCode: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -1277,6 +1270,19 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
                     source: string;
                     preview: string;
                 }[];
+                facetValues: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                }[];
+                productId: string;
+                sku: string;
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
@@ -1301,35 +1307,13 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
                     name: string;
                     isDefault: boolean;
                 };
-                options: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    groupId: string;
-                    group: {
-                        id: string;
-                        code: string;
-                        name: string;
-                    };
-                }[];
-                facetValues: {
-                    id: string;
-                    facet: {
-                        id: string;
-                        name: string;
-                        code: string;
-                    } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
-                }[];
                 product: {
                     id: string;
                     createdAt: Date;
-                    languageCode: string;
                     name: string;
-                    slug: string;
                     description: string;
+                    languageCode: string;
+                    slug: string;
                     featuredAsset: {
                         id: string;
                         createdAt: string;
@@ -1356,14 +1340,14 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
                     }[];
                     facetValues: {
                         id: string;
-                        facet: {
+                        name: string;
+                        code: string;
+                        facetId: string;
+                        facet?: {
                             id: string;
                             name: string;
                             code: string;
                         } | undefined;
-                        facetId: string;
-                        name: string;
-                        code: string;
                     }[];
                     customFields: {
                         location: string | null;
@@ -1372,83 +1356,78 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
                     };
                 };
             } | undefined;
-            featuredAsset: {
-                id: string;
-                createdAt: string;
-                name: string;
-                type: string;
-                fileSize: number;
-                mimeType: string;
-                width: number;
-                height: number;
-                source: string;
-                preview: string;
-            };
-            unitPrice: number;
-            unitPriceWithTax: number;
-            discountedUnitPrice: number;
-            discountedUnitPriceWithTax: number;
-            quantity: number;
-            orderPlacedQuantity: number;
-            taxRate: number;
-            linePrice: number;
-            linePriceWithTax: number;
-            discountedLinePrice: number;
-            discountedLinePriceWithTax: number;
-            proratedLinePrice: number;
-            proratedLinePriceWithTax: number;
-            lineTax: number;
-            discounts: {
-                adjustmentSource: string;
-                type: string;
-                description: string;
-                amount: number;
-                amountWithTax: number;
-            }[];
-            taxLines: {
-                description: string;
-                taxRate: number;
-            }[];
         }[];
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        orderPlacedAt: Date | null;
+        active: boolean;
+        customer: {
+            id: string;
+            customFields: {
+                subscribedUntil: Date | null;
+            };
+            phoneNumber: string;
+            title: string;
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            addresses: {
+                id: string;
+                fullName: string;
+                company: string;
+                streetLine1: string;
+                streetLine2: string;
+                city: string;
+                province: string;
+                postalCode: string;
+                country: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    code: string;
+                };
+                phoneNumber: string;
+                defaultShippingAddress: boolean;
+                defaultBillingAddress: boolean;
+            }[];
+        } | null;
         surcharges: {
             id: string;
             createdAt: Date;
             description: string;
+            taxRate: number;
             sku: string;
+            price: number;
+            priceWithTax: number;
             taxLines: {
                 description: string;
                 taxRate: number;
             }[];
-            price: number;
-            priceWithTax: number;
-            taxRate: number;
-        }[];
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
         }[];
         couponCodes: string[];
         promotions: {
             id: string;
             createdAt: Date;
-            startsAt: Date;
-            endsAt: Date;
-            couponCode: string;
-            perCustomerUsageLimit: number;
             name: string;
             description: string;
             enabled: boolean;
+            startsAt: Date | null;
+            endsAt: Date | null;
+            couponCode: string;
+            perCustomerUsageLimit: number | null;
         }[];
         payments: {
             id: string;
             createdAt: Date;
             method: string;
-            amount: number;
             state: string;
             transactionId: string;
+            amount: number;
             errorMessage: string;
             refunds: {
                 id: string;
@@ -1472,23 +1451,20 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
-        currencyCode: string;
         shippingLines: {
             id: string;
-            shippingMethod: {
-                id: string;
-                code: string;
-                name: string;
-                description: string;
-            };
             price: number;
             priceWithTax: number;
+            shippingMethod: {
+                id: string;
+                name: string;
+                description: string;
+                code: string;
+            };
             discountedPrice: number;
             discountedPriceWithTax: number;
         }[];
-        shipping: number;
         shippingWithTax: number;
-        total: number;
         totalWithTax: number;
         taxSummary: {
             description: string;
@@ -1496,6 +1472,30 @@ export declare const AddItemToOrderSchema: import("@arrirpc/schema").AObjectSche
             taxBase: number;
             taxTotal: number;
         }[];
+        shippingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
+        billingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
     } | null;
 }, false>;
 export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -1503,73 +1503,66 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date | null;
         code: string;
+        currencyCode: string;
+        shipping: number;
+        total: number;
         state: string;
-        active: boolean;
-        customer: {
-            id: string;
-            title: string;
-            firstName: string;
-            lastName: string;
-            phoneNumber: string;
-            emailAddress: string;
-            addresses: {
-                id: string;
-                fullName: string;
-                company: string;
-                streetLine1: string;
-                streetLine2: string;
-                city: string;
-                province: string;
-                postalCode: string;
-                country: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    enabled: boolean;
-                };
-                phoneNumber: string;
-                defaultShippingAddress: boolean;
-                defaultBillingAddress: boolean;
-            }[];
-            customFields: {
-                subscribedUntil: Date | null;
-            };
-        } | null;
-        shippingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
-        billingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
         lines: {
             id: string;
-            productVariant: {
+            taxRate: number;
+            featuredAsset: {
                 id: string;
-                productId: string;
-                createdAt: Date;
-                languageCode: string;
-                sku: string;
+                createdAt: string;
                 name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            quantity: number;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            unitPrice: number;
+            unitPriceWithTax: number;
+            discountedUnitPrice: number;
+            discountedUnitPriceWithTax: number;
+            orderPlacedQuantity: number;
+            linePrice: number;
+            linePriceWithTax: number;
+            discountedLinePrice: number;
+            discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
+            discounts: {
+                type: string;
+                description: string;
+                amount: number;
+                adjustmentSource: string;
+                amountWithTax: number;
+            }[];
+            productVariant?: {
+                id: string;
+                createdAt: Date;
+                name: string;
+                options: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    groupId: string;
+                    group: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    };
+                }[];
+                languageCode: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -1594,6 +1587,19 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     source: string;
                     preview: string;
                 }[];
+                facetValues: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                }[];
+                productId: string;
+                sku: string;
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
@@ -1618,35 +1624,13 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     name: string;
                     isDefault: boolean;
                 };
-                options: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    groupId: string;
-                    group: {
-                        id: string;
-                        code: string;
-                        name: string;
-                    };
-                }[];
-                facetValues: {
-                    id: string;
-                    facet: {
-                        id: string;
-                        name: string;
-                        code: string;
-                    } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
-                }[];
                 product: {
                     id: string;
                     createdAt: Date;
-                    languageCode: string;
                     name: string;
-                    slug: string;
                     description: string;
+                    languageCode: string;
+                    slug: string;
                     featuredAsset: {
                         id: string;
                         createdAt: string;
@@ -1673,14 +1657,14 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     }[];
                     facetValues: {
                         id: string;
-                        facet: {
+                        name: string;
+                        code: string;
+                        facetId: string;
+                        facet?: {
                             id: string;
                             name: string;
                             code: string;
                         } | undefined;
-                        facetId: string;
-                        name: string;
-                        code: string;
                     }[];
                     customFields: {
                         location: string | null;
@@ -1689,83 +1673,78 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     };
                 };
             } | undefined;
-            featuredAsset: {
-                id: string;
-                createdAt: string;
-                name: string;
-                type: string;
-                fileSize: number;
-                mimeType: string;
-                width: number;
-                height: number;
-                source: string;
-                preview: string;
-            };
-            unitPrice: number;
-            unitPriceWithTax: number;
-            discountedUnitPrice: number;
-            discountedUnitPriceWithTax: number;
-            quantity: number;
-            orderPlacedQuantity: number;
-            taxRate: number;
-            linePrice: number;
-            linePriceWithTax: number;
-            discountedLinePrice: number;
-            discountedLinePriceWithTax: number;
-            proratedLinePrice: number;
-            proratedLinePriceWithTax: number;
-            lineTax: number;
-            discounts: {
-                adjustmentSource: string;
-                type: string;
-                description: string;
-                amount: number;
-                amountWithTax: number;
-            }[];
-            taxLines: {
-                description: string;
-                taxRate: number;
-            }[];
         }[];
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        orderPlacedAt: Date | null;
+        active: boolean;
+        customer: {
+            id: string;
+            customFields: {
+                subscribedUntil: Date | null;
+            };
+            phoneNumber: string;
+            title: string;
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            addresses: {
+                id: string;
+                fullName: string;
+                company: string;
+                streetLine1: string;
+                streetLine2: string;
+                city: string;
+                province: string;
+                postalCode: string;
+                country: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    code: string;
+                };
+                phoneNumber: string;
+                defaultShippingAddress: boolean;
+                defaultBillingAddress: boolean;
+            }[];
+        } | null;
         surcharges: {
             id: string;
             createdAt: Date;
             description: string;
+            taxRate: number;
             sku: string;
+            price: number;
+            priceWithTax: number;
             taxLines: {
                 description: string;
                 taxRate: number;
             }[];
-            price: number;
-            priceWithTax: number;
-            taxRate: number;
-        }[];
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
         }[];
         couponCodes: string[];
         promotions: {
             id: string;
             createdAt: Date;
-            startsAt: Date;
-            endsAt: Date;
-            couponCode: string;
-            perCustomerUsageLimit: number;
             name: string;
             description: string;
             enabled: boolean;
+            startsAt: Date | null;
+            endsAt: Date | null;
+            couponCode: string;
+            perCustomerUsageLimit: number | null;
         }[];
         payments: {
             id: string;
             createdAt: Date;
             method: string;
-            amount: number;
             state: string;
             transactionId: string;
+            amount: number;
             errorMessage: string;
             refunds: {
                 id: string;
@@ -1789,23 +1768,20 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
-        currencyCode: string;
         shippingLines: {
             id: string;
-            shippingMethod: {
-                id: string;
-                code: string;
-                name: string;
-                description: string;
-            };
             price: number;
             priceWithTax: number;
+            shippingMethod: {
+                id: string;
+                name: string;
+                description: string;
+                code: string;
+            };
             discountedPrice: number;
             discountedPriceWithTax: number;
         }[];
-        shipping: number;
         shippingWithTax: number;
-        total: number;
         totalWithTax: number;
         taxSummary: {
             description: string;
@@ -1813,6 +1789,30 @@ export declare const AdjustOrderLineSchema: import("@arrirpc/schema").AObjectSch
             taxBase: number;
             taxTotal: number;
         }[];
+        shippingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
+        billingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
     } | null;
 }, false>;
 export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -1820,73 +1820,66 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date | null;
         code: string;
+        currencyCode: string;
+        shipping: number;
+        total: number;
         state: string;
-        active: boolean;
-        customer: {
-            id: string;
-            title: string;
-            firstName: string;
-            lastName: string;
-            phoneNumber: string;
-            emailAddress: string;
-            addresses: {
-                id: string;
-                fullName: string;
-                company: string;
-                streetLine1: string;
-                streetLine2: string;
-                city: string;
-                province: string;
-                postalCode: string;
-                country: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    enabled: boolean;
-                };
-                phoneNumber: string;
-                defaultShippingAddress: boolean;
-                defaultBillingAddress: boolean;
-            }[];
-            customFields: {
-                subscribedUntil: Date | null;
-            };
-        } | null;
-        shippingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
-        billingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
         lines: {
             id: string;
-            productVariant: {
+            taxRate: number;
+            featuredAsset: {
                 id: string;
-                productId: string;
-                createdAt: Date;
-                languageCode: string;
-                sku: string;
+                createdAt: string;
                 name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            quantity: number;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            unitPrice: number;
+            unitPriceWithTax: number;
+            discountedUnitPrice: number;
+            discountedUnitPriceWithTax: number;
+            orderPlacedQuantity: number;
+            linePrice: number;
+            linePriceWithTax: number;
+            discountedLinePrice: number;
+            discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
+            discounts: {
+                type: string;
+                description: string;
+                amount: number;
+                adjustmentSource: string;
+                amountWithTax: number;
+            }[];
+            productVariant?: {
+                id: string;
+                createdAt: Date;
+                name: string;
+                options: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    groupId: string;
+                    group: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    };
+                }[];
+                languageCode: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -1911,6 +1904,19 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     source: string;
                     preview: string;
                 }[];
+                facetValues: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                }[];
+                productId: string;
+                sku: string;
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
@@ -1935,35 +1941,13 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     name: string;
                     isDefault: boolean;
                 };
-                options: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    groupId: string;
-                    group: {
-                        id: string;
-                        code: string;
-                        name: string;
-                    };
-                }[];
-                facetValues: {
-                    id: string;
-                    facet: {
-                        id: string;
-                        name: string;
-                        code: string;
-                    } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
-                }[];
                 product: {
                     id: string;
                     createdAt: Date;
-                    languageCode: string;
                     name: string;
-                    slug: string;
                     description: string;
+                    languageCode: string;
+                    slug: string;
                     featuredAsset: {
                         id: string;
                         createdAt: string;
@@ -1990,14 +1974,14 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     }[];
                     facetValues: {
                         id: string;
-                        facet: {
+                        name: string;
+                        code: string;
+                        facetId: string;
+                        facet?: {
                             id: string;
                             name: string;
                             code: string;
                         } | undefined;
-                        facetId: string;
-                        name: string;
-                        code: string;
                     }[];
                     customFields: {
                         location: string | null;
@@ -2006,83 +1990,78 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
                     };
                 };
             } | undefined;
-            featuredAsset: {
-                id: string;
-                createdAt: string;
-                name: string;
-                type: string;
-                fileSize: number;
-                mimeType: string;
-                width: number;
-                height: number;
-                source: string;
-                preview: string;
-            };
-            unitPrice: number;
-            unitPriceWithTax: number;
-            discountedUnitPrice: number;
-            discountedUnitPriceWithTax: number;
-            quantity: number;
-            orderPlacedQuantity: number;
-            taxRate: number;
-            linePrice: number;
-            linePriceWithTax: number;
-            discountedLinePrice: number;
-            discountedLinePriceWithTax: number;
-            proratedLinePrice: number;
-            proratedLinePriceWithTax: number;
-            lineTax: number;
-            discounts: {
-                adjustmentSource: string;
-                type: string;
-                description: string;
-                amount: number;
-                amountWithTax: number;
-            }[];
-            taxLines: {
-                description: string;
-                taxRate: number;
-            }[];
         }[];
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        orderPlacedAt: Date | null;
+        active: boolean;
+        customer: {
+            id: string;
+            customFields: {
+                subscribedUntil: Date | null;
+            };
+            phoneNumber: string;
+            title: string;
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            addresses: {
+                id: string;
+                fullName: string;
+                company: string;
+                streetLine1: string;
+                streetLine2: string;
+                city: string;
+                province: string;
+                postalCode: string;
+                country: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    code: string;
+                };
+                phoneNumber: string;
+                defaultShippingAddress: boolean;
+                defaultBillingAddress: boolean;
+            }[];
+        } | null;
         surcharges: {
             id: string;
             createdAt: Date;
             description: string;
+            taxRate: number;
             sku: string;
+            price: number;
+            priceWithTax: number;
             taxLines: {
                 description: string;
                 taxRate: number;
             }[];
-            price: number;
-            priceWithTax: number;
-            taxRate: number;
-        }[];
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
         }[];
         couponCodes: string[];
         promotions: {
             id: string;
             createdAt: Date;
-            startsAt: Date;
-            endsAt: Date;
-            couponCode: string;
-            perCustomerUsageLimit: number;
             name: string;
             description: string;
             enabled: boolean;
+            startsAt: Date | null;
+            endsAt: Date | null;
+            couponCode: string;
+            perCustomerUsageLimit: number | null;
         }[];
         payments: {
             id: string;
             createdAt: Date;
             method: string;
-            amount: number;
             state: string;
             transactionId: string;
+            amount: number;
             errorMessage: string;
             refunds: {
                 id: string;
@@ -2106,23 +2085,20 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
-        currencyCode: string;
         shippingLines: {
             id: string;
-            shippingMethod: {
-                id: string;
-                code: string;
-                name: string;
-                description: string;
-            };
             price: number;
             priceWithTax: number;
+            shippingMethod: {
+                id: string;
+                name: string;
+                description: string;
+                code: string;
+            };
             discountedPrice: number;
             discountedPriceWithTax: number;
         }[];
-        shipping: number;
         shippingWithTax: number;
-        total: number;
         totalWithTax: number;
         taxSummary: {
             description: string;
@@ -2130,6 +2106,30 @@ export declare const RemoveOrderLineSchema: import("@arrirpc/schema").AObjectSch
             taxBase: number;
             taxTotal: number;
         }[];
+        shippingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
+        billingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
     } | null;
 }, false>;
 export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -2137,73 +2137,66 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date | null;
         code: string;
+        currencyCode: string;
+        shipping: number;
+        total: number;
         state: string;
-        active: boolean;
-        customer: {
-            id: string;
-            title: string;
-            firstName: string;
-            lastName: string;
-            phoneNumber: string;
-            emailAddress: string;
-            addresses: {
-                id: string;
-                fullName: string;
-                company: string;
-                streetLine1: string;
-                streetLine2: string;
-                city: string;
-                province: string;
-                postalCode: string;
-                country: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    enabled: boolean;
-                };
-                phoneNumber: string;
-                defaultShippingAddress: boolean;
-                defaultBillingAddress: boolean;
-            }[];
-            customFields: {
-                subscribedUntil: Date | null;
-            };
-        } | null;
-        shippingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
-        billingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
         lines: {
             id: string;
-            productVariant: {
+            taxRate: number;
+            featuredAsset: {
                 id: string;
-                productId: string;
-                createdAt: Date;
-                languageCode: string;
-                sku: string;
+                createdAt: string;
                 name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            quantity: number;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            unitPrice: number;
+            unitPriceWithTax: number;
+            discountedUnitPrice: number;
+            discountedUnitPriceWithTax: number;
+            orderPlacedQuantity: number;
+            linePrice: number;
+            linePriceWithTax: number;
+            discountedLinePrice: number;
+            discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
+            discounts: {
+                type: string;
+                description: string;
+                amount: number;
+                adjustmentSource: string;
+                amountWithTax: number;
+            }[];
+            productVariant?: {
+                id: string;
+                createdAt: Date;
+                name: string;
+                options: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    groupId: string;
+                    group: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    };
+                }[];
+                languageCode: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -2228,6 +2221,19 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
                     source: string;
                     preview: string;
                 }[];
+                facetValues: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                }[];
+                productId: string;
+                sku: string;
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
@@ -2252,35 +2258,13 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
                     name: string;
                     isDefault: boolean;
                 };
-                options: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    groupId: string;
-                    group: {
-                        id: string;
-                        code: string;
-                        name: string;
-                    };
-                }[];
-                facetValues: {
-                    id: string;
-                    facet: {
-                        id: string;
-                        name: string;
-                        code: string;
-                    } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
-                }[];
                 product: {
                     id: string;
                     createdAt: Date;
-                    languageCode: string;
                     name: string;
-                    slug: string;
                     description: string;
+                    languageCode: string;
+                    slug: string;
                     featuredAsset: {
                         id: string;
                         createdAt: string;
@@ -2307,14 +2291,14 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
                     }[];
                     facetValues: {
                         id: string;
-                        facet: {
+                        name: string;
+                        code: string;
+                        facetId: string;
+                        facet?: {
                             id: string;
                             name: string;
                             code: string;
                         } | undefined;
-                        facetId: string;
-                        name: string;
-                        code: string;
                     }[];
                     customFields: {
                         location: string | null;
@@ -2323,83 +2307,78 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
                     };
                 };
             } | undefined;
-            featuredAsset: {
-                id: string;
-                createdAt: string;
-                name: string;
-                type: string;
-                fileSize: number;
-                mimeType: string;
-                width: number;
-                height: number;
-                source: string;
-                preview: string;
-            };
-            unitPrice: number;
-            unitPriceWithTax: number;
-            discountedUnitPrice: number;
-            discountedUnitPriceWithTax: number;
-            quantity: number;
-            orderPlacedQuantity: number;
-            taxRate: number;
-            linePrice: number;
-            linePriceWithTax: number;
-            discountedLinePrice: number;
-            discountedLinePriceWithTax: number;
-            proratedLinePrice: number;
-            proratedLinePriceWithTax: number;
-            lineTax: number;
-            discounts: {
-                adjustmentSource: string;
-                type: string;
-                description: string;
-                amount: number;
-                amountWithTax: number;
-            }[];
-            taxLines: {
-                description: string;
-                taxRate: number;
-            }[];
         }[];
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        orderPlacedAt: Date | null;
+        active: boolean;
+        customer: {
+            id: string;
+            customFields: {
+                subscribedUntil: Date | null;
+            };
+            phoneNumber: string;
+            title: string;
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            addresses: {
+                id: string;
+                fullName: string;
+                company: string;
+                streetLine1: string;
+                streetLine2: string;
+                city: string;
+                province: string;
+                postalCode: string;
+                country: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    code: string;
+                };
+                phoneNumber: string;
+                defaultShippingAddress: boolean;
+                defaultBillingAddress: boolean;
+            }[];
+        } | null;
         surcharges: {
             id: string;
             createdAt: Date;
             description: string;
+            taxRate: number;
             sku: string;
+            price: number;
+            priceWithTax: number;
             taxLines: {
                 description: string;
                 taxRate: number;
             }[];
-            price: number;
-            priceWithTax: number;
-            taxRate: number;
-        }[];
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
         }[];
         couponCodes: string[];
         promotions: {
             id: string;
             createdAt: Date;
-            startsAt: Date;
-            endsAt: Date;
-            couponCode: string;
-            perCustomerUsageLimit: number;
             name: string;
             description: string;
             enabled: boolean;
+            startsAt: Date | null;
+            endsAt: Date | null;
+            couponCode: string;
+            perCustomerUsageLimit: number | null;
         }[];
         payments: {
             id: string;
             createdAt: Date;
             method: string;
-            amount: number;
             state: string;
             transactionId: string;
+            amount: number;
             errorMessage: string;
             refunds: {
                 id: string;
@@ -2423,23 +2402,20 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
-        currencyCode: string;
         shippingLines: {
             id: string;
-            shippingMethod: {
-                id: string;
-                code: string;
-                name: string;
-                description: string;
-            };
             price: number;
             priceWithTax: number;
+            shippingMethod: {
+                id: string;
+                name: string;
+                description: string;
+                code: string;
+            };
             discountedPrice: number;
             discountedPriceWithTax: number;
         }[];
-        shipping: number;
         shippingWithTax: number;
-        total: number;
         totalWithTax: number;
         taxSummary: {
             description: string;
@@ -2447,6 +2423,30 @@ export declare const TransitionOrderToStateSchema: import("@arrirpc/schema").AOb
             taxBase: number;
             taxTotal: number;
         }[];
+        shippingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
+        billingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
     } | null;
 }, false>;
 export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
@@ -2454,73 +2454,66 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
         id: string;
         createdAt: Date;
         type: string;
-        orderPlacedAt: Date | null;
         code: string;
+        currencyCode: string;
+        shipping: number;
+        total: number;
         state: string;
-        active: boolean;
-        customer: {
-            id: string;
-            title: string;
-            firstName: string;
-            lastName: string;
-            phoneNumber: string;
-            emailAddress: string;
-            addresses: {
-                id: string;
-                fullName: string;
-                company: string;
-                streetLine1: string;
-                streetLine2: string;
-                city: string;
-                province: string;
-                postalCode: string;
-                country: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    enabled: boolean;
-                };
-                phoneNumber: string;
-                defaultShippingAddress: boolean;
-                defaultBillingAddress: boolean;
-            }[];
-            customFields: {
-                subscribedUntil: Date | null;
-            };
-        } | null;
-        shippingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
-        billingAddress: {
-            fullName: string | null;
-            company: string | null;
-            streetLine1: string | null;
-            streetLine2: string | null;
-            city: string | null;
-            province: string | null;
-            postalCode: string | null;
-            country: string | null;
-            countryCode: string | null;
-            phoneNumber: string | null;
-        } | undefined;
         lines: {
             id: string;
-            productVariant: {
+            taxRate: number;
+            featuredAsset: {
                 id: string;
-                productId: string;
-                createdAt: Date;
-                languageCode: string;
-                sku: string;
+                createdAt: string;
                 name: string;
+                type: string;
+                fileSize: number;
+                mimeType: string;
+                width: number;
+                height: number;
+                source: string;
+                preview: string;
+            };
+            quantity: number;
+            taxLines: {
+                description: string;
+                taxRate: number;
+            }[];
+            unitPrice: number;
+            unitPriceWithTax: number;
+            discountedUnitPrice: number;
+            discountedUnitPriceWithTax: number;
+            orderPlacedQuantity: number;
+            linePrice: number;
+            linePriceWithTax: number;
+            discountedLinePrice: number;
+            discountedLinePriceWithTax: number;
+            proratedLinePrice: number;
+            proratedLinePriceWithTax: number;
+            lineTax: number;
+            discounts: {
+                type: string;
+                description: string;
+                amount: number;
+                adjustmentSource: string;
+                amountWithTax: number;
+            }[];
+            productVariant?: {
+                id: string;
+                createdAt: Date;
+                name: string;
+                options: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    groupId: string;
+                    group: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    };
+                }[];
+                languageCode: string;
                 featuredAsset: {
                     id: string;
                     createdAt: string;
@@ -2545,6 +2538,19 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
                     source: string;
                     preview: string;
                 }[];
+                facetValues: {
+                    id: string;
+                    name: string;
+                    code: string;
+                    facetId: string;
+                    facet?: {
+                        id: string;
+                        name: string;
+                        code: string;
+                    } | undefined;
+                }[];
+                productId: string;
+                sku: string;
                 price: number;
                 currencyCode: string;
                 priceWithTax: number;
@@ -2569,35 +2575,13 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
                     name: string;
                     isDefault: boolean;
                 };
-                options: {
-                    id: string;
-                    code: string;
-                    name: string;
-                    groupId: string;
-                    group: {
-                        id: string;
-                        code: string;
-                        name: string;
-                    };
-                }[];
-                facetValues: {
-                    id: string;
-                    facet: {
-                        id: string;
-                        name: string;
-                        code: string;
-                    } | undefined;
-                    facetId: string;
-                    name: string;
-                    code: string;
-                }[];
                 product: {
                     id: string;
                     createdAt: Date;
-                    languageCode: string;
                     name: string;
-                    slug: string;
                     description: string;
+                    languageCode: string;
+                    slug: string;
                     featuredAsset: {
                         id: string;
                         createdAt: string;
@@ -2624,14 +2608,14 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
                     }[];
                     facetValues: {
                         id: string;
-                        facet: {
+                        name: string;
+                        code: string;
+                        facetId: string;
+                        facet?: {
                             id: string;
                             name: string;
                             code: string;
                         } | undefined;
-                        facetId: string;
-                        name: string;
-                        code: string;
                     }[];
                     customFields: {
                         location: string | null;
@@ -2640,83 +2624,78 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
                     };
                 };
             } | undefined;
-            featuredAsset: {
-                id: string;
-                createdAt: string;
-                name: string;
-                type: string;
-                fileSize: number;
-                mimeType: string;
-                width: number;
-                height: number;
-                source: string;
-                preview: string;
-            };
-            unitPrice: number;
-            unitPriceWithTax: number;
-            discountedUnitPrice: number;
-            discountedUnitPriceWithTax: number;
-            quantity: number;
-            orderPlacedQuantity: number;
-            taxRate: number;
-            linePrice: number;
-            linePriceWithTax: number;
-            discountedLinePrice: number;
-            discountedLinePriceWithTax: number;
-            proratedLinePrice: number;
-            proratedLinePriceWithTax: number;
-            lineTax: number;
-            discounts: {
-                adjustmentSource: string;
-                type: string;
-                description: string;
-                amount: number;
-                amountWithTax: number;
-            }[];
-            taxLines: {
-                description: string;
-                taxRate: number;
-            }[];
         }[];
+        discounts: {
+            type: string;
+            description: string;
+            amount: number;
+            adjustmentSource: string;
+            amountWithTax: number;
+        }[];
+        orderPlacedAt: Date | null;
+        active: boolean;
+        customer: {
+            id: string;
+            customFields: {
+                subscribedUntil: Date | null;
+            };
+            phoneNumber: string;
+            title: string;
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            addresses: {
+                id: string;
+                fullName: string;
+                company: string;
+                streetLine1: string;
+                streetLine2: string;
+                city: string;
+                province: string;
+                postalCode: string;
+                country: {
+                    id: string;
+                    name: string;
+                    enabled: boolean;
+                    code: string;
+                };
+                phoneNumber: string;
+                defaultShippingAddress: boolean;
+                defaultBillingAddress: boolean;
+            }[];
+        } | null;
         surcharges: {
             id: string;
             createdAt: Date;
             description: string;
+            taxRate: number;
             sku: string;
+            price: number;
+            priceWithTax: number;
             taxLines: {
                 description: string;
                 taxRate: number;
             }[];
-            price: number;
-            priceWithTax: number;
-            taxRate: number;
-        }[];
-        discounts: {
-            adjustmentSource: string;
-            type: string;
-            description: string;
-            amount: number;
-            amountWithTax: number;
         }[];
         couponCodes: string[];
         promotions: {
             id: string;
             createdAt: Date;
-            startsAt: Date;
-            endsAt: Date;
-            couponCode: string;
-            perCustomerUsageLimit: number;
             name: string;
             description: string;
             enabled: boolean;
+            startsAt: Date | null;
+            endsAt: Date | null;
+            couponCode: string;
+            perCustomerUsageLimit: number | null;
         }[];
         payments: {
             id: string;
             createdAt: Date;
             method: string;
-            amount: number;
             state: string;
             transactionId: string;
+            amount: number;
             errorMessage: string;
             refunds: {
                 id: string;
@@ -2740,23 +2719,20 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
         totalQuantity: number;
         subTotal: number;
         subTotalWithTax: number;
-        currencyCode: string;
         shippingLines: {
             id: string;
-            shippingMethod: {
-                id: string;
-                code: string;
-                name: string;
-                description: string;
-            };
             price: number;
             priceWithTax: number;
+            shippingMethod: {
+                id: string;
+                name: string;
+                description: string;
+                code: string;
+            };
             discountedPrice: number;
             discountedPriceWithTax: number;
         }[];
-        shipping: number;
         shippingWithTax: number;
-        total: number;
         totalWithTax: number;
         taxSummary: {
             description: string;
@@ -2764,5 +2740,29 @@ export declare const ApplyCouponCodeSchema: import("@arrirpc/schema").AObjectSch
             taxBase: number;
             taxTotal: number;
         }[];
+        shippingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
+        billingAddress?: {
+            fullName: string | null;
+            company: string | null;
+            streetLine1: string | null;
+            streetLine2: string | null;
+            city: string | null;
+            province: string | null;
+            postalCode: string | null;
+            country: string | null;
+            phoneNumber: string | null;
+            countryCode: string | null;
+        } | undefined;
     } | null;
 }, false>;

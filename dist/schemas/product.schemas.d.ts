@@ -1,13 +1,13 @@
 export declare const FacetValueSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    facet: {
+    name: string;
+    code: string;
+    facetId: string;
+    facet?: {
         id: string;
         name: string;
         code: string;
     } | undefined;
-    facetId: string;
-    name: string;
-    code: string;
 }, false>;
 export declare const FacetSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
@@ -15,40 +15,40 @@ export declare const FacetSchema: import("@arrirpc/schema").AObjectSchemaWithAda
     code: string;
     values: {
         id: string;
-        facetId: string;
         name: string;
         code: string;
+        facetId: string;
     }[];
 }, false>;
 export declare const ProductOptionSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    code: string;
     name: string;
+    code: string;
     groupId: string;
     group: {
         id: string;
-        code: string;
         name: string;
+        code: string;
     };
 }, false>;
 export declare const ProductOptionGroupSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    code: string;
     name: string;
+    code: string;
     options: {
         id: string;
-        code: string;
         name: string;
+        code: string;
         groupId: string;
     }[];
 }, false>;
 export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
     createdAt: Date;
-    languageCode: string;
     name: string;
-    slug: string;
     description: string;
+    languageCode: string;
+    slug: string;
     featuredAsset: {
         id: string;
         createdAt: string;
@@ -75,14 +75,14 @@ export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithA
     }[];
     facetValues: {
         id: string;
-        facet: {
+        name: string;
+        code: string;
+        facetId: string;
+        facet?: {
             id: string;
             name: string;
             code: string;
         } | undefined;
-        facetId: string;
-        name: string;
-        code: string;
     }[];
     customFields: {
         location: string | null;
@@ -93,11 +93,20 @@ export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithA
         totalItems: number;
         items: {
             id: string;
-            productId: string;
             createdAt: Date;
-            languageCode: string;
-            sku: string;
             name: string;
+            options: {
+                id: string;
+                name: string;
+                code: string;
+                groupId: string;
+                group: {
+                    id: string;
+                    name: string;
+                    code: string;
+                };
+            }[];
+            languageCode: string;
             featuredAsset: {
                 id: string;
                 createdAt: string;
@@ -122,6 +131,19 @@ export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithA
                 source: string;
                 preview: string;
             }[];
+            facetValues: {
+                id: string;
+                name: string;
+                code: string;
+                facetId: string;
+                facet?: {
+                    id: string;
+                    name: string;
+                    code: string;
+                } | undefined;
+            }[];
+            productId: string;
+            sku: string;
             price: number;
             currencyCode: string;
             priceWithTax: number;
@@ -146,38 +168,25 @@ export declare const ProductSchema: import("@arrirpc/schema").AObjectSchemaWithA
                 name: string;
                 isDefault: boolean;
             };
-            options: {
-                id: string;
-                code: string;
-                name: string;
-                groupId: string;
-                group: {
-                    id: string;
-                    code: string;
-                    name: string;
-                };
-            }[];
-            facetValues: {
-                id: string;
-                facet: {
-                    id: string;
-                    name: string;
-                    code: string;
-                } | undefined;
-                facetId: string;
-                name: string;
-                code: string;
-            }[];
         }[];
     };
 }, false>;
 export declare const ProductVariantSchema: import("@arrirpc/schema").AObjectSchemaWithAdapters<{
     id: string;
-    productId: string;
     createdAt: Date;
-    languageCode: string;
-    sku: string;
     name: string;
+    options: {
+        id: string;
+        name: string;
+        code: string;
+        groupId: string;
+        group: {
+            id: string;
+            name: string;
+            code: string;
+        };
+    }[];
+    languageCode: string;
     featuredAsset: {
         id: string;
         createdAt: string;
@@ -202,6 +211,19 @@ export declare const ProductVariantSchema: import("@arrirpc/schema").AObjectSche
         source: string;
         preview: string;
     }[];
+    facetValues: {
+        id: string;
+        name: string;
+        code: string;
+        facetId: string;
+        facet?: {
+            id: string;
+            name: string;
+            code: string;
+        } | undefined;
+    }[];
+    productId: string;
+    sku: string;
     price: number;
     currencyCode: string;
     priceWithTax: number;
@@ -226,35 +248,13 @@ export declare const ProductVariantSchema: import("@arrirpc/schema").AObjectSche
         name: string;
         isDefault: boolean;
     };
-    options: {
-        id: string;
-        code: string;
-        name: string;
-        groupId: string;
-        group: {
-            id: string;
-            code: string;
-            name: string;
-        };
-    }[];
-    facetValues: {
-        id: string;
-        facet: {
-            id: string;
-            name: string;
-            code: string;
-        } | undefined;
-        facetId: string;
-        name: string;
-        code: string;
-    }[];
     product: {
         id: string;
         createdAt: Date;
-        languageCode: string;
         name: string;
-        slug: string;
         description: string;
+        languageCode: string;
+        slug: string;
         featuredAsset: {
             id: string;
             createdAt: string;
@@ -281,14 +281,14 @@ export declare const ProductVariantSchema: import("@arrirpc/schema").AObjectSche
         }[];
         facetValues: {
             id: string;
-            facet: {
+            name: string;
+            code: string;
+            facetId: string;
+            facet?: {
                 id: string;
                 name: string;
                 code: string;
             } | undefined;
-            facetId: string;
-            name: string;
-            code: string;
         }[];
         customFields: {
             location: string | null;

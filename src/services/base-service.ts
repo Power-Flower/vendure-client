@@ -8,9 +8,9 @@ import type { Result } from '$types/result.types';
 import { type ASchema, a } from '@arrirpc/schema';
 
 export class BaseService {
-    private readonly client: ApolloClient<NormalizedCacheObject>;
+    private readonly client: ApolloClient;
 
-    public constructor(client: ApolloClient<NormalizedCacheObject>) {
+    public constructor(client: ApolloClient) {
         this.client = client;
     }
 
