@@ -1,7 +1,7 @@
-import { CreateStripePaymentIntentSchema, EligiblePaymentMethodsSchema, EligibleShippingMethodsSchema, SetOrderShippingAddressSchema, SetOrderShippingMethodSchema } from '$schemas/checkout.schemas';
+import { AddPaymentToOrderSchema, CreateStripePaymentIntentSchema, EligiblePaymentMethodsSchema, EligibleShippingMethodsSchema, SetOrderShippingAddressSchema, SetOrderShippingMethodSchema } from '$schemas/checkout.schemas';
 import { OrderSchema } from '$schemas/order.schemas';
 import { gql } from '$types/astro.types';
-import { CreateStripePaymentIntent, EligiblePaymentMethods, EligibleShippingMethods, SetOrderShippingAddress, SetOrderShippingMethod } from '$types/checkout.types';
+import { AddPaymentToOrder, CreateStripePaymentIntent, EligiblePaymentMethods, EligibleShippingMethods, SetOrderShippingAddress, SetOrderShippingMethod } from '$types/checkout.types';
 import { Address } from '$types/customer.types';
 import type { Result } from '$types/result.types';
 import { convertToGql } from '$utils/index';
@@ -85,6 +85,27 @@ export class CheckoutService extends BaseService {
                     createStripePaymentIntent
                 }
             `,
+        });
+    }
+
+    public async addPaymentToOrder(
+        methodCode: string
+    ): Promise<Result<AddPaymentToOrder>> {
+        return this.mutate(AddPaymentToOrderSchema, {
+            mutation: gql`
+                mutation AddPaymentToOrder($input: PaymentInput!) {
+                    addPaymentToOrder(input: $input) {
+                        ... on Order {
+                            ${convertToGql(OrderSchema)}
+                        }
+                    }
+                }
+            `,
+            variables: {
+                input: {
+                    method: methodCode,
+                },
+            },
         });
     }
 }

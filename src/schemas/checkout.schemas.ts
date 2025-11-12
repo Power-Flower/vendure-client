@@ -34,6 +34,10 @@ export const SetOrderShippingMethodSchema = a.object({
     setOrderShippingMethod: OrderSchema,
 });
 
+export const AddPaymentToOrderSchema = a.object({
+    addPaymentToOrder: OrderSchema,
+});
+
 export const CreateStripePaymentIntentSchema = a.object({
     createStripePaymentIntent: a.string(),
 });
